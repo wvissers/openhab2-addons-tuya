@@ -21,7 +21,7 @@ Currently it supports the LSC Smart Connect Power Plug only. More devices will h
 
 For a quick start to review this binding, proceed as follows:
 
-1. Download the file org.openhab.binding.tuya-2.4.0-SNAPSHOT.jar in the target folder of this repository.
+1. Download the file [org.openhab.binding.tuya-2.4.0-SNAPSHOT.jar](https://github.com/wvissers/openhab2-addons-tuya/blob/master/target/org.openhab.binding.tuya-2.4.0-SNAPSHOT.jar) in the target folder of this repository.
 2. Copy this file to the addons folder of the operational openHAB system.
 3. Use the Paper UI to create a new thing, using the "Tuya" binding.
 4. With the Paper UI, set the devId, localKey and version. 
@@ -30,7 +30,7 @@ For a quick start to review this binding, proceed as follows:
 
 ## Discovery
 
-Auto-discovery is not applicable to this binding. However, there is a listener to discover the IP addresses of registered things. These are visible in the Paaper UI as properties of the things.
+Auto-discovery is not applicable to this binding. However, there is a listener to discover the IP addresses of registered things. These are visible in the Paper UI as properties of the things.
 
 ## Binding Configuration
 
