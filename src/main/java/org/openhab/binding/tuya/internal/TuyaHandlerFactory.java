@@ -8,15 +8,16 @@
  */
 package org.openhab.binding.tuya.internal;
 
-import static org.openhab.binding.tuya.TuyaBindingConstants.THING_TYPE_SWITCH;
+import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
+import org.openhab.binding.tuya.handler.ColorLedHandler;
 import org.openhab.binding.tuya.handler.PowerPlugHandler;
 
 /**
@@ -27,11 +28,16 @@ import org.openhab.binding.tuya.handler.PowerPlugHandler;
  */
 public class TuyaHandlerFactory extends BaseThingHandlerFactory {
 
-    private final static Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = Collections.singleton(THING_TYPE_SWITCH);
+    private static Set<ThingTypeUID> supportedThingTypes;
 
     @Override
     public boolean supportsThingType(ThingTypeUID thingTypeUID) {
-        return SUPPORTED_THING_TYPES_UIDS.contains(thingTypeUID);
+        if (supportedThingTypes == null) {
+            supportedThingTypes = new HashSet<>();
+            supportedThingTypes.add(THING_TYPE_POWER_PLUG);
+            supportedThingTypes.add(THING_TYPE_COLOR_LED);
+        }
+        return supportedThingTypes.contains(thingTypeUID);
     }
 
     @Override
@@ -39,8 +45,10 @@ public class TuyaHandlerFactory extends BaseThingHandlerFactory {
 
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
-        if (thingTypeUID.equals(THING_TYPE_SWITCH)) {
+        if (thingTypeUID.equals(THING_TYPE_POWER_PLUG)) {
             return new PowerPlugHandler(thing);
+        } else if (thingTypeUID.equals(THING_TYPE_COLOR_LED)) {
+            return new ColorLedHandler(thing);
         }
 
         return null;

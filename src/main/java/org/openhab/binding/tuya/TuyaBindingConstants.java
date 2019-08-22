@@ -21,9 +21,11 @@ public class TuyaBindingConstants {
     public static final String BINDING_ID = "tuya";
 
     // List of all Thing Type UIDs
-    public final static ThingTypeUID THING_TYPE_SWITCH = new ThingTypeUID(BINDING_ID, "powerplug");
+    public final static ThingTypeUID THING_TYPE_POWER_PLUG = new ThingTypeUID(BINDING_ID, "powerplug");
+    public final static ThingTypeUID THING_TYPE_COLOR_LED = new ThingTypeUID(BINDING_ID, "colorled");
 
     // List of all Channel ids
     public final static String CHANNEL_POWER = "power";
+    public final static String CHANNEL_BRIGHTNESS = "brightness";
 
 }

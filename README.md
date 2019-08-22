@@ -13,6 +13,8 @@ Unfortunately, the setup may be somewhat complicated, since the protocol is encr
 
 Look at these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids.
 
+Please note, that the tuya devices only accept a single connection. If you use both the app and openHAB simultaneously, it will not work.
+
 ## Supported Things
 
 Currently it supports the LSC Smart Connect Power Plug only. More devices will hopefully soon be supported.

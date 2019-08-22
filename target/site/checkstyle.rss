@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 34,
+      <title>File: 37,
              Errors: 0,
-             Warnings: 24,
-             Infos: 28
+             Warnings: 28,
+             Infos: 31
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -63,7 +63,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.TuyaHandlerFactory.java">src/main/java/org/openhab/binding/tuya/internal/TuyaHandlerFactory.java</a>
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   0
@@ -178,7 +178,21 @@ under the License.
                   0
                 </td>
                 <td>
+                  1
+                </td>
+                <td>
                   0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.ColorLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/ColorLedHandler.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0
@@ -217,7 +231,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
                 </td>
                 <td>
-                  2
+                  4
                 </td>
                 <td>
                   0
@@ -270,6 +284,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.ColorLedDevice.java">src/main/java/org/openhab/binding/tuya/internal/data/ColorLedDevice.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/net/DeviceEventEmitter.java</a>
                 </td>
                 <td>
@@ -277,6 +305,20 @@ under the License.
                 </td>
                 <td>
                   2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.colorled.xml">ESH-INF/thing/colorled.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0

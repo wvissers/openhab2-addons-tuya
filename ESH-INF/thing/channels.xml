@@ -4,11 +4,17 @@
 	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
 	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
 
-	<!-- Power Channel Type -->
-	<channel-type id="power-channel">
-		<item-type>Switch</item-type>
-		<label>Switch mains power.</label>
-		<description>The mains switch (ON or OFF)</description>
-	</channel-type>
+    <!-- Power Channel Type -->
+    <channel-type id="power-channel">
+        <item-type>Switch</item-type>
+        <label>Switch mains power.</label>
+        <description>The mains switch (ON or OFF)</description>
+    </channel-type>
+    <!-- Brightness Channel Type -->
+    <channel-type id="brightness-channel">
+        <item-type>Number</item-type>
+        <label>The brightness.</label>
+        <description>The brightness of the lamp (0%..100%)</description>
+    </channel-type>
 
 </thing:thing-descriptions>
