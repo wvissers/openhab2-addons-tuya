@@ -26,6 +26,8 @@ import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+
 /**
  * The {@link AmbilightHandler} is responsible for handling commands, which are
  * sent to one of the channels.
@@ -35,6 +37,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
     private Logger logger = LoggerFactory.getLogger(AbstractTuyaHandler.class);
+    protected static Gson gson;
 
     protected MessageParser parser;
     protected String id;
@@ -44,6 +47,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
     public AbstractTuyaHandler(Thing thing) {
         super(thing);
+        if (gson == null) {
+            gson = new Gson();
+        }
     }
 
     /**

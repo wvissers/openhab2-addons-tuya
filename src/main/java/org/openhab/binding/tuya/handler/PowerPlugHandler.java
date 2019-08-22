@@ -53,17 +53,18 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (command instanceof Number || command instanceof RefreshType || command instanceof OnOffType) {
+        if (command instanceof RefreshType || command instanceof OnOffType) {
             switch (channelUID.getId()) {
                 case CHANNEL_POWER:
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("{\"devId\":\"70116356840d8e5f1cb3\",\"dps\":{\"1\":");
-                    sb.append(((OnOffType) command) == OnOffType.ON ? "true" : "false");
-                    sb.append(",\"9\":0}}");
-                    try {
-                        deviceEventEmitter.set(sb.toString(), CommandByte.CONTROL);
-                    } catch (IOException | ParseException e) {
-                        e.printStackTrace(System.out);
+                    if (command instanceof OnOffType) {
+                        PowerPlugDevice dev = new PowerPlugDevice(deviceDetails);
+                        dev.getDps().setDp1(command == OnOffType.ON);
+                        String msg = gson.toJson(dev);
+                        try {
+                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                        } catch (IOException | ParseException e) {
+                            logger.error("Error setting device properties", e);
+                        }
                     }
                     break;
                 default:

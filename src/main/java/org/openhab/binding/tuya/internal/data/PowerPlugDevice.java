@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.data;
 
+import org.openhab.binding.tuya.internal.DeviceDescriptor;
+
 import com.google.gson.annotations.SerializedName;
 
 // {"devId":"70116356840d8e5f1cb3","dps":{"1":false},"t":1566481749}
@@ -21,6 +23,14 @@ public class PowerPlugDevice {
 
     private String devId;
     private Dps dps;
+
+    public PowerPlugDevice() {
+    }
+
+    public PowerPlugDevice(DeviceDescriptor deviceDescriptor) {
+        this.devId = deviceDescriptor.getGwId();
+        dps = new Dps();
+    }
 
     @SerializedName("t")
     long time;

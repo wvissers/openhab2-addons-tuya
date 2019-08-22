@@ -94,6 +94,8 @@
    <message tool="pmd" line="101" message="&#xA;Avoid printStackTrace(); use a logger call instead.&#xA;" priority="1" rule="AvoidPrintStackTrace" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace" category="java logging"/>
    <message tool="checkstyle" line="120" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
       <message tool="checkstyle" line="138" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+   <message tool="checkstyle" line="126" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="144" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.handler.PowerPlugHandler.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -123,6 +125,7 @@
       <message tool="checkstyle" line="1" message="Header is missing" priority="1" rule="ParameterizedRegexpHeaderCheck" category="style"/>
       <message tool="checkstyle" line="6" message="An author tag is missing" priority="1" rule="AuthorTagCheck" category="style"/>
    <message tool="checkstyle" line="17" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+   <message tool="checkstyle" line="19" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.DeviceDescriptor.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
