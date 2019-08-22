@@ -17,7 +17,7 @@ Please note, that the tuya devices only accept a single connection. If you use b
 
 ## Supported Things
 
-Currently it supports the LSC Smart Connect Power Plug only. More devices will hopefully soon be supported.
+Currently it supports the LSC Smart Connect Power Plug, and the Smart LED white and color ambiance lamp partially. More devices will (hopefully) soon be supported.
 
 ## Quick start
 
