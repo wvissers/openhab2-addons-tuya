@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="tuya"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Power Channel Type -->
+	<channel-type id="power-channel">
+		<item-type>Switch</item-type>
+		<label>Switch mains power.</label>
+		<description>The mains switch (ON or OFF)</description>
+	</channel-type>
+
+</thing:thing-descriptions>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="tuya"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Smart Power Plug Thing Type -->
+    <thing-type id="powerplug">
+        <label>Tuya Smart Power Plug</label>
+        <description>Tuya smart power plug device with one on/off channel.</description>
+        <channels>
+            <channel id="power" typeId="power-channel" />
+        </channels>
+        <config-description>
+            <parameter name="id" type="text" required="true">
+                <label>Device id (devId).</label>
+                <description>Device id of the smart power plug (found by intercepting Tuya app traffic).</description>
+            </parameter>
+            <parameter name="key" type="text" required="true">
+                <label>Local encryption key (localKey).</label>
+                <description>Local encryption key (found by intercepting Tuya app traffic).</description>
+            </parameter>
+            <parameter name="version" type="text" required="true">
+                <label>API version.</label>
+                <default>3.3</default>
+                <description>Device API version (typically 3.3).</description>
+            </parameter>
+        </config-description>
+    </thing-type>
+
+</thing:thing-descriptions>

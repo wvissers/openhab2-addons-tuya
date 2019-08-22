@@ -1,0 +1,2434 @@
+<html xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+      <title>Analysis Report</title><style type="text/css">
+					body {margin-left: 3%; font-size:10pt;font-family:Arial;color:#000000 ; }					
+					table.details tr th {font-size:10pt;font-family:Arial;font-weight:bold;background:#AC58FA}
+					table.details tr {font-size:10pt;font-family:Arial;font-weight:normal;background:#BEa1Fa}
+					table tbody	tr.alternate {background:#BAF4A7;}
+					table tbody tr.dark {background:#F4F4A7;}
+				</style></head>
+   <body>
+      <h2>Report
+         					 
+         					(2019-08-22+02:00;
+         					 19:37:13.542+02:00)
+         				
+      </h2>
+      <h3>Summary Messages</h3>
+      <table width="90%" border="0" class="details">
+         <tr>
+            <th align="left">category</th>
+            <th align="left">tool</th>
+            <th align="left">priority</th>
+            <th align="left">rule</th>
+            <th align="left">count</th>
+         </tr>
+         <tr>
+            <td colspan="5">design</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton">NonThreadSafeSingleton</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">empty code</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">3</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/empty.html#EmptyIfStmt">EmptyIfStmt</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">java logging</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">1</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#AvoidPrintStackTrace">AvoidPrintStackTrace</a></td>
+            <td align="center">8</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">2</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln">SystemPrintln</a></td>
+            <td align="center">12</td>
+         </tr>
+         <tr>
+            <td colspan="5">strict exceptions</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>pmd</td>
+            <td align="left">2</td>
+            <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidCatchingNPE">AvoidCatchingNPE</a></td>
+            <td align="center">1</td>
+         </tr>
+         <tr>
+            <td colspan="5">style</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">1</td>
+            <td>AuthorTagCheck</td>
+            <td align="center">12</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">1</td>
+            <td>ParameterizedRegexpHeaderCheck</td>
+            <td align="center">3</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td align="center">7</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td align="center">4</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>ManifestPackageVersionCheck</td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>JavadocFilterCheck</td>
+            <td align="center">1</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">2</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td align="center">25</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td align="center">28</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td align="center">11</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>TodoCommentCheck</td>
+            <td align="center">9</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>ModifierOrderCheck</td>
+            <td align="center">13</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>ConstantNameCheck</td>
+            <td align="center">2</td>
+         </tr>
+         <tr class="dark">
+            <td colspan="4"></td>
+            <td align="center">140</td>
+         </tr>
+      </table>
+      <p></p>
+      <h3>Summary Files</h3>
+      <table width="90%" border="0" class="details">
+         <tr>
+            <th align="left" width="90pt">class file</th>
+            <th align="center" width="90pt">high</th>
+            <th align="center" width="90pt">medium</th>
+            <th align="center" width="90pt">low</th>
+            <th align="center" width="90pt">total</th>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.javasystem\ESH-INF\i18n\javasystem_xx_XX.properties" title=".binding.javasystem\ESH-INF\i18n\javasystem_xx_XX.properties">.binding.javasystem\ESH-INF\i18n\javasystem_xx_XX.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.javasystem\ESH-INF\thing\thing-types.xml" title=".binding.javasystem\ESH-INF\thing\thing-types.xml">.binding.javasystem\ESH-INF\thing\thing-types.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.javasystem\OSGI-INF\JavaSystemHandlerFactory.xml" title=".binding.javasystem\OSGI-INF\JavaSystemHandlerFactory.xml">.binding.javasystem\OSGI-INF\JavaSystemHandlerFactory.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.javasystem\build.properties" title=".binding.javasystem\build.properties">.binding.javasystem\build.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties" title=".binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties">.binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\ESH-INF\i18n\tuya_xx_XX.properties" title=".binding.tuya\ESH-INF\i18n\tuya_xx_XX.properties">.binding.tuya\ESH-INF\i18n\tuya_xx_XX.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\ESH-INF\thing\powerplug.xml" title=".binding.tuya\ESH-INF\thing\powerplug.xml">.binding.tuya\ESH-INF\thing\powerplug.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\ESH-INF\thing\thing-types.xml" title=".binding.tuya\ESH-INF\thing\thing-types.xml">.binding.tuya\ESH-INF\thing\thing-types.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\META-INF\MANIFEST.MF" title=".binding.tuya\META-INF\MANIFEST.MF">.binding.tuya\META-INF\MANIFEST.MF</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\OSGI-INF\TuyaDiscoveryService.xml" title=".binding.tuya\OSGI-INF\TuyaDiscoveryService.xml">.binding.tuya\OSGI-INF\TuyaDiscoveryService.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\OSGI-INF\TuyaHandlerFactory.xml" title=".binding.tuya\OSGI-INF\TuyaHandlerFactory.xml">.binding.tuya\OSGI-INF\TuyaHandlerFactory.xml</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#.binding.tuya\build.properties" title=".binding.tuya\build.properties">.binding.tuya\build.properties</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.javasystem.JavaSystemBindingConstants.java" title="org.openhab.binding.javasystem.JavaSystemBindingConstants.java">org.openhab.binding.javasystem.JavaSystemBindingConstants.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">9</div>
+            </td>
+            <td align="center">
+               <div class="p3">9</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.javasystem.handler.JavaSystemHandler.java" title="org.openhab.binding.javasystem.handler.JavaSystemHandler.java">org.openhab.binding.javasystem.handler.JavaSystemHandler.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.javasystem.internal.FormatUtil.java" title="org.openhab.binding.javasystem.internal.FormatUtil.java">org.openhab.binding.javasystem.internal.FormatUtil.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.javasystem.internal.JavaSystemHandlerFactory.java" title="org.openhab.binding.javasystem.internal.JavaSystemHandlerFactory.java">org.openhab.binding.javasystem.internal.JavaSystemHandlerFactory.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.TuyaBindingConstants.java" title="org.openhab.binding.tuya.TuyaBindingConstants.java">org.openhab.binding.tuya.TuyaBindingConstants.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.handler.AbstractTuyaHandler.java" title="org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">org.openhab.binding.tuya.handler.AbstractTuyaHandler.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">5</div>
+            </td>
+            <td align="center">
+               <div class="p3">6</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.handler.PowerPlugHandler.java" title="org.openhab.binding.tuya.handler.PowerPlugHandler.java">org.openhab.binding.tuya.handler.PowerPlugHandler.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.handler.SwitchHandler.java" title="org.openhab.binding.tuya.handler.SwitchHandler.java">org.openhab.binding.tuya.handler.SwitchHandler.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.handler.TuyaHandler.java" title="org.openhab.binding.tuya.handler.TuyaHandler.java">org.openhab.binding.tuya.handler.TuyaHandler.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">5</div>
+            </td>
+            <td align="center">
+               <div class="p3">7</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.Constants.java" title="org.openhab.binding.tuya.internal.Constants.java">org.openhab.binding.tuya.internal.Constants.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.DeviceDescriptor.java" title="org.openhab.binding.tuya.internal.DeviceDescriptor.java">org.openhab.binding.tuya.internal.DeviceDescriptor.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.DeviceRepository.java" title="org.openhab.binding.tuya.internal.DeviceRepository.java">org.openhab.binding.tuya.internal.DeviceRepository.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.FormatUtil.java" title="org.openhab.binding.tuya.internal.FormatUtil.java">org.openhab.binding.tuya.internal.FormatUtil.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.TuyaHandlerFactory.java" title="org.openhab.binding.tuya.internal.TuyaHandlerFactory.java">org.openhab.binding.tuya.internal.TuyaHandlerFactory.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.data.CommandByte.java" title="org.openhab.binding.tuya.internal.data.CommandByte.java">org.openhab.binding.tuya.internal.data.CommandByte.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.data.DeviceDatagram.java" title="org.openhab.binding.tuya.internal.data.DeviceDatagram.java">org.openhab.binding.tuya.internal.data.DeviceDatagram.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.data.Message.java" title="org.openhab.binding.tuya.internal.data.Message.java">org.openhab.binding.tuya.internal.data.Message.java</a></td>
+            <td align="center">
+               <div class="p1">2</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.data.PowerPlugDevice.java" title="org.openhab.binding.tuya.internal.data.PowerPlugDevice.java">org.openhab.binding.tuya.internal.data.PowerPlugDevice.java</a></td>
+            <td align="center">
+               <div class="p1">2</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java" title="org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java">org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">0</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.exceptions.ParseException.java" title="org.openhab.binding.tuya.internal.exceptions.ParseException.java">org.openhab.binding.tuya.internal.exceptions.ParseException.java</a></td>
+            <td align="center">
+               <div class="p1">2</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java" title="org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java">org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java" title="org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.net.EventEmitter.java" title="org.openhab.binding.tuya.internal.net.EventEmitter.java">org.openhab.binding.tuya.internal.net.EventEmitter.java</a></td>
+            <td align="center">
+               <div class="p1">0</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">2</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.net.EventEmitters.java" title="org.openhab.binding.tuya.internal.net.EventEmitters.java">org.openhab.binding.tuya.internal.net.EventEmitters.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.net.Packet.java" title="org.openhab.binding.tuya.internal.net.Packet.java">org.openhab.binding.tuya.internal.net.Packet.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.util.BufferUtils.java" title="org.openhab.binding.tuya.internal.util.BufferUtils.java">org.openhab.binding.tuya.internal.util.BufferUtils.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">4</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.util.Crc.java" title="org.openhab.binding.tuya.internal.util.Crc.java">org.openhab.binding.tuya.internal.util.Crc.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">3</div>
+            </td>
+            <td align="center">
+               <div class="p3">5</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.util.Debug.java" title="org.openhab.binding.tuya.internal.util.Debug.java">org.openhab.binding.tuya.internal.util.Debug.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">11</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">13</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.util.MessageParser.java" title="org.openhab.binding.tuya.internal.util.MessageParser.java">org.openhab.binding.tuya.internal.util.MessageParser.java</a></td>
+            <td align="center">
+               <div class="p1">1</div>
+            </td>
+            <td align="center">
+               <div class="p2">5</div>
+            </td>
+            <td align="center">
+               <div class="p3">1</div>
+            </td>
+            <td align="center">
+               <div class="p3">7</div>
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td><a href="#org.openhab.binding.tuya.internal.util.TuyaCipher.java" title="org.openhab.binding.tuya.internal.util.TuyaCipher.java">org.openhab.binding.tuya.internal.util.TuyaCipher.java</a></td>
+            <td align="center">
+               <div class="p1">7</div>
+            </td>
+            <td align="center">
+               <div class="p2">2</div>
+            </td>
+            <td align="center">
+               <div class="p3">6</div>
+            </td>
+            <td align="center">
+               <div class="p3">15</div>
+            </td>
+         </tr>
+         <tr class="dark">
+            <td></td>
+            <td align="center">
+               <div class="p1">23</div>
+            </td>
+            <td align="center">
+               <div class="p2">52</div>
+            </td>
+            <td align="center">
+               <div class="p3">65</div>
+            </td>
+            <td align="center">
+               <div class="p3">140</div>
+            </td>
+         </tr>
+      </table>
+      <p></p>
+      <h3>Details by Class</h3>
+      <table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.javasystem\ESH-INF\i18n\javasystem_xx_XX.properties">.binding.javasystem\ESH-INF\i18n\javasystem_xx_XX.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.javasystem\ESH-INF\thing\thing-types.xml">.binding.javasystem\ESH-INF\thing\thing-types.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>12</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.javasystem\OSGI-INF\JavaSystemHandlerFactory.xml">.binding.javasystem\OSGI-INF\JavaSystemHandlerFactory.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>13</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.javasystem\build.properties">.binding.javasystem\build.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties">.binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\ESH-INF\i18n\tuya_xx_XX.properties">.binding.tuya\ESH-INF\i18n\tuya_xx_XX.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\ESH-INF\thing\powerplug.xml">.binding.tuya\ESH-INF\thing\powerplug.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>7</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\ESH-INF\thing\thing-types.xml">.binding.tuya\ESH-INF\thing\thing-types.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>12</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>15</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\META-INF\MANIFEST.MF">.binding.tuya\META-INF\MANIFEST.MF</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>11</td>
+            <td>style</td>
+            <td>ManifestPackageVersionCheck</td>
+            <td>The version of the package com.google.gson should not be specified</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>12</td>
+            <td>style</td>
+            <td>ManifestPackageVersionCheck</td>
+            <td>The version of the package com.google.gson.annotations should not be specified</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\OSGI-INF\TuyaDiscoveryService.xml">.binding.tuya\OSGI-INF\TuyaDiscoveryService.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>4</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\OSGI-INF\TuyaHandlerFactory.xml">.binding.tuya\OSGI-INF\TuyaHandlerFactory.xml</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>13</td>
+            <td>style</td>
+            <td>OnlyTabIndentationInXmlFilesCheck</td>
+            <td>There were whitespace characters used for indentation. Please use tab characters instead</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name=".binding.tuya\build.properties">.binding.tuya\build.properties</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.javasystem.JavaSystemBindingConstants.java">org.openhab.binding.javasystem.JavaSystemBindingConstants.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>24</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>27</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>28</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>29</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>30</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>31</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>32</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>33</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>34</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.javasystem.handler.JavaSystemHandler.java">org.openhab.binding.javasystem.handler.JavaSystemHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>98</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>110</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>115</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.javasystem.internal.FormatUtil.java">org.openhab.binding.javasystem.internal.FormatUtil.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.javasystem.internal.JavaSystemHandlerFactory.java">org.openhab.binding.javasystem.internal.JavaSystemHandlerFactory.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>30</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>39</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.TuyaBindingConstants.java">org.openhab.binding.tuya.TuyaBindingConstants.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>24</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>27</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">org.openhab.binding.tuya.handler.AbstractTuyaHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>101</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>100</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>121</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>139</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>120</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>138</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.handler.PowerPlugHandler.java">org.openhab.binding.tuya.handler.PowerPlugHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>30</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.handler.SwitchHandler.java">org.openhab.binding.tuya.handler.SwitchHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>13</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>13</td>
+            <td>style</td>
+            <td>JavadocFilterCheck</td>
+            <td>Missing Javadoc comment.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>16</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.handler.TuyaHandler.java">org.openhab.binding.tuya.handler.TuyaHandler.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>95</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>66</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>78</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>83</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>70</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>99</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>98</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.Constants.java">org.openhab.binding.tuya.internal.Constants.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.DeviceDescriptor.java">org.openhab.binding.tuya.internal.DeviceDescriptor.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>16</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.DeviceRepository.java">org.openhab.binding.tuya.internal.DeviceRepository.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>31</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.FormatUtil.java">org.openhab.binding.tuya.internal.FormatUtil.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.TuyaHandlerFactory.java">org.openhab.binding.tuya.internal.TuyaHandlerFactory.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>30</td>
+            <td>style</td>
+            <td>ModifierOrderCheck</td>
+            <td>'static' modifier out of order with the JLS suggestions.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>39</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>39</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.data.CommandByte.java">org.openhab.binding.tuya.internal.data.CommandByte.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.data.DeviceDatagram.java">org.openhab.binding.tuya.internal.data.DeviceDatagram.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>11</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>16</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.data.Message.java">org.openhab.binding.tuya.internal.data.Message.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>1</td>
+            <td>style</td>
+            <td>ParameterizedRegexpHeaderCheck</td>
+            <td>Header is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>5</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>16</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.data.PowerPlugDevice.java">org.openhab.binding.tuya.internal.data.PowerPlugDevice.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>1</td>
+            <td>style</td>
+            <td>ParameterizedRegexpHeaderCheck</td>
+            <td>Header is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>6</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>17</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java">org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>32</td>
+            <td>design</td>
+            <td>NonThreadSafeSingleton</td>
+            <td>
+               Singleton is not thread safe
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>3</td>
+            <td>74</td>
+            <td>empty code</td>
+            <td>EmptyIfStmt</td>
+            <td>
+               Avoid empty if statements
+               
+            </td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.exceptions.ParseException.java">org.openhab.binding.tuya.internal.exceptions.ParseException.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>1</td>
+            <td>style</td>
+            <td>ParameterizedRegexpHeaderCheck</td>
+            <td>Header is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>3</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java">org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>26</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>70</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>23</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>34</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>198</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>161</td>
+            <td>strict exceptions</td>
+            <td>AvoidCatchingNPE</td>
+            <td>
+               Avoid catching NullPointerException; consider removing the cause of the NPE.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.net.EventEmitter.java">org.openhab.binding.tuya.internal.net.EventEmitter.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>19</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.net.EventEmitters.java">org.openhab.binding.tuya.internal.net.EventEmitters.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>11</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.net.Packet.java">org.openhab.binding.tuya.internal.net.Packet.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>11</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.util.BufferUtils.java">org.openhab.binding.tuya.internal.util.BufferUtils.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>13</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>16</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>21</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.util.Crc.java">org.openhab.binding.tuya.internal.util.Crc.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>11</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>13</td>
+            <td>style</td>
+            <td>ConstantNameCheck</td>
+            <td>Name 'crc32Table' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>19</td>
+            <td>style</td>
+            <td>ConstantNameCheck</td>
+            <td>Name 'crc32Table' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.util.Debug.java">org.openhab.binding.tuya.internal.util.Debug.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>11</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>15</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.print is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>16</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.print is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>18</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>14</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>21</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.print is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>22</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.print is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>24</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>16</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>23</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.print is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>24</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.print is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>26</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.util.MessageParser.java">org.openhab.binding.tuya.internal.util.MessageParser.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>20</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>103</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>24</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>110</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>27</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>194</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+      </table><br><table width="90%" border="0" class="details">
+         <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.util.TuyaCipher.java">org.openhab.binding.tuya.internal.util.TuyaCipher.java</a></th>
+         <tr>
+            <th align="left" width="80pt">tool</th>
+            <th align="left" width="50pt">priority</th>
+            <th align="left" width="30pt">line</th>
+            <th align="left" width="80pt">category</th>
+            <th align="left" width="380pt">rule</th>
+            <th align="left">message</th>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>1</td>
+            <td>22</td>
+            <td>style</td>
+            <td>AuthorTagCheck</td>
+            <td>An author tag is missing</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>39</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>107</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>112</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>45</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>113</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>1</td>
+            <td>118</td>
+            <td>java logging</td>
+            <td>AvoidPrintStackTrace</td>
+            <td>
+               Avoid printStackTrace(); use a logger call instead.
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>25</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>28</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>0</td>
+            <td>style</td>
+            <td>NewlineAtEndOfFileCheck</td>
+            <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>42</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line before closing brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>106</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>48</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line before closing brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>112</td>
+            <td>style</td>
+            <td>TodoCommentCheck</td>
+            <td>Comment matches to-do format '(TODO)|(FIXME)'.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>55</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line before closing brace</td>
+         </tr>
+      </table><br></body>
+</html>

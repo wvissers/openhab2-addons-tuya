@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.8.1" timestamp="2019-08-22T19:37:01.945">
+<file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\discovery\TuyaDiscoveryService.java">
+<violation beginline="32" endline="34" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.tuya.internal.discovery" class="TuyaDiscoveryService" method="getSupportedTypes" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
+Singleton is not thread safe
+</violation>
+<violation beginline="74" endline="75" begincolumn="46" endcolumn="9" rule="EmptyIfStmt" ruleset="Empty Code" package="org.openhab.binding.tuya.internal.discovery" class="TuyaDiscoveryService" method="stopScan" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/empty.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+</file>
+<file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\DeviceEventEmitter.java">
+<violation beginline="161" endline="161" begincolumn="40" endcolumn="59" rule="AvoidCatchingNPE" ruleset="Strict Exceptions" package="org.openhab.binding.tuya.internal.net" class="DeviceEventEmitter" method="run" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidCatchingNPE" priority="2">
+Avoid catching NullPointerException; consider removing the cause of the NPE.
+</violation>
+</file>
+<file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\Debug.java">
+<violation beginline="23" endline="23" begincolumn="13" endcolumn="28" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.tuya.internal.util" class="Debug" method="print" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="24" endline="24" begincolumn="13" endcolumn="28" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.tuya.internal.util" class="Debug" method="print" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
+System.out.print is used
+</violation>
+<violation beginline="26" endline="26" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.tuya.internal.util" class="Debug" method="print" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
+System.out.println is used
+</violation>
+</file>
+<file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\MessageParser.java">
+<violation beginline="194" endline="194" begincolumn="9" endcolumn="26" rule="SystemPrintln" ruleset="Java Logging" package="org.openhab.binding.tuya.internal.util" class="MessageParser" method="encode" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" priority="2">
+System.out.println is used
+</violation>
+</file>
+</pmd>

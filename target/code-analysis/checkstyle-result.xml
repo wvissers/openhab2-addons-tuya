@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.1">
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\.classpath">
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\about.html">
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\build.properties">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\ESH-INF\binding\binding.xml">
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\ESH-INF\thing\channels.xml">
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\ESH-INF\thing\powerplug.xml">
+<error line="7" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\META-INF\MANIFEST.MF">
+<error line="11" severity="warning" message="The version of the package com.google.gson should not be specified" source="org.openhab.tools.analysis.checkstyle.ManifestPackageVersionCheck"/>
+<error line="12" severity="warning" message="The version of the package com.google.gson.annotations should not be specified" source="org.openhab.tools.analysis.checkstyle.ManifestPackageVersionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\OSGI-INF\TuyaDiscoveryService.xml">
+<error line="4" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\OSGI-INF\TuyaHandlerFactory.xml">
+<error line="13" severity="warning" message="There were whitespace characters used for indentation. Please use tab characters instead" source="org.openhab.tools.analysis.checkstyle.OnlyTabIndentationInXmlFilesCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\pom.xml">
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\README.md">
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\handler\AbstractTuyaHandler.java">
+<error line="120" severity="info" message="Remove empty line after opening brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
+<error line="138" severity="info" message="Comment matches to-do format &apos;(TODO)|(FIXME)&apos;." source="com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\handler\PowerPlugHandler.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="30" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\Constants.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="14" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\data\CommandByte.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="14" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\data\DeviceDatagram.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="16" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\data\Message.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="16" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\data\PowerPlugDevice.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="17" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\DeviceDescriptor.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="16" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\DeviceRepository.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="31" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\discovery\TuyaDiscoveryService.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\exceptions\ParseException.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="14" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\DatagramEventEmitter.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="23" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\DeviceEventEmitter.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="34" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+<error line="198" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\EventEmitter.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="19" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\Packet.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="14" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\TuyaHandlerFactory.java">
+<error line="30" column="19" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+<error line="39" severity="info" message="Remove empty line" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\BufferUtils.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="21" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\Crc.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="14" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+<error line="19" column="33" severity="info" message="Name &apos;crc32Table&apos; must match pattern &apos;^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\Debug.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="16" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\MessageParser.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="27" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\util\TuyaCipher.java">
+<error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
+<error line="28" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+</file>
+<file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\TuyaBindingConstants.java">
+<error line="24" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+<error line="27" column="18" severity="info" message="&apos;static&apos; modifier out of order with the JLS suggestions." source="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"/>
+</file>
+</checkstyle>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binding:binding id="tuya" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:binding="http://eclipse.org/smarthome/schemas/binding/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/binding/v1.0.0 http://eclipse.org/smarthome/schemas/binding-1.0.0.xsd">
+
+	<name>Tuya Binding</name>
+	<description>This binding is used to bind Tuya devices. They exist with many brand names. In the Netherlands e.g., the Action sells devices with the LSC Smart Connect brand name.</description>
+	<author>Wim Vissers</author>
+
+</binding:binding>
