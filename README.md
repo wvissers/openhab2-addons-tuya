@@ -9,7 +9,7 @@ Please note that this binding is under construction. Let me know what you think 
 
 ## Setup
 
-Unfortunately, the setup may be somewhat complicated, since the protocol is encrypted with AES, and the keys for this communication must be obtained with a little effort to decode the traffic of the app to the cloud. 
+Unfortunately, since the local device communication is encrypted, you will need to obtain the encryption keys and the device ids. Every device has its own key, so this is needed for every new device you want to add. These keys can be found by analyzing the traffic between the Tuya app and the Tuya cloud service. Since this communication is also encrypted using https, a little effort is needed here. 
 
 Look at these [setup instructions using Windows](http://www.htgsd.com/information-technology/apple/homekit/how-to-capture-tuya-lan-homebridge-device-devid-and-key-on-windows-10/) or these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids.
 
@@ -17,7 +17,7 @@ Please note, that the tuya devices only accept a single connection. If you use b
 
 ## Supported Things
 
-Currently it supports the LSC Smart Connect Power Plug, and the Smart LED white and color ambiance lamp partially. More devices will (hopefully) soon be supported.
+Currently it supports the LSC Smart Connect Power Plug,  Smart LED white and color ambiance lamps. Other devices that use the same communication scheme might also work.
 
 ## Quick start
 

@@ -109,6 +109,7 @@ public class ColorLedDevice extends BasicDevice {
         public void setDp3(int dp3) {
             this.dp3 = dp3;
             this.dp1 = dp3 > 0;
+            this.dp2 = "white";
         }
 
         public int getDp4() {
@@ -117,6 +118,7 @@ public class ColorLedDevice extends BasicDevice {
 
         public void setDp4(int dp4) {
             this.dp4 = dp4;
+            this.dp2 = "white";
         }
 
         public String getDp5() {
@@ -125,6 +127,7 @@ public class ColorLedDevice extends BasicDevice {
 
         public void setDp5(String dp5) {
             this.dp5 = dp5;
+            this.dp2 = "colour";
         }
 
         public int getDp9() {

@@ -28,7 +28,7 @@ under the License.
       <title>File: 39,
              Errors: 0,
              Warnings: 30,
-             Infos: 36
+             Infos: 35
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -441,7 +441,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#ESH-INF.i18n.tuya_nl_NL.properties">ESH-INF/i18n/tuya_nl_NL.properties</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0

@@ -5,9 +5,7 @@
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
    </file>
 
-   <file name=".binding.tuya\ESH-INF\i18n\tuya_nl_NL.properties">
-      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
-   </file>
+
    <file name=".binding.tuya\ESH-INF\thing\channels.xml">
       <message tool="checkstyle" line="7" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
    </file>

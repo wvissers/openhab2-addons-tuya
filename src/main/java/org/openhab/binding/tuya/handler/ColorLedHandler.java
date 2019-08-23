@@ -75,6 +75,7 @@ public class ColorLedHandler extends AbstractTuyaHandler {
                         break;
                     case CHANNEL_BRIGHTNESS:
                         if (command instanceof Number) {
+                            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
                             dev.getDps().setDp3(Calc.numberTo255(command));
                             String msg = gson.toJson(dev);
                             deviceEventEmitter.set(msg, CommandByte.CONTROL);
@@ -82,6 +83,7 @@ public class ColorLedHandler extends AbstractTuyaHandler {
                         break;
                     case CHANNEL_COLOR_TEMPERATURE:
                         if (command instanceof Number) {
+                            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
                             dev.getDps().setDp4(Calc.numberTo255(command));
                             String msg = gson.toJson(dev);
                             deviceEventEmitter.set(msg, CommandByte.CONTROL);
@@ -89,7 +91,7 @@ public class ColorLedHandler extends AbstractTuyaHandler {
                         break;
                     case CHANNEL_COLOR:
                         if (command instanceof HSBType) {
-                            String x = "8000ff016500ff";
+                            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.ON);
                             dev.getDps().setDp5(Calc.colorToCommandString((HSBType) command));
                             String msg = gson.toJson(dev);
                             deviceEventEmitter.set(msg, CommandByte.CONTROL);

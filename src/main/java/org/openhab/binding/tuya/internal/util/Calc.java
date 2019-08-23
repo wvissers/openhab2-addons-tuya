@@ -42,7 +42,7 @@ public class Calc {
 
     /**
      * Take an OH command represented as Color (HSBType) and convert it to a Tuya understandable RGB value.
-     * 
+     *
      * @param hsb the color to encode.
      * @return the command string.
      */
@@ -50,7 +50,7 @@ public class Calc {
         StringBuilder b = new StringBuilder();
         b.append(Integer.toHexString(hsb.getRed().intValue() * 255 / 100))
                 .append(Integer.toHexString(hsb.getGreen().intValue() * 255 / 100))
-                .append(Integer.toHexString(hsb.getBlue().intValue() * 255 / 100)).append("016500ff");
+                .append(Integer.toHexString(hsb.getBlue().intValue() * 255 / 100)).append("00f1ffff");// append("016500ff");
         return b.toString();
     }
 
