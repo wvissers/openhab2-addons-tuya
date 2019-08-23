@@ -11,7 +11,7 @@ Please note that this binding is under construction. Let me know what you think 
 
 Unfortunately, the setup may be somewhat complicated, since the protocol is encrypted with AES, and the keys for this communication must be obtained with a little effort to decode the traffic of the app to the cloud. 
 
-Look at these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids.
+Look at these [setup instructions using Windows](http://www.htgsd.com/information-technology/apple/homekit/how-to-capture-tuya-lan-homebridge-device-devid-and-key-on-windows-10/) or these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids.
 
 Please note, that the tuya devices only accept a single connection. If you use both the app and openHAB simultaneously, it will not work.
 
