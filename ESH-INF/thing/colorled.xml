@@ -10,7 +10,9 @@
         <description>Tuya smart color LED lamp device with on/off and dimmer channels.</description>
         <channels>
             <channel id="power" typeId="power-channel" />
+            <channel id="colorMode" typeId="color-mode-channel" />
             <channel id="brightness" typeId="brightness-channel" />
+            <channel id="colorTemperature" typeId="color-temperature-channel" />
         </channels>
         <config-description>
             <parameter name="id" type="text" required="true">

@@ -16,12 +16,12 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.types.Command;
-import org.eclipse.smarthome.core.types.RefreshType;
 import org.openhab.binding.tuya.internal.data.ColorLedDevice;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.data.PowerPlugDevice;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.util.Calc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,35 +54,48 @@ public class ColorLedHandler extends AbstractTuyaHandler {
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (command instanceof RefreshType || command instanceof OnOffType || command instanceof Number) {
-            switch (channelUID.getId()) {
-                case CHANNEL_POWER:
-                    if (command instanceof OnOffType) {
-                        ColorLedDevice dev = new ColorLedDevice(deviceDetails);
-                        dev.getDps().setDp1(command == OnOffType.ON);
-                        String msg = gson.toJson(dev);
-                        try {
+        if (command instanceof OnOffType || command instanceof Number) {
+            try {
+                ColorLedDevice dev = new ColorLedDevice(deviceDetails);
+                switch (channelUID.getId()) {
+                    case CHANNEL_POWER:
+                        if (command instanceof OnOffType) {
+                            dev.getDps().setDp1(command == OnOffType.ON);
+                            String msg = gson.toJson(dev);
                             deviceEventEmitter.set(msg, CommandByte.CONTROL);
-                        } catch (IOException | ParseException e) {
-                            logger.error("Error setting device properties", e);
                         }
-                    }
-                    break;
-                case CHANNEL_BRIGHTNESS:
-                    if (command instanceof Number) {
-                        ColorLedDevice dev = new ColorLedDevice(deviceDetails);
-                        dev.getDps().setDp3((int) Math.round(((Number) (command)).doubleValue() * 100));
-                        String msg = gson.toJson(dev);
-                        try {
+                        break;
+                    case CHANNEL_COLOR_MODE:
+                        if (command instanceof OnOffType) {
+                            dev.getDps().setDp2(command == OnOffType.ON ? "colour" : "white");
+                            String msg = gson.toJson(dev);
                             deviceEventEmitter.set(msg, CommandByte.CONTROL);
-                        } catch (IOException | ParseException e) {
-                            logger.error("Error setting device properties", e);
                         }
-                    }
-                    break;
-                default:
-                    logger.debug("Command received for an unknown channel: {}", channelUID.getId());
-                    break;
+                        break;
+                    case CHANNEL_BRIGHTNESS:
+                        if (command instanceof Number) {
+                            dev.getDps().setDp3(Calc.numberTo255(command));
+                            String msg = gson.toJson(dev);
+                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                        }
+                        break;
+                    case CHANNEL_COLOR_TEMPERATURE:
+                        if (command instanceof Number) {
+                            dev.getDps().setDp4(Calc.numberTo255(command));
+                            String msg = gson.toJson(dev);
+                            try {
+                                deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            } catch (IOException | ParseException e) {
+                                logger.error("Error setting device properties", e);
+                            }
+                        }
+                        break;
+                    default:
+                        logger.debug("Command received for an unknown channel: {}", channelUID.getId());
+                        break;
+                }
+            } catch (IOException | ParseException e) {
+                logger.error("Error setting device properties", e);
             }
         } else {
             logger.debug("Command {} is not supported for channel: {}", command, channelUID.getId());

@@ -198,6 +198,10 @@
    <message tool="checkstyle" line="16" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    <message tool="checkstyle" line="21" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
+   <file name="org.openhab.binding.tuya.internal.util.Calc.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="16" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+   </file>
    <file name="org.openhab.binding.tuya.internal.util.Crc.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="11" message="An author tag is missing" priority="1" rule="AuthorTagCheck" category="style"/>
@@ -252,5 +256,7 @@
    <message tool="checkstyle" line="25" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="28" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="29" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+   <message tool="checkstyle" line="30" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="31" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
    </file>
 </sca>

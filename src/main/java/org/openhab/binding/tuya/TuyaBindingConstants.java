@@ -27,5 +27,7 @@ public class TuyaBindingConstants {
     // List of all Channel ids
     public final static String CHANNEL_POWER = "power";
     public final static String CHANNEL_BRIGHTNESS = "brightness";
+    public final static String CHANNEL_COLOR_TEMPERATURE = "colorTemperature";
+    public final static String CHANNEL_COLOR_MODE = "colorMode";
 
 }

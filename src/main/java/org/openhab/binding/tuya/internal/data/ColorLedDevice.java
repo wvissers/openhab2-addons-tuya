@@ -67,12 +67,27 @@ public class ColorLedDevice {
      */
     public class Dps {
 
+        /**
+         * Lamp on/off.
+         */
         @SerializedName("1")
         private Boolean dp1;
 
+        /**
+         * Mode: "white" or "color".
+         */
+        @SerializedName("2")
+        private String dp2;
+
+        /**
+         * Brightness 0..255.
+         */
         @SerializedName("3")
         private Integer dp3;
 
+        /**
+         * Color temperature 0..255.
+         */
         @SerializedName("4")
         private Integer dp4;
 
@@ -87,6 +102,14 @@ public class ColorLedDevice {
             this.dp1 = dp1;
         }
 
+        public String getDp2() {
+            return dp2;
+        }
+
+        public void setDp2(String dp2) {
+            this.dp2 = dp2;
+        }
+
         public int getDp3() {
             return dp3;
         }
@@ -94,7 +117,7 @@ public class ColorLedDevice {
         /**
          * In addition to setting the brightness 0..100, make sure the switch is
          * set accordingly.
-         * 
+         *
          * @param dp3
          */
         public void setDp3(int dp3) {
