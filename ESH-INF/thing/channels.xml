@@ -7,14 +7,20 @@
     <!-- Power Channel Type -->
     <channel-type id="power-channel">
         <item-type>Switch</item-type>
-        <label>Switch mains power.</label>
-        <description>The mains switch (ON or OFF).</description>
+        <label>Switch power on/off.</label>
+        <description>The main power switch (ON or OFF).</description>
     </channel-type>
     <!-- Color Mode Channel Type -->
     <channel-type id="color-mode-channel">
         <item-type>Switch</item-type>
         <label>Switch color mode.</label>
         <description>The mode white (ON) or color (OFF).</description>
+    </channel-type>
+    <!-- Color Channel Type -->
+    <channel-type id="color-channel">
+        <item-type>Color</item-type>
+        <label>Color.</label>
+        <description>The lights color.</description>
     </channel-type>
     <!-- Brightness Channel Type -->
     <channel-type id="brightness-channel">

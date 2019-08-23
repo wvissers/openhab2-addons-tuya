@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 38,
+      <title>File: 39,
              Errors: 0,
-             Warnings: 29,
-             Infos: 34
+             Warnings: 30,
+             Infos: 36
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -231,7 +231,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
                 </td>
                 <td>
-                  6
+                  7
                 </td>
                 <td>
                   0
@@ -509,6 +509,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.Packet.java">src/main/java/org/openhab/binding/tuya/internal/net/Packet.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.BasicDevice.java">src/main/java/org/openhab/binding/tuya/internal/data/BasicDevice.java</a>
                 </td>
                 <td>
                   1

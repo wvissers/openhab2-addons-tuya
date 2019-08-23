@@ -19,28 +19,16 @@ import com.google.gson.annotations.SerializedName;
  * @author Wim Vissers.
  *
  */
-public class ColorLedDevice {
+public class ColorLedDevice extends BasicDevice {
 
-    private String devId;
     private Dps dps;
 
     public ColorLedDevice() {
     }
 
     public ColorLedDevice(DeviceDescriptor deviceDescriptor) {
-        this.devId = deviceDescriptor.getGwId();
+        super(deviceDescriptor);
         dps = new Dps();
-    }
-
-    @SerializedName("t")
-    long time;
-
-    public String getDevId() {
-        return devId;
-    }
-
-    public void setDevId(String devId) {
-        this.devId = devId;
     }
 
     public Dps getDps() {
@@ -49,14 +37,6 @@ public class ColorLedDevice {
 
     public void setDps(Dps dps) {
         this.dps = dps;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     /**
@@ -90,6 +70,12 @@ public class ColorLedDevice {
          */
         @SerializedName("4")
         private Integer dp4;
+
+        /**
+         * Color as hex string.
+         */
+        @SerializedName("5")
+        private String dp5;
 
         @SerializedName("9")
         private Integer dp9;
@@ -131,6 +117,14 @@ public class ColorLedDevice {
 
         public void setDp4(int dp4) {
             this.dp4 = dp4;
+        }
+
+        public String getDp5() {
+            return dp5;
+        }
+
+        public void setDp5(String dp5) {
+            this.dp5 = dp5;
         }
 
         public int getDp9() {

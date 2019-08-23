@@ -8,6 +8,7 @@
  */
 package org.openhab.binding.tuya.internal.util;
 
+import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.types.Command;
 
 /**
@@ -37,6 +38,20 @@ public class Calc {
         } else {
             throw new IllegalArgumentException("Command could not be converted to int.");
         }
+    }
+
+    /**
+     * Take an OH command represented as Color (HSBType) and convert it to a Tuya understandable RGB value.
+     * 
+     * @param hsb the color to encode.
+     * @return the command string.
+     */
+    public static String colorToCommandString(HSBType hsb) {
+        StringBuilder b = new StringBuilder();
+        b.append(Integer.toHexString(hsb.getRed().intValue() * 255 / 100))
+                .append(Integer.toHexString(hsb.getGreen().intValue() * 255 / 100))
+                .append(Integer.toHexString(hsb.getBlue().intValue() * 255 / 100)).append("016500ff");
+        return b.toString();
     }
 
 }

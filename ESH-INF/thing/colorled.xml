@@ -11,6 +11,7 @@
         <channels>
             <channel id="power" typeId="power-channel" />
             <channel id="colorMode" typeId="color-mode-channel" />
+            <channel id="color" typeId="color-channel" />
             <channel id="brightness" typeId="brightness-channel" />
             <channel id="colorTemperature" typeId="color-temperature-channel" />
         </channels>

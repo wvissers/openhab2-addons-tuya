@@ -12,6 +12,7 @@ import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
 import java.io.IOException;
 
+import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -19,7 +20,6 @@ import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.tuya.internal.data.ColorLedDevice;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.Message;
-import org.openhab.binding.tuya.internal.data.PowerPlugDevice;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.util.Calc;
 import org.slf4j.Logger;
@@ -45,8 +45,9 @@ public class ColorLedHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        PowerPlugDevice dev = message.toPowerPlugDevice();
-        updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getDps().isDp1() ? OnOffType.ON : OnOffType.OFF);
+        // ColorLedDevice dev = message.toColorLedDevice();
+        // updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getDps().isDp1() ? OnOffType.ON :
+        // OnOffType.OFF);
     }
 
     /**
@@ -54,7 +55,7 @@ public class ColorLedHandler extends AbstractTuyaHandler {
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (command instanceof OnOffType || command instanceof Number) {
+        if (command instanceof OnOffType || command instanceof Number || command instanceof HSBType) {
             try {
                 ColorLedDevice dev = new ColorLedDevice(deviceDetails);
                 switch (channelUID.getId()) {
@@ -83,13 +84,16 @@ public class ColorLedHandler extends AbstractTuyaHandler {
                         if (command instanceof Number) {
                             dev.getDps().setDp4(Calc.numberTo255(command));
                             String msg = gson.toJson(dev);
-                            try {
-                                deviceEventEmitter.set(msg, CommandByte.CONTROL);
-                            } catch (IOException | ParseException e) {
-                                logger.error("Error setting device properties", e);
-                            }
+                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
                         }
                         break;
+                    case CHANNEL_COLOR:
+                        if (command instanceof HSBType) {
+                            String x = "8000ff016500ff";
+                            dev.getDps().setDp5(Calc.colorToCommandString((HSBType) command));
+                            String msg = gson.toJson(dev);
+                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                        }
                     default:
                         logger.debug("Command received for an unknown channel: {}", channelUID.getId());
                         break;

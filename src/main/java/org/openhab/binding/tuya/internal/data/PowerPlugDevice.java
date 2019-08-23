@@ -19,28 +19,16 @@ import com.google.gson.annotations.SerializedName;
  * @author Wim Vissers.
  *
  */
-public class PowerPlugDevice {
+public class PowerPlugDevice extends BasicDevice {
 
-    private String devId;
     private Dps dps;
 
     public PowerPlugDevice() {
     }
 
     public PowerPlugDevice(DeviceDescriptor deviceDescriptor) {
-        this.devId = deviceDescriptor.getGwId();
+        super(deviceDescriptor);
         dps = new Dps();
-    }
-
-    @SerializedName("t")
-    long time;
-
-    public String getDevId() {
-        return devId;
-    }
-
-    public void setDevId(String devId) {
-        this.devId = devId;
     }
 
     public Dps getDps() {
@@ -49,14 +37,6 @@ public class PowerPlugDevice {
 
     public void setDps(Dps dps) {
         this.dps = dps;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
     }
 
     public class Dps {
