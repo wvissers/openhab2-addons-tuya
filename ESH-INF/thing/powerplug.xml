@@ -11,21 +11,7 @@
         <channels>
             <channel id="power" typeId="power-channel" />
         </channels>
-        <config-description>
-            <parameter name="id" type="text" required="true">
-                <label>Device id (devId).</label>
-                <description>Device id of the smart power plug (found by intercepting Tuya app traffic).</description>
-            </parameter>
-            <parameter name="key" type="text" required="true">
-                <label>Local encryption key (localKey).</label>
-                <description>Local encryption key (found by intercepting Tuya app traffic).</description>
-            </parameter>
-            <parameter name="version" type="text" required="true">
-                <label>API version.</label>
-                <default>3.3</default>
-                <description>Device API version (typically 3.3).</description>
-            </parameter>
-        </config-description>
+        <config-description-ref uri="thing-type:tuya:config" />
     </thing-type>
 
 </thing:thing-descriptions>

@@ -19,7 +19,7 @@ public class Constants {
     // Device properties that can be inspected with e.g. the Paper UI.
     public static final String PROPERTY_IP_ADDRESS = "ip-address";
     public static final String PROPERTY_VERSION = "version";
-    public static final String PROPERTY_PRODUCT_KEY = "product=key";
+    public static final String PROPERTY_PRODUCT_KEY = "product-key";
 
     /**
      * Never instantiated.

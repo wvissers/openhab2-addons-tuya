@@ -44,9 +44,11 @@ public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Even
                 @Override
                 public void run() {
                     running = true;
+                    DatagramSocket listener = null;
                     while (running) {
                         byte[] result = new byte[1024];
-                        try (DatagramSocket listener = new DatagramSocket(port)) {
+                        try {
+                            listener = new DatagramSocket(port);
                             DatagramPacket dp = new DatagramPacket(result, 1024);
                             listener.setSoTimeout(120000);
                             listener.receive(dp);
@@ -57,6 +59,10 @@ public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Even
                             try {
                                 Thread.sleep(10000);
                             } catch (InterruptedException e) {
+                            }
+                        } finally {
+                            if (listener != null) {
+                                listener.close();
                             }
                         }
                     }
@@ -70,7 +76,7 @@ public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Even
     public void stop() {
         running = false;
         if (task != null) {
-            task.cancel(false);
+            task.cancel(true);
             task = null;
         }
         super.stop();

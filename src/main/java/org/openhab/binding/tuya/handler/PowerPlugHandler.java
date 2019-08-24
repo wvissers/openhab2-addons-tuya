@@ -20,6 +20,7 @@ import org.eclipse.smarthome.core.types.RefreshType;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.data.PowerPlugDevice;
+import org.openhab.binding.tuya.internal.data.StatusQuery;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +50,19 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
     }
 
     /**
+     * This method is called when the device is connected, for an initial status request if the device supports it.
+     */
+    @Override
+    protected void sendStatusQuery() {
+        try {
+            StatusQuery query = new StatusQuery(deviceDetails);
+            deviceEventEmitter.send(query, CommandByte.DP_QUERY);
+        } catch (IOException | ParseException e) {
+            logger.error("Error on status request", e);
+        }
+    }
+
+    /**
      * Handle specific commands for this type of device.
      */
     @Override
@@ -59,9 +73,8 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
                     if (command instanceof OnOffType) {
                         PowerPlugDevice dev = new PowerPlugDevice(deviceDetails);
                         dev.getDps().setDp1(command == OnOffType.ON);
-                        String msg = gson.toJson(dev);
                         try {
-                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
                         } catch (IOException | ParseException e) {
                             logger.error("Error setting device properties", e);
                         }
@@ -70,6 +83,9 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
                 default:
                     logger.debug("Command received for an unknown channel: {}", channelUID.getId());
                     break;
+            }
+            if (command instanceof RefreshType) {
+                sendStatusQuery();
             }
         } else {
             logger.debug("Command {} is not supported for channel: {}", command, channelUID.getId());

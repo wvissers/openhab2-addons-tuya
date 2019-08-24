@@ -25,6 +25,10 @@ public class Message {
     private long sequenceNumber;
     private long commandByte;
 
+    public Message(String data) {
+        this.data = data;
+    }
+
     public Message(byte[] payload, long sequenceNumber, long commandByte, String data) {
         this.payload = payload;
         this.sequenceNumber = sequenceNumber;

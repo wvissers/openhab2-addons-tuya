@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 39,
+      <title>File: 42,
              Errors: 0,
-             Warnings: 30,
-             Infos: 35
+             Warnings: 32,
+             Infos: 38
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -123,6 +123,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.config.config.xml">ESH-INF/config/config.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0
@@ -228,6 +242,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.StatusQuery.java">src/main/java/org/openhab/binding/tuya/internal/data/StatusQuery.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
                 </td>
                 <td>
@@ -301,7 +329,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/net/DeviceEventEmitter.java</a>
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   2
@@ -467,6 +495,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.Constants.java">src/main/java/org/openhab/binding/tuya/internal/Constants.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.CommandHandler.java">src/main/java/org/openhab/binding/tuya/internal/CommandHandler.java</a>
                 </td>
                 <td>
                   1

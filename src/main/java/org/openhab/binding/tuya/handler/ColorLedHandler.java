@@ -62,39 +62,34 @@ public class ColorLedHandler extends AbstractTuyaHandler {
                     case CHANNEL_POWER:
                         if (command instanceof OnOffType) {
                             dev.getDps().setDp1(command == OnOffType.ON);
-                            String msg = gson.toJson(dev);
-                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
                         }
                         break;
                     case CHANNEL_COLOR_MODE:
                         if (command instanceof OnOffType) {
                             dev.getDps().setDp2(command == OnOffType.ON ? "colour" : "white");
-                            String msg = gson.toJson(dev);
-                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
                         }
                         break;
                     case CHANNEL_BRIGHTNESS:
                         if (command instanceof Number) {
                             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
                             dev.getDps().setDp3(Calc.numberTo255(command));
-                            String msg = gson.toJson(dev);
-                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
                         }
                         break;
                     case CHANNEL_COLOR_TEMPERATURE:
                         if (command instanceof Number) {
                             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
                             dev.getDps().setDp4(Calc.numberTo255(command));
-                            String msg = gson.toJson(dev);
-                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
                         }
                         break;
                     case CHANNEL_COLOR:
                         if (command instanceof HSBType) {
                             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.ON);
                             dev.getDps().setDp5(Calc.colorToCommandString((HSBType) command));
-                            String msg = gson.toJson(dev);
-                            deviceEventEmitter.set(msg, CommandByte.CONTROL);
+                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
                         }
                     default:
                         logger.debug("Command received for an unknown channel: {}", channelUID.getId());

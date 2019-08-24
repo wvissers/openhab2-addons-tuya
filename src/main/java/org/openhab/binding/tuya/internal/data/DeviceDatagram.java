@@ -26,6 +26,16 @@ public class DeviceDatagram {
     private String version;
     private String ip;
 
+    public DeviceDatagram() {
+    }
+
+    public DeviceDatagram(String gwId, String version, String ip) {
+        this.gwId = gwId;
+        this.version = version;
+        this.ip = ip;
+        encrypt = true;
+    }
+
     public String getGwId() {
         return gwId;
     }

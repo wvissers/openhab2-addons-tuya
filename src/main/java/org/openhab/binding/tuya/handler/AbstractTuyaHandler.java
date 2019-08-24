@@ -10,11 +10,10 @@ package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.internal.Constants.*;
 
-import java.util.Date;
-
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
+import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 import org.openhab.binding.tuya.internal.DeviceRepository;
@@ -22,11 +21,10 @@ import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.DeviceDatagram;
 import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
+import org.openhab.binding.tuya.internal.net.DeviceEventEmitter.Event;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.google.gson.Gson;
 
 /**
  * The {@link AmbilightHandler} is responsible for handling commands, which are
@@ -37,7 +35,6 @@ import com.google.gson.Gson;
 public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
     private Logger logger = LoggerFactory.getLogger(AbstractTuyaHandler.class);
-    protected static Gson gson;
 
     protected MessageParser parser;
     protected String id;
@@ -47,9 +44,6 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
     public AbstractTuyaHandler(Thing thing) {
         super(thing);
-        if (gson == null) {
-            gson = new Gson();
-        }
     }
 
     /**
@@ -59,8 +53,21 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
     protected void handleStatusMessage(Message message) {
     }
 
-    protected void stopAutomaticRefresh() {
-        deviceEventEmitter.stop();
+    /**
+     * This method is called when the device is connected, for an initial status request if the device supports it.
+     */
+    protected void sendStatusQuery() {
+    }
+
+    /**
+     * Dispose of allocated resources.
+     */
+    @Override
+    public void dispose() {
+        DeviceRepository.getInstance().stop();
+        if (deviceEventEmitter != null) {
+            deviceEventEmitter.stop();
+        }
     }
 
     /**
@@ -83,33 +90,27 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
             DeviceDatagram ddg = device.getDeviceDatagram();
             if (ddg != null && ddg.getGwId() != null && ddg.getGwId().equals(id)) {
                 if (deviceDetails == null || !deviceDetails.getIp().equals(ddg.getIp())) {
+                    updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, device.getIp());
                     deviceDetails = device;
-                    deviceEventEmitter = new DeviceEventEmitter(deviceDetails.getIp(), 6668, parser);
+                    updateProperties(false);
+                    deviceEventEmitter = new DeviceEventEmitter(device.getIp(), 6668, parser);
+
+                    // Handle error events
+                    deviceEventEmitter.on(Event.CONNECTION_ERROR, msg -> {
+                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, msg.getData());
+                    });
 
                     // Handle connected event.
-                    deviceEventEmitter.on(DeviceEventEmitter.Event.CONNECTED, consumer -> {
+                    deviceEventEmitter.on(Event.CONNECTED, msg -> {
                         updateStatus(ThingStatus.ONLINE);
                         updateProperties(false);
-                        try {
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(
-                                    "{\"gwId\":\"70116356840d8e5f1cb3\",\"devId\":\"70116356840d8e5f1cb3\",\"uid:\":\"\",\"t\":");
-                            sb.append(new Date().getTime() / 1000);
-                            sb.append(",\"dps\":{\"1\":true}}");
-                            /**
-                             * Packet p = deviceEventEmitter.get(
-                             * "{\"gwId\":\"70116356840d8e5f1cb3\",\"devId\":\"70116356840d8e5f1cb3\",\"uid:\":\"\"}",
-                             * CommandByte.DP_QUERY);
-                             * Debug.print(p.getBuffer(), p.getLength());
-                             */
-                        } catch (Exception e) {
-                            logger.error("Exception at first communication with device.", e);
-                        }
+                        sendStatusQuery();
                     });
 
                     // Handle messages received.
                     deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, message -> {
-                        if (message.getCommandByte() == CommandByte.STATUS.getValue()) {
+                        if (message.getCommandByte() == CommandByte.STATUS.getValue()
+                                || message.getCommandByte() == CommandByte.DP_QUERY.getValue()) {
                             handleStatusMessage(message);
                         }
                     });
@@ -124,6 +125,10 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
     @Override
     public void initialize() {
 
+        // Dispose of allocated resources when re-initializing.
+        dispose();
+
+        // Get the configuration object.
         Configuration config = thing.getConfiguration();
 
         // Clear properties.
@@ -133,10 +138,14 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
         String key = config.get("key").toString();
         String version = config.get("version").toString();
         parser = new MessageParser(version, key);
+        String ip = (String) config.get("ip");
 
-        // updateStatus(ThingStatus.INITIALIZING, ThingStatusDetail.CONFIGURATION_PENDING, "Waiting for device
-        // heartbeat");
+        // If ip-address is specified, try to use it.
+        if (ip != null && !ip.isEmpty()) {
+            foundDevice(new DeviceDescriptor(new DeviceDatagram(id, version, ip)));
+        }
 
+        // Initialize auto-discovery of the ip-address.
         DeviceRepository.getInstance().on(DeviceRepository.Event.DEVICE_FOUND, device -> {
             foundDevice(device);
         });

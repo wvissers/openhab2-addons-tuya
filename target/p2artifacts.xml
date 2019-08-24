@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='1'>
-  <artifact classifier='osgi.bundle' id='org.openhab.binding.tuya' version='2.4.0.201908231927'>
+  <artifact classifier='osgi.bundle' id='org.openhab.binding.tuya' version='2.4.0.201908241051'>
     <properties size='5'>
-      <property name='artifact.size' value='57559'/>
-      <property name='download.size' value='57559'/>
+      <property name='artifact.size' value='60221'/>
+      <property name='download.size' value='60221'/>
       <property name='maven-groupId' value='org.openhab.binding'/>
       <property name='maven-artifactId' value='org.openhab.binding.tuya'/>
       <property name='maven-version' value='2.4.0-SNAPSHOT'/>
