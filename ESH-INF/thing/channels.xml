@@ -7,32 +7,32 @@
     <!-- Power Channel Type -->
     <channel-type id="power-channel">
         <item-type>Switch</item-type>
-        <label>Switch power on/off.</label>
-        <description>The main power switch (ON or OFF).</description>
+        <label>Switch power on/off</label>
+        <description>The main power switch (ON or OFF)</description>
     </channel-type>
     <!-- Color Mode Channel Type -->
     <channel-type id="color-mode-channel">
         <item-type>Switch</item-type>
-        <label>Switch color mode.</label>
-        <description>The mode color (ON) or white (OFF). Mode change will also occur when you change the brightness, color temperature or color.</description>
+        <label>Switch color mode</label>
+        <description>The mode color (ON) or white (OFF). Mode change will also occur when you change the brightness, color temperature or color</description>
     </channel-type>
     <!-- Color Channel Type -->
     <channel-type id="color-channel">
         <item-type>Color</item-type>
-        <label>Color.</label>
-        <description>The lights color. Changing the color will automatically set the lamp in 'color' mode.</description>
+        <label>Color</label>
+        <description>The lights color. Changing the color will automatically set the lamp in 'color' mode</description>
     </channel-type>
     <!-- Brightness Channel Type -->
     <channel-type id="brightness-channel">
         <item-type>Number</item-type>
-        <label>The brightness.</label>
-        <description>The brightness of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode.</description>
+        <label>The brightness</label>
+        <description>The brightness of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode</description>
     </channel-type>
     <!-- Color temperature Channel Type -->
     <channel-type id="color-temperature-channel">
         <item-type>Number</item-type>
-        <label>The color temperature.</label>
-        <description>The color temperature of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode.</description>
+        <label>The color temperature</label>
+        <description>The color temperature of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode</description>
     </channel-type>
 
 </thing:thing-descriptions>

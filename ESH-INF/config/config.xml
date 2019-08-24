@@ -7,22 +7,22 @@
 
 	<config-description uri="thing-type:tuya:config">
 		<parameter name="id" type="text" required="true">
-			<label>Device id (devId).</label>
-			<description>Device id of the smart power plug (found by intercepting Tuya app traffic).</description>
+			<label>Device id (devId)</label>
+			<description>Device id of the smart power plug (found by intercepting Tuya app traffic)</description>
 		</parameter>
 		<parameter name="key" type="text" required="true">
-			<label>Local encryption key (localKey).</label>
-			<description>Local encryption key (found by intercepting Tuya app traffic).</description>
+			<label>Local encryption key (localKey)</label>
+			<description>Local encryption key (found by intercepting Tuya app traffic)</description>
 		</parameter>
 		<parameter name="version" type="text" required="true">
-			<label>API version.</label>
+			<label>API version</label>
 			<default>3.3</default>
-			<description>Device API version (typically 3.3).</description>
+			<description>Device API version (typically 3.3)</description>
 		</parameter>
 		<parameter name="ip" type="text" required="false">
 			<advanced>true</advanced>
-			<label>IP address.</label>
-			<description>Device IP address (needed only when it could not be discovered automatically).</description>
+			<label>IP address</label>
+			<description>Device IP address (needed only when it could not be discovered automatically)</description>
 		</parameter>
 	</config-description>
 

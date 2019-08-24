@@ -7,7 +7,7 @@
     <!-- Smart Power Plug Thing Type -->
     <thing-type id="powerplug">
         <label>Tuya Smart Power Plug</label>
-        <description>Tuya smart power plug device with one on/off channel.</description>
+        <description>Tuya smart power plug device with one on/off channel</description>
         <channels>
             <channel id="power" typeId="power-channel" />
         </channels>

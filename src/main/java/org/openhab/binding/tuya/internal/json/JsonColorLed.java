@@ -12,9 +12,9 @@ import org.openhab.binding.tuya.internal.DeviceDescriptor;
 
 import com.google.gson.annotations.SerializedName;
 
-// {"devId":"70116356840d8e5f1cb3","dps":{"1":false},"t":1566481749}
 /**
  * This is the description of the status of the PowerPlug device.
+ * {"devId":"70116356840d8e5f1cb3","dps":{"1":false},"t":1566481749}
  *
  * @author Wim Vissers.
  *

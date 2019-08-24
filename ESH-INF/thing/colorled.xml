@@ -7,7 +7,7 @@
     <!-- Smart Color LED lamp Thing Type -->
     <thing-type id="colorled">
         <label>Tuya Smart Color LED lamp</label>
-        <description>Tuya smart color LED lamp device with on/off and dimmer channels.</description>
+        <description>Tuya smart color LED lamp device with on/off and dimmer channels</description>
         <channels>
             <channel id="power" typeId="power-channel" />
             <channel id="colorMode" typeId="color-mode-channel" />

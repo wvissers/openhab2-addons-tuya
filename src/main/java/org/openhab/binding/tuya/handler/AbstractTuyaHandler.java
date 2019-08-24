@@ -11,10 +11,14 @@ package org.openhab.binding.tuya.handler;
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
 import org.eclipse.smarthome.config.core.Configuration;
+import org.eclipse.smarthome.core.library.types.HSBType;
+import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
+import org.eclipse.smarthome.core.types.Command;
+import org.openhab.binding.tuya.internal.CommandDispatcher;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 import org.openhab.binding.tuya.internal.DeviceRepository;
 import org.openhab.binding.tuya.internal.json.CommandByte;
@@ -41,9 +45,11 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
     protected DeviceDescriptor deviceDescriptor;
     protected DeviceEventEmitter deviceEventEmitter;
+    protected final CommandDispatcher commandDispatcher;
 
     public AbstractTuyaHandler(Thing thing) {
         super(thing);
+        commandDispatcher = new CommandDispatcher(thing.getUID());
     }
 
     /**
@@ -122,6 +128,21 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
         }
     }
 
+    /**
+     * Handle specific commands for this type of device. Subclasses should initialize the command dispatcher with device
+     * specific commands.
+     */
+    @Override
+    public void handleCommand(ChannelUID channelUID, Command command) {
+        commandDispatcher.dispatchCommand(deviceEventEmitter, channelUID, command);
+    }
+
+    /**
+     * Subclasses should add the commands to the dispatcher.
+     */
+    protected void initCommandDispatcher() {
+    }
+
     @Override
     public void initialize() {
 
@@ -150,6 +171,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
             foundDevice(device);
         });
 
+        // Init dispatcher.
+        initCommandDispatcher();
+
         // TODO: Initialize the thing. If done set status to ONLINE to indicate proper working.
         // Long running initialization should be done asynchronously in background.
 
@@ -160,4 +184,34 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
         // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
         // "Can not access device as username and/or password are invalid");
     }
+
+    /**
+     * Take an OH command represented as Color (HSBType) and convert it to a Tuya understandable RGB value.
+     *
+     * @param hsb the color to encode.
+     * @return the command string.
+     */
+    protected String colorToCommandString(HSBType hsb) {
+        StringBuilder b = new StringBuilder();
+        b.append(Integer.toHexString(hsb.getRed().intValue() * 255 / 100))
+                .append(Integer.toHexString(hsb.getGreen().intValue() * 255 / 100))
+                .append(Integer.toHexString(hsb.getBlue().intValue() * 255 / 100)).append("00f1ffff");// append("016500ff");
+        return b.toString();
+    }
+
+    /**
+     * Take an OH command, and try to calculate the value as and integer
+     * from 0 to 255. This is used to convert dimmer commands to the 0..255 value used by the Tuya devices.
+     *
+     * @param command the OH command.
+     * @return the numeric value in the range 0..255.
+     */
+    protected int numberTo255(Command command) {
+        if (command instanceof Number) {
+            return (int) ((Math.round(((Number) (command)).doubleValue() * 255)) & 0xFF);
+        } else {
+            throw new IllegalArgumentException("Command could not be converted to int.");
+        }
+    }
+
 }

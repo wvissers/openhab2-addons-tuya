@@ -10,20 +10,13 @@ package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
-import java.io.IOException;
-
+import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
-import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.json.JsonColorLed;
-import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.net.Message;
-import org.openhab.binding.tuya.internal.util.Calc;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A handler for a Tuya Switch device.
@@ -32,8 +25,6 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ColorLedHandler extends AbstractTuyaHandler {
-
-    private Logger logger = LoggerFactory.getLogger(ColorLedHandler.class);
 
     public ColorLedHandler(Thing thing) {
         super(thing);
@@ -51,56 +42,47 @@ public class ColorLedHandler extends AbstractTuyaHandler {
     }
 
     /**
-     * Handle specific commands for this type of device.
+     * Add the commands to the dispatcher.
      */
     @Override
-    public void handleCommand(ChannelUID channelUID, Command command) {
-        if (command instanceof OnOffType || command instanceof Number || command instanceof HSBType) {
-            try {
-                JsonColorLed dev = new JsonColorLed(deviceDescriptor);
-                switch (channelUID.getId()) {
-                    case CHANNEL_POWER:
-                        if (command instanceof OnOffType) {
-                            dev.getDps().setDp1(command == OnOffType.ON);
-                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
-                        }
-                        break;
-                    case CHANNEL_COLOR_MODE:
-                        if (command instanceof OnOffType) {
-                            dev.getDps().setDp2(command == OnOffType.ON ? "colour" : "white");
-                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
-                        }
-                        break;
-                    case CHANNEL_BRIGHTNESS:
-                        if (command instanceof Number) {
-                            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-                            dev.getDps().setDp3(Calc.numberTo255(command));
-                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
-                        }
-                        break;
-                    case CHANNEL_COLOR_TEMPERATURE:
-                        if (command instanceof Number) {
-                            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-                            dev.getDps().setDp4(Calc.numberTo255(command));
-                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
-                        }
-                        break;
-                    case CHANNEL_COLOR:
-                        if (command instanceof HSBType) {
-                            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.ON);
-                            dev.getDps().setDp5(Calc.colorToCommandString((HSBType) command));
-                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
-                        }
-                    default:
-                        logger.debug("Command received for an unknown channel: {}", channelUID.getId());
-                        break;
-                }
-            } catch (IOException | ParseException e) {
-                logger.error("Error setting device properties", e);
-            }
-        } else {
-            logger.debug("Command {} is not supported for channel: {}", command, channelUID.getId());
-        }
+    protected void initCommandDispatcher() {
+        // Channel power command with OnOffType.
+        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, command -> {
+            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
+            dev.getDps().setDp1(command == OnOffType.ON);
+            return dev;
+        });
+
+        // Color mode command with OnOffType.
+        commandDispatcher.on(CHANNEL_COLOR_MODE, OnOffType.class, command -> {
+            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
+            dev.getDps().setDp2(command == OnOffType.ON ? "colour" : "white");
+            return dev;
+        });
+
+        // Brightness with DecimalType.
+        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, command -> {
+            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
+            dev.getDps().setDp3(numberTo255(command));
+            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
+            return dev;
+        });
+
+        // Color temperature with DecimalType.
+        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, command -> {
+            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
+            dev.getDps().setDp4(numberTo255(command));
+            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
+            return dev;
+        });
+
+        // Color with HSBType.
+        commandDispatcher.on(CHANNEL_COLOR, HSBType.class, command -> {
+            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
+            dev.getDps().setDp5(colorToCommandString((HSBType) command));
+            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.ON);
+            return dev;
+        });
     }
 
 }

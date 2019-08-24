@@ -15,8 +15,6 @@ import java.io.IOException;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
-import org.eclipse.smarthome.core.types.Command;
-import org.eclipse.smarthome.core.types.RefreshType;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
@@ -63,33 +61,16 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
     }
 
     /**
-     * Handle specific commands for this type of device.
+     * Add the commands to the dispatcher.
      */
     @Override
-    public void handleCommand(ChannelUID channelUID, Command command) {
-        if (command instanceof RefreshType || command instanceof OnOffType) {
-            switch (channelUID.getId()) {
-                case CHANNEL_POWER:
-                    if (command instanceof OnOffType) {
-                        JsonPowerPlug dev = new JsonPowerPlug(deviceDescriptor);
-                        dev.getDps().setDp1(command == OnOffType.ON);
-                        try {
-                            deviceEventEmitter.send(dev, CommandByte.CONTROL);
-                        } catch (IOException | ParseException e) {
-                            logger.error("Error setting device properties", e);
-                        }
-                    }
-                    break;
-                default:
-                    logger.debug("Command received for an unknown channel: {}", channelUID.getId());
-                    break;
-            }
-            if (command instanceof RefreshType) {
-                sendStatusQuery();
-            }
-        } else {
-            logger.debug("Command {} is not supported for channel: {}", command, channelUID.getId());
-        }
+    protected void initCommandDispatcher() {
+        // Channel power command with OnOffType.
+        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, command -> {
+            JsonPowerPlug dev = new JsonPowerPlug(deviceDescriptor);
+            dev.getDps().setDp1(command == OnOffType.ON);
+            return dev;
+        });
     }
 
 }
