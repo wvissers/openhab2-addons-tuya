@@ -17,10 +17,10 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.data.ColorLedDevice;
-import org.openhab.binding.tuya.internal.data.CommandByte;
-import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.json.JsonColorLed;
+import org.openhab.binding.tuya.internal.json.CommandByte;
+import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.util.Calc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class ColorLedHandler extends AbstractTuyaHandler {
     public void handleCommand(ChannelUID channelUID, Command command) {
         if (command instanceof OnOffType || command instanceof Number || command instanceof HSBType) {
             try {
-                ColorLedDevice dev = new ColorLedDevice(deviceDetails);
+                JsonColorLed dev = new JsonColorLed(deviceDescriptor);
                 switch (channelUID.getId()) {
                     case CHANNEL_POWER:
                         if (command instanceof OnOffType) {

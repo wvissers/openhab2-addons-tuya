@@ -15,9 +15,9 @@ import java.util.List;
 
 import javax.crypto.IllegalBlockSizeException;
 
-import org.openhab.binding.tuya.internal.data.CommandByte;
-import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.json.CommandByte;
+import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.net.Packet;
 
 /**

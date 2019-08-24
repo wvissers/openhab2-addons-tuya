@@ -15,11 +15,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Consumer;
 
-import org.openhab.binding.tuya.internal.data.DeviceDatagram;
-import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DatagramEventEmitter;
 import org.openhab.binding.tuya.internal.net.EventEmitter;
+import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.net.Packet;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.slf4j.Logger;
@@ -119,13 +119,13 @@ public class DeviceRepository extends EventEmitter<DeviceRepository.Event, Devic
         try {
             List<Message> udpMessages = parser.parse(packet.getBuffer(), packet.getLength());
             for (Message message : udpMessages) {
-                DeviceDatagram ddg = message.toDeviceDatagram();
-                DeviceDescriptor dd = devices.get(ddg.getGwId());
+                JsonDiscovery jd = message.toJsonDiscovery();
+                DeviceDescriptor dd = devices.get(jd.getGwId());
                 if (dd == null) {
-                    dd = new DeviceDescriptor(ddg);
-                    devices.put(ddg.getGwId(), dd);
+                    dd = new DeviceDescriptor(jd);
+                    devices.put(jd.getGwId(), dd);
                     emit(Event.DEVICE_FOUND, dd);
-                    logger.info("Add device '{}' with IP address '{}' to the repository", ddg.getGwId(), ddg.getIp());
+                    logger.info("Add device '{}' with IP address '{}' to the repository", jd.getGwId(), jd.getIp());
                 }
             }
         } catch (ParseException e) {

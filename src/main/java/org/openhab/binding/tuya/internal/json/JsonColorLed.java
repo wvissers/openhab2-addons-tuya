@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.data;
+package org.openhab.binding.tuya.internal.json;
 
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 
@@ -19,14 +19,14 @@ import com.google.gson.annotations.SerializedName;
  * @author Wim Vissers.
  *
  */
-public class ColorLedDevice extends BasicDevice {
+public class JsonColorLed extends JsonData {
 
     private Dps dps;
 
-    public ColorLedDevice() {
+    public JsonColorLed() {
     }
 
-    public ColorLedDevice(DeviceDescriptor deviceDescriptor) {
+    public JsonColorLed(DeviceDescriptor deviceDescriptor) {
         super(deviceDescriptor);
         dps = new Dps();
     }

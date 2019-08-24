@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.data;
+package org.openhab.binding.tuya.internal.json;
 
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 
@@ -16,22 +16,17 @@ import org.openhab.binding.tuya.internal.DeviceDescriptor;
  * @author Wim Vissers.
  *
  */
-public class StatusQuery {
+public class JsonStatusQuery extends JsonData {
 
     private String gwId;
-    private String devId;
 
-    public StatusQuery(DeviceDescriptor device) {
+    public JsonStatusQuery(DeviceDescriptor device) {
         this.gwId = device.getGwId();
-        this.devId = device.getGwId();
+        setDevId(device.getGwId());
     }
 
     public String getGwId() {
         return gwId;
-    }
-
-    public String getDevId() {
-        return devId;
     }
 
 }

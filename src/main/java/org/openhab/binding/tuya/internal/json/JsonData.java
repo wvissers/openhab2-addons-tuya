@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.data;
+package org.openhab.binding.tuya.internal.json;
 
 import java.util.Date;
 
@@ -20,17 +20,17 @@ import com.google.gson.annotations.SerializedName;
  * @author Wim Vissers.
  *
  */
-public class BasicDevice {
+public class JsonData {
 
     private String devId;
 
     @SerializedName("t")
     long time;
 
-    public BasicDevice() {
+    public JsonData() {
     }
 
-    public BasicDevice(DeviceDescriptor deviceDescriptor) {
+    public JsonData(DeviceDescriptor deviceDescriptor) {
         this.devId = deviceDescriptor.getGwId();
         this.time = new Date().getTime() / 1000;
     }

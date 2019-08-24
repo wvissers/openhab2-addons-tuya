@@ -8,7 +8,7 @@
  */
 package org.openhab.binding.tuya.handler;
 
-import static org.openhab.binding.tuya.internal.Constants.*;
+import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -17,11 +17,11 @@ import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 import org.openhab.binding.tuya.internal.DeviceRepository;
-import org.openhab.binding.tuya.internal.data.CommandByte;
-import org.openhab.binding.tuya.internal.data.DeviceDatagram;
-import org.openhab.binding.tuya.internal.data.Message;
+import org.openhab.binding.tuya.internal.json.CommandByte;
+import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter.Event;
+import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
     protected MessageParser parser;
     protected String id;
 
-    protected DeviceDescriptor deviceDetails;
+    protected DeviceDescriptor deviceDescriptor;
     protected DeviceEventEmitter deviceEventEmitter;
 
     public AbstractTuyaHandler(Thing thing) {
@@ -75,9 +75,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
      * overridden in subclasses to add more specific device properties.
      */
     protected void updateProperties(boolean clear) {
-        thing.setProperty(PROPERTY_VERSION, clear ? "" : deviceDetails.getVersion());
-        thing.setProperty(PROPERTY_IP_ADDRESS, clear ? "" : deviceDetails.getIp());
-        thing.setProperty(PROPERTY_PRODUCT_KEY, clear ? "" : deviceDetails.getProductKey());
+        thing.setProperty(PROPERTY_VERSION, clear ? "" : deviceDescriptor.getVersion());
+        thing.setProperty(PROPERTY_IP_ADDRESS, clear ? "" : deviceDescriptor.getIp());
+        thing.setProperty(PROPERTY_PRODUCT_KEY, clear ? "" : deviceDescriptor.getProductKey());
     }
 
     /**
@@ -87,11 +87,11 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
      */
     private void foundDevice(DeviceDescriptor device) {
         if (device != null) {
-            DeviceDatagram ddg = device.getDeviceDatagram();
-            if (ddg != null && ddg.getGwId() != null && ddg.getGwId().equals(id)) {
-                if (deviceDetails == null || !deviceDetails.getIp().equals(ddg.getIp())) {
+            JsonDiscovery jd = device.getJsonDiscovery();
+            if (jd != null && jd.getGwId() != null && jd.getGwId().equals(id)) {
+                if (deviceDescriptor == null || !deviceDescriptor.getIp().equals(jd.getIp())) {
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, device.getIp());
-                    deviceDetails = device;
+                    deviceDescriptor = device;
                     updateProperties(false);
                     deviceEventEmitter = new DeviceEventEmitter(device.getIp(), 6668, parser);
 
@@ -142,7 +142,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
         // If ip-address is specified, try to use it.
         if (ip != null && !ip.isEmpty()) {
-            foundDevice(new DeviceDescriptor(new DeviceDatagram(id, version, ip)));
+            foundDevice(new DeviceDescriptor(new JsonDiscovery(id, version, ip)));
         }
 
         // Initialize auto-discovery of the ip-address.

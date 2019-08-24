@@ -17,11 +17,11 @@ import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.RefreshType;
-import org.openhab.binding.tuya.internal.data.CommandByte;
-import org.openhab.binding.tuya.internal.data.Message;
-import org.openhab.binding.tuya.internal.data.PowerPlugDevice;
-import org.openhab.binding.tuya.internal.data.StatusQuery;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.json.CommandByte;
+import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
+import org.openhab.binding.tuya.internal.json.JsonStatusQuery;
+import org.openhab.binding.tuya.internal.net.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +45,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        PowerPlugDevice dev = message.toPowerPlugDevice();
+        JsonPowerPlug dev = message.toPowerPlugDevice();
         updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getDps().isDp1() ? OnOffType.ON : OnOffType.OFF);
     }
 
@@ -55,7 +55,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
     @Override
     protected void sendStatusQuery() {
         try {
-            StatusQuery query = new StatusQuery(deviceDetails);
+            JsonStatusQuery query = new JsonStatusQuery(deviceDescriptor);
             deviceEventEmitter.send(query, CommandByte.DP_QUERY);
         } catch (IOException | ParseException e) {
             logger.error("Error on status request", e);
@@ -71,7 +71,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
             switch (channelUID.getId()) {
                 case CHANNEL_POWER:
                     if (command instanceof OnOffType) {
-                        PowerPlugDevice dev = new PowerPlugDevice(deviceDetails);
+                        JsonPowerPlug dev = new JsonPowerPlug(deviceDescriptor);
                         dev.getDps().setDp1(command == OnOffType.ON);
                         try {
                             deviceEventEmitter.send(dev, CommandByte.CONTROL);

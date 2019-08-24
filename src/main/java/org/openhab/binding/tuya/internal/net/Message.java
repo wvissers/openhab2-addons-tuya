@@ -6,7 +6,10 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.data;
+package org.openhab.binding.tuya.internal.net;
+
+import org.openhab.binding.tuya.internal.json.JsonDiscovery;
+import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
 
 import com.google.gson.Gson;
 
@@ -77,8 +80,8 @@ public class Message {
      * @param message the message (returned previously by the parser).
      * @return the DeviceDatagram if possible.
      */
-    public DeviceDatagram toDeviceDatagram() {
-        return gson.fromJson(getData(), DeviceDatagram.class);
+    public JsonDiscovery toJsonDiscovery() {
+        return gson.fromJson(getData(), JsonDiscovery.class);
     }
 
     /**
@@ -87,8 +90,8 @@ public class Message {
      * @param message the message (returned previously by the parser).
      * @return the PowerPlugDevice if possible.
      */
-    public PowerPlugDevice toPowerPlugDevice() {
-        return gson.fromJson(getData(), PowerPlugDevice.class);
+    public JsonPowerPlug toPowerPlugDevice() {
+        return gson.fromJson(getData(), JsonPowerPlug.class);
     }
 
 }

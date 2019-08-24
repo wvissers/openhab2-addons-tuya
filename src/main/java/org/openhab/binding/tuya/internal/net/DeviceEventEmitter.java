@@ -20,11 +20,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import org.openhab.binding.tuya.internal.data.BasicDevice;
-import org.openhab.binding.tuya.internal.data.CommandByte;
-import org.openhab.binding.tuya.internal.data.Message;
-import org.openhab.binding.tuya.internal.data.StatusQuery;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.json.JsonData;
+import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -87,20 +85,8 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
      * @throws IOException
      * @throws ParseException
      */
-    public void send(BasicDevice device, CommandByte command) throws IOException, ParseException {
+    public void send(JsonData device, CommandByte command) throws IOException, ParseException {
         send(gson.toJson(device), command);
-    }
-
-    /**
-     * Send a message. If the device responds, the response will be emitted as a new event.
-     *
-     * @param device  the query object that will be transformed to a json string.
-     * @param command the commandbyte enum constant.
-     * @throws IOException
-     * @throws ParseException
-     */
-    public void send(StatusQuery query, CommandByte command) throws IOException, ParseException {
-        send(gson.toJson(query), command);
     }
 
     /**

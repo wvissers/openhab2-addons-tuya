@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.data;
+package org.openhab.binding.tuya.internal.json;
 
 /**
  * Datagram definition broadcasted by the device. It will be populated
@@ -16,7 +16,7 @@ package org.openhab.binding.tuya.internal.data;
  * @author Wim Vissers.
  *
  */
-public class DeviceDatagram {
+public class JsonDiscovery {
 
     private String gwId;
     private int active;
@@ -26,10 +26,10 @@ public class DeviceDatagram {
     private String version;
     private String ip;
 
-    public DeviceDatagram() {
+    public JsonDiscovery() {
     }
 
-    public DeviceDatagram(String gwId, String version, String ip) {
+    public JsonDiscovery(String gwId, String version, String ip) {
         this.gwId = gwId;
         this.version = version;
         this.ip = ip;

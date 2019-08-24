@@ -8,7 +8,7 @@
  */
 package org.openhab.binding.tuya.internal;
 
-import org.openhab.binding.tuya.internal.data.DeviceDatagram;
+import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 
 /**
  * Descriptor of the device in the repository.
@@ -21,43 +21,43 @@ public class DeviceDescriptor {
     /**
      * The datagram retrieved from the UDP broadcast.
      */
-    private DeviceDatagram deviceDatagram;
+    private JsonDiscovery jsonDiscovery;
 
     public DeviceDescriptor() {
     }
 
-    public DeviceDescriptor(DeviceDatagram deviceDatagram) {
-        this.deviceDatagram = deviceDatagram;
+    public DeviceDescriptor(JsonDiscovery jsonDiscovery) {
+        this.jsonDiscovery = jsonDiscovery;
     }
 
     // Convenience methods.
     public String getIp() {
-        return deviceDatagram.getIp();
+        return jsonDiscovery.getIp();
     }
 
     public String getGwId() {
-        return deviceDatagram.getGwId();
+        return jsonDiscovery.getGwId();
     }
 
     public String getVersion() {
-        return deviceDatagram.getVersion();
+        return jsonDiscovery.getVersion();
     }
 
     public String getProductKey() {
-        return deviceDatagram.getProductKey();
+        return jsonDiscovery.getProductKey();
     }
 
     public boolean isEncrypt() {
-        return deviceDatagram.isEncrypt();
+        return jsonDiscovery.isEncrypt();
     }
 
-    // DeviceDatagram getters and setters
-    public DeviceDatagram getDeviceDatagram() {
-        return deviceDatagram;
+    // JsonDiscovery getters and setters
+    public JsonDiscovery getJsonDiscovery() {
+        return jsonDiscovery;
     }
 
-    public void setDeviceDatagram(DeviceDatagram deviceDatagram) {
-        this.deviceDatagram = deviceDatagram;
+    public void setDeviceDatagram(JsonDiscovery deviceDatagram) {
+        this.jsonDiscovery = deviceDatagram;
     }
 
 }
