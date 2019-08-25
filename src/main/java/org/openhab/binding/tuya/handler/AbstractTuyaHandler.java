@@ -113,6 +113,20 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
                         sendStatusQuery();
                     });
 
+                    // Handle disconnected event
+                    deviceEventEmitter.on(Event.DISCONNECTED, msg -> {
+                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.GONE);
+                        updateProperties(false);
+                        sendStatusQuery();
+                    });
+
+                    // Handle disconnected event
+                    deviceEventEmitter.on(Event.CONNECTION_ERROR, msg -> {
+                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR);
+                        updateProperties(false);
+                        sendStatusQuery();
+                    });
+
                     // Handle messages received.
                     deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, message -> {
                         if (message.getCommandByte() == CommandByte.STATUS.getValue()
