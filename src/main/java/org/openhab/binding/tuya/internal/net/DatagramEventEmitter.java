@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.net;
 
+import static org.openhab.binding.tuya.TuyaBindingConstants.*;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -46,14 +48,14 @@ public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Even
                 public void run() {
                     running = true;
                     DatagramSocket listener = null;
-                    byte[] result = new byte[1024];
+                    byte[] result = new byte[UDP_SOCKET_BUFFER_SIZE];
                     while (running) {
                         try {
                             if (listener == null || listener.isClosed()) {
                                 listener = new DatagramSocket(port);
-                                listener.setSoTimeout(60000);
+                                listener.setSoTimeout(UDP_SOCKET_TIMEOUT);
                             }
-                            DatagramPacket dp = new DatagramPacket(result, 1024);
+                            DatagramPacket dp = new DatagramPacket(result, UDP_SOCKET_BUFFER_SIZE);
                             listener.receive(dp);
                             emit(Event.UDP_PACKET_RECEIVED, new Packet(result, dp.getLength()));
                         } catch (SocketTimeoutException ignored) {

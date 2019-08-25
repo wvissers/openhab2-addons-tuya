@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.net;
 
+import static org.openhab.binding.tuya.TuyaBindingConstants.TCP_SOCKET_BUFFER_SIZE;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -20,8 +22,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import org.openhab.binding.tuya.internal.json.JsonData;
 import org.openhab.binding.tuya.internal.json.CommandByte;
+import org.openhab.binding.tuya.internal.json.JsonData;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.openhab.binding.tuya.internal.util.ParseException;
 import org.slf4j.Logger;
@@ -149,7 +151,7 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
                 InputStream in = null;
                 try {
                     running = true;
-                    byte[] buffer = new byte[1024];
+                    byte[] buffer = new byte[TCP_SOCKET_BUFFER_SIZE];
                     while (running) {
                         try {
                             if (clientSocket == null || !clientSocket.isConnected()) {
@@ -164,7 +166,7 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
                             }
                             if (in != null && in.available() > 5) {
                                 Thread.sleep(20);
-                                int len = in.read(buffer, 0, 1024);
+                                int len = in.read(buffer, 0, TCP_SOCKET_BUFFER_SIZE);
                                 List<Message> res = parser.parse(buffer, len);
                                 for (Message msg : res) {
                                     emit(Event.MESSAGE_RECEIVED, msg);

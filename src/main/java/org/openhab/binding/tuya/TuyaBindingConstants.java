@@ -43,11 +43,14 @@ public class TuyaBindingConstants {
     // The default key to decrypt UDP broadcast messages.
     public static final String DEFAULT_UDP_KEY = "yGAdlopoPVldABfn";
 
-    // Default ports to listen for UDP broadcast (currently only encrypted implemented).
+    // Setting for UDP broadcast listener (currently only encrypted implemented).
     public static final int DEFAULT_UNECRYPTED_UDP_PORT = 6666;
     public static final int DEFAULT_ECRYPTED_UDP_PORT = 6667;
+    public static final int UDP_SOCKET_TIMEOUT = 60000;
+    public static final int UDP_SOCKET_BUFFER_SIZE = 1024;
 
-    // Default port the device servers listen on.
+    // Settings for the TCP client (the device is the server).
     public static final int DEFAULT_SERVER_PORT = 6668;
+    public static final int TCP_SOCKET_BUFFER_SIZE = 1024;
 
 }
