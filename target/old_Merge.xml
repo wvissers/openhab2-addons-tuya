@@ -29,8 +29,8 @@
 
 
    <file name="org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">
-      <message tool="checkstyle" line="152" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
-      <message tool="checkstyle" line="180" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="151" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="179" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.handler.ColorLedHandler.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -102,7 +102,7 @@
    </file>
    <file name="org.openhab.binding.tuya.internal.net.Message.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
-      <message tool="checkstyle" line="19" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+      <message tool="checkstyle" line="20" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.net.Packet.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>

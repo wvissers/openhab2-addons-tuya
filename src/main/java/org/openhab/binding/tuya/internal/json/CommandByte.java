@@ -46,7 +46,8 @@ public enum CommandByte {
     LAN_REMOVE_GW(249),
     LAN_CHECK_GW_UPDATE(250),
     LAN_GW_UPDATE(251),
-    LAN_SET_GW_CHANNEL(252);
+    LAN_SET_GW_CHANNEL(252),
+    UNKNOWN(255);
 
     private int value;
 
@@ -56,6 +57,15 @@ public enum CommandByte {
 
     public int getValue() {
         return value;
+    }
+
+    public static CommandByte valueOf(int value) {
+        for (CommandByte cb : CommandByte.values()) {
+            if (cb.value == value) {
+                return cb;
+            }
+        }
+        return UNKNOWN;
     }
 
 }

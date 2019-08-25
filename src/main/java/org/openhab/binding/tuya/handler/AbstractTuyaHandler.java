@@ -9,6 +9,7 @@
 package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
+import static org.openhab.binding.tuya.internal.json.CommandByte.*;
 
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.library.types.HSBType;
@@ -21,7 +22,6 @@ import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.tuya.internal.CommandDispatcher;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 import org.openhab.binding.tuya.internal.DeviceRepository;
-import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter.Event;
@@ -115,10 +115,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
                     // Handle messages received.
                     deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, message -> {
-                        if (message.getCommandByte() == CommandByte.STATUS.getValue()
-                                || message.getCommandByte() == CommandByte.DP_QUERY.getValue()) {
+                        if (message.getCommandByte() == STATUS || message.getCommandByte() == DP_QUERY) {
                             handleStatusMessage(message);
-                        } else if (message.getCommandByte() != 9) {
+                        } else if (message.getCommandByte() != HEART_BEAT) {
                             handleStatusMessage(message);
                         }
                     });
@@ -136,7 +135,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (!commandDispatcher.dispatchCommand(deviceEventEmitter, channelUID, command, CommandByte.CONTROL)) {
+        if (!commandDispatcher.dispatchCommand(deviceEventEmitter, channelUID, command, CONTROL)) {
             logger.info("Command {} for channel {} could not be handled.", command, channelUID);
         }
     }

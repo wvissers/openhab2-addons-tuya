@@ -60,7 +60,9 @@ public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Even
                         } catch (IOException ex1) {
                             logger.error("DatagramEventEmitter", ex1);
                         } finally {
-                            listener.close();
+                            if (listener != null) {
+                                listener.close();
+                            }
                         }
                     }
                 }

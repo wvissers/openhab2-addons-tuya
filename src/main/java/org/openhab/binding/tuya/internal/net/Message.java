@@ -8,6 +8,7 @@
  */
 package org.openhab.binding.tuya.internal.net;
 
+import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
 
@@ -26,7 +27,7 @@ public class Message {
     private static Gson gson;
 
     private long sequenceNumber;
-    private long commandByte;
+    private CommandByte commandByte;
 
     public Message(String data) {
         this.data = data;
@@ -35,7 +36,7 @@ public class Message {
     public Message(byte[] payload, long sequenceNumber, long commandByte, String data) {
         this.payload = payload;
         this.sequenceNumber = sequenceNumber;
-        this.commandByte = commandByte;
+        this.commandByte = CommandByte.valueOf((int) commandByte);
         this.data = data;
         if (gson == null) {
             gson = new Gson();
@@ -66,11 +67,11 @@ public class Message {
         this.sequenceNumber = sequenceNumber;
     }
 
-    public long getCommandByte() {
+    public CommandByte getCommandByte() {
         return commandByte;
     }
 
-    public void setCommandByte(long commandByte) {
+    public void setCommandByte(CommandByte commandByte) {
         this.commandByte = commandByte;
     }
 
