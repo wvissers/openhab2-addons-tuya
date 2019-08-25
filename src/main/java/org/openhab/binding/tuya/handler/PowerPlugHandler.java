@@ -43,8 +43,13 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        JsonPowerPlug dev = message.toPowerPlugDevice();
-        updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getDps().isDp1() ? OnOffType.ON : OnOffType.OFF);
+        if (message != null) {
+            JsonPowerPlug dev = message.toPowerPlugDevice();
+            if (dev != null) {
+                updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER),
+                        dev.getDps().isDp1() ? OnOffType.ON : OnOffType.OFF);
+            }
+        }
     }
 
     /**

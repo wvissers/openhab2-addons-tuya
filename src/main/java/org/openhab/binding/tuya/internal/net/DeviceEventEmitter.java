@@ -196,7 +196,7 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
                         }
                     } catch (IOException | NullPointerException e) {
                     }
-                    stop();
+                    // stop();
                 }
             }
         };
