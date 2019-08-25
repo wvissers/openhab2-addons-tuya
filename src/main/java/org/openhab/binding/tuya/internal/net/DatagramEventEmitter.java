@@ -11,6 +11,7 @@ package org.openhab.binding.tuya.internal.net;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.SocketTimeoutException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -45,25 +46,21 @@ public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Even
                 public void run() {
                     running = true;
                     DatagramSocket listener = null;
+                    byte[] result = new byte[1024];
                     while (running) {
-                        byte[] result = new byte[1024];
                         try {
-                            listener = new DatagramSocket(port);
+                            if (listener == null || listener.isClosed()) {
+                                listener = new DatagramSocket(port);
+                                listener.setSoTimeout(60000);
+                            }
                             DatagramPacket dp = new DatagramPacket(result, 1024);
-                            listener.setSoTimeout(120000);
                             listener.receive(dp);
                             emit(Event.UDP_PACKET_RECEIVED, new Packet(result, dp.getLength()));
-                            listener.close();
+                        } catch (SocketTimeoutException ignored) {
                         } catch (IOException ex1) {
                             logger.error("DatagramEventEmitter", ex1);
-                            try {
-                                Thread.sleep(10000);
-                            } catch (InterruptedException e) {
-                            }
                         } finally {
-                            if (listener != null) {
-                                listener.close();
-                            }
+                            listener.close();
                         }
                     }
                 }

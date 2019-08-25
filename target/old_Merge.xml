@@ -29,8 +29,8 @@
 
 
    <file name="org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">
-      <message tool="checkstyle" line="162" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
-      <message tool="checkstyle" line="191" message="Comment matches to-do format '(TODO)|(FIXME)'." priority="3" rule="TodoCommentCheck" category="style"/>
+      <message tool="checkstyle" line="152" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="180" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.handler.ColorLedHandler.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -87,7 +87,7 @@
    </file>
    <file name="org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
-      <message tool="checkstyle" line="23" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+      <message tool="checkstyle" line="24" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>

@@ -66,7 +66,7 @@ public class CommandDispatcher {
         return this;
     }
 
-    public void dispatchCommand(DeviceEventEmitter emitter, ChannelUID channelUID, Command command,
+    public boolean dispatchCommand(DeviceEventEmitter emitter, ChannelUID channelUID, Command command,
             CommandByte commandByte) {
         CommandEvent event = new CommandEvent(channelUID, command.getClass());
         List<Function<Command, JsonData>> callbackList = eventCallbacks.get(event.getKey());
@@ -76,16 +76,14 @@ public class CommandDispatcher {
                 if (data != null) {
                     try {
                         emitter.send(data, commandByte);
+                        event.setHandled(true);
                     } catch (IOException | ParseException e) {
                         logger.error("Error dispatching command.", e);
                     }
                 }
             });
         }
-    }
-
-    public void dispatchCommand(DeviceEventEmitter emitter, ChannelUID channelUID, Command command) {
-        dispatchCommand(emitter, channelUID, command, CommandByte.CONTROL);
+        return event.isHandled();
     }
 
     /**
@@ -100,6 +98,7 @@ public class CommandDispatcher {
 
         private final ChannelUID channelUID;
         private final Class<?> commandClass;
+        private boolean handled;
 
         public CommandEvent(ChannelUID channelUID, Class<?> commandClass) {
             this.channelUID = channelUID;
@@ -114,5 +113,14 @@ public class CommandDispatcher {
         public String getKey() {
             return channelUID.getAsString() + ":" + commandClass.getName();
         }
+
+        public boolean isHandled() {
+            return handled;
+        }
+
+        public void setHandled(boolean handled) {
+            this.handled = handled;
+        }
+
     }
 }

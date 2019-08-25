@@ -9,7 +9,7 @@
 package org.openhab.binding.tuya.internal.net;
 
 /**
- * Raw packet, contaiing a buffer and actual data length.
+ * Raw packet, containing a buffer and actual data length.
  *
  * @author Wim Vissers.
  *

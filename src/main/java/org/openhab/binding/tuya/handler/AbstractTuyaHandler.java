@@ -70,7 +70,6 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
      */
     @Override
     public void dispose() {
-        DeviceRepository.getInstance().stop();
         if (deviceEventEmitter != null) {
             deviceEventEmitter.stop();
         }
@@ -91,7 +90,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
      *
      * @param device the device descriptor, received from the DeviceRepository service.
      */
-    private void foundDevice(DeviceDescriptor device) {
+    private void deviceFound(DeviceDescriptor device) {
         if (device != null) {
             JsonDiscovery jd = device.getJsonDiscovery();
             if (jd != null && jd.getGwId() != null && jd.getGwId().equals(id)) {
@@ -99,6 +98,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, device.getIp());
                     deviceDescriptor = device;
                     updateProperties(false);
+                    thing.getConfiguration().put("ip", device.getIp());
                     deviceEventEmitter = new DeviceEventEmitter(device.getIp(), 6668, parser);
 
                     // Handle error events
@@ -113,24 +113,12 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
                         sendStatusQuery();
                     });
 
-                    // Handle disconnected event
-                    deviceEventEmitter.on(Event.DISCONNECTED, msg -> {
-                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.GONE);
-                        updateProperties(false);
-                        sendStatusQuery();
-                    });
-
-                    // Handle disconnected event
-                    deviceEventEmitter.on(Event.CONNECTION_ERROR, msg -> {
-                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR);
-                        updateProperties(false);
-                        sendStatusQuery();
-                    });
-
                     // Handle messages received.
                     deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, message -> {
                         if (message.getCommandByte() == CommandByte.STATUS.getValue()
                                 || message.getCommandByte() == CommandByte.DP_QUERY.getValue()) {
+                            handleStatusMessage(message);
+                        } else if (message.getCommandByte() != 9) {
                             handleStatusMessage(message);
                         }
                     });
@@ -148,7 +136,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        commandDispatcher.dispatchCommand(deviceEventEmitter, channelUID, command);
+        if (!commandDispatcher.dispatchCommand(deviceEventEmitter, channelUID, command, CommandByte.CONTROL)) {
+            logger.info("Command {} for channel {} could not be handled.", command, channelUID);
+        }
     }
 
     /**
@@ -177,26 +167,17 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
         // If ip-address is specified, try to use it.
         if (ip != null && !ip.isEmpty()) {
-            foundDevice(new DeviceDescriptor(new JsonDiscovery(id, version, ip)));
+            deviceFound(new DeviceDescriptor(new JsonDiscovery(id, version, ip)));
         }
 
         // Initialize auto-discovery of the ip-address.
         DeviceRepository.getInstance().on(DeviceRepository.Event.DEVICE_FOUND, device -> {
-            foundDevice(device);
+            deviceFound(device);
         });
 
         // Init dispatcher.
         initCommandDispatcher();
 
-        // TODO: Initialize the thing. If done set status to ONLINE to indicate proper working.
-        // Long running initialization should be done asynchronously in background.
-
-        // Note: When initialization can NOT be done set the status with more details for further
-        // analysis. See also class ThingStatusDetail for all available status details.
-        // Add a description to give user information to understand why thing does not work
-        // as expected. E.g.
-        // updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_ERROR,
-        // "Can not access device as username and/or password are invalid");
     }
 
     /**
