@@ -9,7 +9,9 @@
 package org.openhab.binding.tuya.internal.net;
 
 import org.openhab.binding.tuya.internal.json.CommandByte;
+import org.openhab.binding.tuya.internal.json.JsonColorLed;
 import org.openhab.binding.tuya.internal.json.JsonDiscovery;
+import org.openhab.binding.tuya.internal.json.JsonFilamentLed;
 import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
 
 import com.google.gson.Gson;
@@ -86,13 +88,33 @@ public class Message {
     }
 
     /**
-     * Try to parse the message data as a PowerPlugDevice.
+     * Try to parse the message data as a PowerPlug.
      *
      * @param message the message (returned previously by the parser).
-     * @return the PowerPlugDevice if possible.
+     * @return the PowerPlug if possible.
      */
-    public JsonPowerPlug toPowerPlugDevice() {
+    public JsonPowerPlug toPowerPlug() {
         return gson.fromJson(getData(), JsonPowerPlug.class);
+    }
+
+    /**
+     * Try to parse the message data as a ColorLed.
+     *
+     * @param message the message (returned previously by the parser).
+     * @return the ColorLed if possible.
+     */
+    public JsonColorLed toColorLed() {
+        return gson.fromJson(getData(), JsonColorLed.class);
+    }
+
+    /**
+     * Try to parse the message data as a FilamentLed.
+     *
+     * @param message the message (returned previously by the parser).
+     * @return the FilamentLed if possible.
+     */
+    public JsonFilamentLed toFilamentLed() {
+        return gson.fromJson(getData(), JsonFilamentLed.class);
     }
 
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="tuya"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Smart Filament LED lamp Thing Type -->
+    <thing-type id="filamentled">
+        <label>Tuya Smart Filament LED lamp</label>
+        <description>Tuya smart filament LED lamp device with on/off and dimmer channels</description>
+        <channels>
+            <channel id="power" typeId="power-channel" />
+            <channel id="brightness" typeId="brightness-channel" />
+            <channel id="colorTemperature" typeId="color-temperature-channel" />
+        </channels>
+        <config-description-ref uri="thing-type:tuya:config" />
+    </thing-type>
+
+</thing:thing-descriptions>

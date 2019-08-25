@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 39,
+      <title>File: 42,
              Errors: 0,
-             Warnings: 29,
-             Infos: 35
+             Warnings: 32,
+             Infos: 38
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -186,6 +186,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.FilamentLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/FilamentLedHandler.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.Crc.java">src/main/java/org/openhab/binding/tuya/internal/util/Crc.java</a>
                 </td>
                 <td>
@@ -287,7 +301,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
                 </td>
                 <td>
-                  7
+                  8
                 </td>
                 <td>
                   0
@@ -361,6 +375,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonFilamentLed.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonFilamentLed.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0
@@ -543,6 +571,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.filamentled.xml">ESH-INF/thing/filamentled.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0

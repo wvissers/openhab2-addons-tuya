@@ -13,19 +13,19 @@ import org.openhab.binding.tuya.internal.DeviceDescriptor;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * This is the description of the status of the Color LED device.
+ * This is the description of the status of the Filament LED device.
  *
  * @author Wim Vissers.
  *
  */
-public class JsonColorLed extends JsonData {
+public class JsonFilamentLed extends JsonData {
 
     private Dps dps;
 
-    public JsonColorLed() {
+    public JsonFilamentLed() {
     }
 
-    public JsonColorLed(DeviceDescriptor deviceDescriptor) {
+    public JsonFilamentLed(DeviceDescriptor deviceDescriptor) {
         super(deviceDescriptor);
         dps = new Dps();
     }
@@ -53,31 +53,16 @@ public class JsonColorLed extends JsonData {
         private Boolean dp1;
 
         /**
-         * Mode: "white" or "color".
-         */
-        @SerializedName("2")
-        private String dp2;
-
-        /**
          * Brightness 0..255.
          */
-        @SerializedName("3")
-        private Integer dp3;
+        @SerializedName("2")
+        private Integer dp2;
 
         /**
          * Color temperature 0..255.
          */
-        @SerializedName("4")
-        private Integer dp4;
-
-        /**
-         * Color as hex string.
-         */
-        @SerializedName("5")
-        private String dp5;
-
-        @SerializedName("9")
-        private Integer dp9;
+        @SerializedName("3")
+        private Integer dp3;
 
         public boolean isDp1() {
             return dp1;
@@ -87,56 +72,22 @@ public class JsonColorLed extends JsonData {
             this.dp1 = dp1;
         }
 
-        public String getDp2() {
+        public int getDp2() {
             return dp2;
         }
 
-        public void setDp2(String dp2) {
+        public void setDp2(int dp2) {
             this.dp2 = dp2;
+            this.dp1 = dp2 > 0;
         }
 
         public int getDp3() {
             return dp3;
         }
 
-        /**
-         * In addition to setting the brightness 0..100, make sure the switch is
-         * set accordingly.
-         *
-         * @param dp3
-         */
         public void setDp3(int dp3) {
             this.dp3 = dp3;
-            this.dp1 = dp3 > 0;
-            this.dp2 = "white";
         }
-
-        public int getDp4() {
-            return dp4;
-        }
-
-        public void setDp4(int dp4) {
-            this.dp4 = dp4;
-            this.dp2 = "white";
-        }
-
-        public String getDp5() {
-            return dp5;
-        }
-
-        public void setDp5(String dp5) {
-            this.dp5 = dp5;
-            this.dp2 = "colour";
-        }
-
-        public int getDp9() {
-            return dp9;
-        }
-
-        public void setDp9(int dp9) {
-            this.dp9 = dp9;
-        }
-
     }
 
 }

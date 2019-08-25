@@ -18,6 +18,7 @@ import org.eclipse.smarthome.core.thing.ThingTypeUID;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandlerFactory;
 import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 import org.openhab.binding.tuya.handler.ColorLedHandler;
+import org.openhab.binding.tuya.handler.FilamentLedHandler;
 import org.openhab.binding.tuya.handler.PowerPlugHandler;
 
 /**
@@ -36,6 +37,7 @@ public class TuyaHandlerFactory extends BaseThingHandlerFactory {
             supportedThingTypes = new HashSet<>();
             supportedThingTypes.add(THING_TYPE_POWER_PLUG);
             supportedThingTypes.add(THING_TYPE_COLOR_LED);
+            supportedThingTypes.add(THING_TYPE_FILAMENT_LED);
         }
         return supportedThingTypes.contains(thingTypeUID);
     }
@@ -49,6 +51,8 @@ public class TuyaHandlerFactory extends BaseThingHandlerFactory {
             return new PowerPlugHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_COLOR_LED)) {
             return new ColorLedHandler(thing);
+        } else if (thingTypeUID.equals(THING_TYPE_FILAMENT_LED)) {
+            return new FilamentLedHandler(thing);
         }
 
         return null;

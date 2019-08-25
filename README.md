@@ -13,11 +13,11 @@ Unfortunately, since the local device communication is encrypted, you will need 
 
 Look at these [setup instructions using Windows](http://www.htgsd.com/information-technology/apple/homekit/how-to-capture-tuya-lan-homebridge-device-devid-and-key-on-windows-10/) or these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids.
 
-Please note, that the tuya devices only accept a single connection. If you use both the app and openHAB simultaneously, it will not work.
+Please note, that the tuya devices only accept a single connection. If you use both the app and openHAB simultaneously or more openHAB instances, it might not work properly.
 
 ## Supported Things
 
-Currently it supports the LSC Smart Connect Power Plug,  Smart LED white and color ambiance lamps. Other devices that use the same communication scheme might also work.
+Currently it supports the LSC Smart Connect Power Plug,  Smart LED white and color ambiance lamps, and Smart Filament LED lamps. Other devices that use the same communication scheme might also work.
 
 ## Quick start
 
