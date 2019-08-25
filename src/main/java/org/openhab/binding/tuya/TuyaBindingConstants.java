@@ -37,4 +37,17 @@ public class TuyaBindingConstants {
     public final static String CHANNEL_COLOR_TEMPERATURE = "colorTemperature";
     public final static String CHANNEL_COLOR_MODE = "colorMode";
 
+    // Default API version (currently only 3.3 supported).
+    public static final String DEFAULT_VERSION = "3.3";
+
+    // The default key to decrypt UDP broadcast messages.
+    public static final String DEFAULT_UDP_KEY = "yGAdlopoPVldABfn";
+
+    // Default ports to listen for UDP broadcast (currently only encrypted implemented).
+    public static final int DEFAULT_UNECRYPTED_UDP_PORT = 6666;
+    public static final int DEFAULT_ECRYPTED_UDP_PORT = 6667;
+
+    // Default port the device servers listen on.
+    public static final int DEFAULT_SERVER_PORT = 6668;
+
 }

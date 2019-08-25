@@ -15,7 +15,6 @@ import java.util.List;
 
 import javax.crypto.IllegalBlockSizeException;
 
-import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.net.Packet;
@@ -39,13 +38,8 @@ public class MessageParser {
         try {
             cipher = new TuyaCipher(key);
         } catch (UnsupportedEncodingException e) {
-            // Should not happen.
         }
-        this.version = version;
-    }
-
-    public MessageParser(String version, byte[] key) {
-        cipher = new TuyaCipher(key);
+        // Should not happen.
         this.version = version;
     }
 

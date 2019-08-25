@@ -15,11 +15,11 @@ import java.io.IOException;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
-import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
 import org.openhab.binding.tuya.internal.json.JsonStatusQuery;
 import org.openhab.binding.tuya.internal.net.Message;
+import org.openhab.binding.tuya.internal.util.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

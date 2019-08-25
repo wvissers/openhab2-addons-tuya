@@ -99,7 +99,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
                     deviceDescriptor = device;
                     updateProperties(false);
                     thing.getConfiguration().put("ip", device.getIp());
-                    deviceEventEmitter = new DeviceEventEmitter(device.getIp(), 6668, parser);
+                    deviceEventEmitter = new DeviceEventEmitter(device.getIp(), DEFAULT_SERVER_PORT, parser);
 
                     // Handle error events
                     deviceEventEmitter.on(Event.CONNECTION_ERROR, msg -> {

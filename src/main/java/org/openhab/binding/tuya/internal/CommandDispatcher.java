@@ -17,10 +17,10 @@ import java.util.function.Function;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonData;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
+import org.openhab.binding.tuya.internal.util.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

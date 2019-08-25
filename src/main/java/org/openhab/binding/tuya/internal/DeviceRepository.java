@@ -8,20 +8,20 @@
  */
 package org.openhab.binding.tuya.internal;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import static org.openhab.binding.tuya.TuyaBindingConstants.*;
+
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.Consumer;
 
-import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DatagramEventEmitter;
 import org.openhab.binding.tuya.internal.net.EventEmitter;
 import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.net.Packet;
 import org.openhab.binding.tuya.internal.util.MessageParser;
+import org.openhab.binding.tuya.internal.util.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,16 +33,6 @@ import org.slf4j.LoggerFactory;
  */
 public class DeviceRepository extends EventEmitter<DeviceRepository.Event, DeviceDescriptor> {
 
-    /**
-     * Default ports to listen to UDP packets.
-     */
-    public static final int DEFAULT_UNECRYPTED_UDP_PORT = 6666;
-    public static final int DEFAULT_ECRYPTED_UDP_PORT = 6667;
-    /**
-     * Generic (default) UDP kay used.
-     */
-    private static final String DEFAULT_UDP_KEY = "yGAdlopoPVldABfn";
-    private static final String DEFAULT_VERSION = "3.3";
     private MessageParser parser;
     /**
      * The singleton instance.
@@ -66,13 +56,7 @@ public class DeviceRepository extends EventEmitter<DeviceRepository.Event, Devic
      */
     private DeviceRepository() {
         devices = new ConcurrentHashMap<>();
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(DEFAULT_UDP_KEY.getBytes());
-            parser = new MessageParser(DEFAULT_VERSION, md.digest());
-        } catch (NoSuchAlgorithmException e) {
-            // Should not happen.
-        }
+        parser = new MessageParser(DEFAULT_VERSION, DEFAULT_UDP_KEY);
     }
 
     /**

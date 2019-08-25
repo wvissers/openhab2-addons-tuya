@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.util;
 
+import static org.openhab.binding.tuya.TuyaBindingConstants.DEFAULT_UDP_KEY;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -30,7 +32,6 @@ import org.slf4j.LoggerFactory;
  */
 public class TuyaCipher {
 
-    private static final String UDP_KEY = "yGAdlopoPVldABfn";
     private static byte[] udpKey;
     private static Logger logger;
 
@@ -39,13 +40,7 @@ public class TuyaCipher {
     public TuyaCipher(byte[] key) {
         this.key = key;
         if (udpKey == null) {
-            try {
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                md.update(UDP_KEY.getBytes());
-                udpKey = md.digest();
-            } catch (NoSuchAlgorithmException e) {
-                // Should not happen.
-            }
+            setUdpKey(DEFAULT_UDP_KEY);
         }
         if (logger == null) {
             logger = LoggerFactory.getLogger(getClass());
@@ -54,6 +49,21 @@ public class TuyaCipher {
 
     public TuyaCipher(String key) throws UnsupportedEncodingException {
         this(key.getBytes("UTF-8"));
+    }
+
+    public static void setUdpKey(String key) {
+        udpKey = getDigest(key);
+    }
+
+    public static final byte[] getDigest(String key) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(key.getBytes());
+            return md.digest();
+        } catch (NoSuchAlgorithmException e) {
+            // Should not happen.
+            return null;
+        }
     }
 
     /**

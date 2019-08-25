@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.openhab.binding.tuya.internal.exceptions.ParseException;
-
 /**
  * Utility class for buffer operations.
  *

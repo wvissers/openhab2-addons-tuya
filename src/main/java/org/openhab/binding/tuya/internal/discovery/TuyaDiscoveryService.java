@@ -71,8 +71,6 @@ public class TuyaDiscoveryService extends AbstractDiscoveryService {
     protected synchronized void stopScan() {
         removeOlderResults(getTimestampOfLastScan());
         super.stopScan();
-        if (!isBackgroundDiscoveryEnabled()) {
-        }
     }
 
 }
