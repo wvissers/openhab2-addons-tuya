@@ -53,5 +53,7 @@ public class TuyaBindingConstants {
     // Settings for the TCP client (the device is the server).
     public static final int DEFAULT_SERVER_PORT = 6668;
     public static final int TCP_SOCKET_BUFFER_SIZE = 1024;
+    public static final int MAX_RETRIES = 5;
+    public static final int HEARTBEAT_SECONDS = 10;
 
 }

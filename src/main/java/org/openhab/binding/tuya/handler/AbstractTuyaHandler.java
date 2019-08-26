@@ -12,7 +12,6 @@ import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 import static org.openhab.binding.tuya.internal.json.CommandByte.*;
 
 import org.eclipse.smarthome.config.core.Configuration;
-import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.eclipse.smarthome.core.thing.ThingStatus;
@@ -102,24 +101,27 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
                     deviceEventEmitter = new DeviceEventEmitter(device.getIp(), DEFAULT_SERVER_PORT, parser);
 
                     // Handle error events
-                    deviceEventEmitter.on(Event.CONNECTION_ERROR, msg -> {
+                    deviceEventEmitter.on(Event.CONNECTION_ERROR, (ev, msg) -> {
                         updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, msg.getData());
+                        return true;
                     });
 
                     // Handle connected event.
-                    deviceEventEmitter.on(Event.CONNECTED, msg -> {
+                    deviceEventEmitter.on(Event.CONNECTED, (ev, msg) -> {
                         updateStatus(ThingStatus.ONLINE);
                         updateProperties(false);
                         sendStatusQuery();
+                        return true;
                     });
 
                     // Handle messages received.
-                    deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, message -> {
-                        if (message.getCommandByte() == STATUS || message.getCommandByte() == DP_QUERY) {
-                            handleStatusMessage(message);
-                        } else if (message.getCommandByte() != HEART_BEAT) {
-                            handleStatusMessage(message);
+                    deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, (ev, msg) -> {
+                        if (msg.getCommandByte() == STATUS || msg.getCommandByte() == DP_QUERY) {
+                            handleStatusMessage(msg);
+                        } else if (msg.getCommandByte() != HEART_BEAT) {
+                            handleStatusMessage(msg);
                         }
+                        return true;
                     });
 
                     // Start the event emitter.
@@ -170,42 +172,14 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
         }
 
         // Initialize auto-discovery of the ip-address.
-        DeviceRepository.getInstance().on(DeviceRepository.Event.DEVICE_FOUND, device -> {
+        DeviceRepository.getInstance().on(id, (ev, device) -> {
             deviceFound(device);
+            return true;
         });
 
         // Init dispatcher.
         initCommandDispatcher();
 
-    }
-
-    /**
-     * Take an OH command represented as Color (HSBType) and convert it to a Tuya understandable RGB value.
-     *
-     * @param hsb the color to encode.
-     * @return the command string.
-     */
-    protected String colorToCommandString(HSBType hsb) {
-        StringBuilder b = new StringBuilder();
-        b.append(Integer.toHexString(hsb.getRed().intValue() * 255 / 100))
-                .append(Integer.toHexString(hsb.getGreen().intValue() * 255 / 100))
-                .append(Integer.toHexString(hsb.getBlue().intValue() * 255 / 100)).append("00f1ffff");// append("016500ff");
-        return b.toString();
-    }
-
-    /**
-     * Take an OH command, and try to calculate the value as and integer
-     * from 0 to 255. This is used to convert dimmer commands to the 0..255 value used by the Tuya devices.
-     *
-     * @param command the OH command.
-     * @return the numeric value in the range 0..255.
-     */
-    protected int numberTo255(Command command) {
-        if (command instanceof Number) {
-            return (int) ((Math.round(((Number) (command)).doubleValue() * 255)) & 0xFF);
-        } else {
-            throw new IllegalArgumentException("Command could not be converted to int.");
-        }
     }
 
 }

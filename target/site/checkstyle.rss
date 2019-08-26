@@ -27,8 +27,8 @@ under the License.
     <item>
       <title>File: 42,
              Errors: 0,
-             Warnings: 32,
-             Infos: 38
+             Warnings: 31,
+             Infos: 39
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -329,10 +329,10 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/net/DeviceEventEmitter.java</a>
                 </td>
                 <td>
-                  2
+                  3
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   0
@@ -466,7 +466,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.EventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/net/EventEmitter.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.SingletonEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/util/SingletonEventEmitter.java</a>
                 </td>
                 <td>
                   1

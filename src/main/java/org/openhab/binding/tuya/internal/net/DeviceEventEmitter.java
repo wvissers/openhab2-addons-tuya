@@ -8,7 +8,7 @@
  */
 package org.openhab.binding.tuya.internal.net;
 
-import static org.openhab.binding.tuya.TuyaBindingConstants.TCP_SOCKET_BUFFER_SIZE;
+import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,16 +16,17 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonData;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.openhab.binding.tuya.internal.util.ParseException;
+import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,10 +39,10 @@ import com.google.gson.Gson;
  * @author Wim Vissers.
  *
  */
-public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, Message> {
+public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter.Event, Message, Boolean> {
 
     private Future<?> task;
-    private ScheduledFuture<?> heartbeat;
+    private Future<?> heartbeat;
     private final Logger logger;
     private final String host;
     private final int port;
@@ -51,6 +52,7 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
     private boolean running;
     private final LinkedBlockingQueue<byte[]> queue;
     private static final Gson gson = new Gson();
+    private static ExecutorService executor = Executors.newCachedThreadPool();
 
     /**
      * Create a device event emitter. Use connect() after creation to establish a connection.
@@ -151,6 +153,7 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
                 InputStream in = null;
                 try {
                     running = true;
+                    int retries = 0;
                     byte[] buffer = new byte[TCP_SOCKET_BUFFER_SIZE];
                     while (running) {
                         try {
@@ -160,9 +163,12 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
                                 in = clientSocket.getInputStream();
                             }
                             if (out != null && !queue.isEmpty()) {
-                                byte[] packet = queue.poll();
+                                retries++;
+                                byte[] packet = queue.peek();
                                 out.write(packet);
                                 out.flush();
+                                queue.poll();
+                                retries--;
                             }
                             if (in != null && in.available() > 5) {
                                 Thread.sleep(20);
@@ -176,7 +182,13 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
                             emit(Event.CONNECTION_ERROR, new Message(e.getMessage()));
                             disconnect();
                             try {
-                                Thread.sleep(10000);
+                                if (retries > MAX_RETRIES) {
+                                    queue.poll();
+                                    retries = 0;
+                                    Thread.sleep(30000);
+                                } else {
+                                    Thread.sleep(500);
+                                }
                             } catch (InterruptedException ex) {
                             }
                         } catch (ParseException e) {
@@ -212,27 +224,36 @@ public class DeviceEventEmitter extends EventEmitter<DeviceEventEmitter.Event, M
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                try {
-                    send("", CommandByte.HEART_BEAT);
-                } catch (IOException | ParseException e) {
-                    // Should not happen
+                while (running) {
+                    try {
+                        send("", CommandByte.HEART_BEAT);
+                    } catch (IOException | ParseException e) {
+                        // Should not happen
+                    }
+                    try {
+                        Thread.sleep(HEARTBEAT_SECONDS * 1000);
+                    } catch (InterruptedException e) {
+                    }
                 }
             }
         };
         return runnable;
+
     }
 
     /**
-     * Start this as a task in the executor service.
+     * Start this as a task in the executor service. For some reason the scheduler doesn't work here. Need to look into
+     * that some time.
      *
      * @param scheduler
      */
     public void start(ScheduledExecutorService scheduler) {
         if (task == null) {
-            task = scheduler.submit(createMainTask());
+            task = executor.submit(createMainTask());
         }
         if (heartbeat == null) {
-            heartbeat = scheduler.scheduleAtFixedRate(createHeartBeat(), 5, 10, TimeUnit.SECONDS);
+            heartbeat = executor.submit(createHeartBeat());
+            // heartbeat = executor.scheduleAtFixedRate(createHeartBeat(), 5, HEARTBEAT_SECONDS, TimeUnit.SECONDS);
         }
     }
 

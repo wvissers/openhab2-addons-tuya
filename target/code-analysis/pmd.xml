@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.8.1" timestamp="2019-08-25T17:02:10.321">
+<pmd version="5.8.1" timestamp="2019-08-26T21:47:31.463">
 <file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\discovery\TuyaDiscoveryService.java">
 <violation beginline="32" endline="34" begincolumn="9" endcolumn="9" rule="NonThreadSafeSingleton" ruleset="Design" package="org.openhab.binding.tuya.internal.discovery" class="TuyaDiscoveryService" method="getSupportedTypes" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/design.html#NonThreadSafeSingleton" priority="3">
 Singleton is not thread safe
 </violation>
 </file>
 <file name="C:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\DeviceEventEmitter.java">
-<violation beginline="197" endline="197" begincolumn="44" endcolumn="63" rule="AvoidCatchingNPE" ruleset="Strict Exceptions" package="org.openhab.binding.tuya.internal.net" class="DeviceEventEmitter" method="run" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidCatchingNPE" priority="2">
+<violation beginline="209" endline="209" begincolumn="44" endcolumn="63" rule="AvoidCatchingNPE" ruleset="Strict Exceptions" package="org.openhab.binding.tuya.internal.net" class="DeviceEventEmitter" method="run" externalInfoUrl="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/strictexception.html#AvoidCatchingNPE" priority="2">
 Avoid catching NullPointerException; consider removing the cause of the NPE.
 </violation>
 </file>

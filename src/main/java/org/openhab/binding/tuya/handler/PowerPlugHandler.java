@@ -46,8 +46,9 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
         if (message != null) {
             JsonPowerPlug dev = message.toPowerPlug();
             if (dev != null) {
-                updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER),
-                        dev.getDps().isDp1() ? OnOffType.ON : OnOffType.OFF);
+                if (dev.getPower() != null) {
+                    updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getPower());
+                }
             }
         }
     }
@@ -71,10 +72,8 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
     @Override
     protected void initCommandDispatcher() {
         // Channel power command with OnOffType.
-        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, command -> {
-            JsonPowerPlug dev = new JsonPowerPlug(deviceDescriptor);
-            dev.getDps().setDp1(command == OnOffType.ON);
-            return dev;
+        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
+            return new JsonPowerPlug(deviceDescriptor).withPower(command);
         });
     }
 

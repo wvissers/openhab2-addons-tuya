@@ -21,8 +21,8 @@ public class JsonStatusQuery extends JsonData {
     private String gwId;
 
     public JsonStatusQuery(DeviceDescriptor device) {
+        super(device);
         this.gwId = device.getGwId();
-        setDevId(device.getGwId());
     }
 
     public String getGwId() {

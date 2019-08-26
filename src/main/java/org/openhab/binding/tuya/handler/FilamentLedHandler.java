@@ -38,8 +38,9 @@ public class FilamentLedHandler extends AbstractTuyaHandler {
         if (message != null) {
             JsonFilamentLed dev = message.toFilamentLed();
             if (dev != null) {
-                updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER),
-                        dev.getDps().isDp1() ? OnOffType.ON : OnOffType.OFF);
+                if (dev.getPower() != null) {
+                    updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getPower());
+                }
             }
         }
     }
@@ -50,26 +51,18 @@ public class FilamentLedHandler extends AbstractTuyaHandler {
     @Override
     protected void initCommandDispatcher() {
         // Channel power command with OnOffType.
-        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, command -> {
-            JsonFilamentLed dev = new JsonFilamentLed(deviceDescriptor);
-            dev.getDps().setDp1(command == OnOffType.ON);
-            return dev;
+        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
+            return new JsonFilamentLed(deviceDescriptor).withPower(command);
         });
 
         // Brightness with DecimalType.
-        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, command -> {
-            JsonFilamentLed dev = new JsonFilamentLed(deviceDescriptor);
-            dev.getDps().setDp2(numberTo255(command));
-            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-            return dev;
+        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, (ev, command) -> {
+            return new JsonFilamentLed(deviceDescriptor).withBrightness(command);
         });
 
         // Color temperature with DecimalType.
-        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, command -> {
-            JsonFilamentLed dev = new JsonFilamentLed(deviceDescriptor);
-            dev.getDps().setDp3(numberTo255(command));
-            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-            return dev;
+        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, (ev, command) -> {
+            return new JsonFilamentLed(deviceDescriptor).withColorTemperature(command);
         });
     }
 

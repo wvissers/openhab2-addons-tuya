@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.json;
 
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 
 import com.google.gson.annotations.SerializedName;
@@ -30,12 +32,24 @@ public class JsonFilamentLed extends JsonData {
         dps = new Dps();
     }
 
-    public Dps getDps() {
-        return dps;
+    public JsonFilamentLed withPower(Command command) {
+        dps.dp1 = toBoolean(command);
+        return this;
     }
 
-    public void setDps(Dps dps) {
-        this.dps = dps;
+    public OnOffType getPower() {
+        return toOnOffType(dps.dp1);
+    }
+
+    public JsonFilamentLed withBrightness(Command command) {
+        dps.dp2 = toInt8(command);
+        dps.dp1 = dps.dp2 > 0;
+        return this;
+    }
+
+    public JsonFilamentLed withColorTemperature(Command command) {
+        dps.dp3 = toInt8(command);
+        return this;
     }
 
     /**
@@ -45,7 +59,6 @@ public class JsonFilamentLed extends JsonData {
      *
      */
     public class Dps {
-
         /**
          * Lamp on/off.
          */
@@ -64,30 +77,6 @@ public class JsonFilamentLed extends JsonData {
         @SerializedName("3")
         private Integer dp3;
 
-        public boolean isDp1() {
-            return dp1;
-        }
-
-        public void setDp1(boolean dp1) {
-            this.dp1 = dp1;
-        }
-
-        public int getDp2() {
-            return dp2;
-        }
-
-        public void setDp2(int dp2) {
-            this.dp2 = dp2;
-            this.dp1 = dp2 > 0;
-        }
-
-        public int getDp3() {
-            return dp3;
-        }
-
-        public void setDp3(int dp3) {
-            this.dp3 = dp3;
-        }
     }
 
 }

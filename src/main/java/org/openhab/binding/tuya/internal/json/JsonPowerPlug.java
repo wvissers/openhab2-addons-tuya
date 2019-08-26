@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.json;
 
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 
 import com.google.gson.annotations.SerializedName;
@@ -39,29 +41,22 @@ public class JsonPowerPlug extends JsonData {
         this.dps = dps;
     }
 
+    public JsonPowerPlug withPower(Command command) {
+        dps.dp1 = toBoolean(command);
+        return this;
+    }
+
+    public OnOffType getPower() {
+        return toOnOffType(dps.dp1);
+    }
+
     public class Dps {
 
         @SerializedName("1")
-        private boolean dp1;
+        private Boolean dp1;
 
         @SerializedName("9")
-        private int dp9;
-
-        public boolean isDp1() {
-            return dp1;
-        }
-
-        public void setDp1(boolean dp1) {
-            this.dp1 = dp1;
-        }
-
-        public int getDp9() {
-            return dp9;
-        }
-
-        public void setDp9(int dp9) {
-            this.dp9 = dp9;
-        }
+        private Integer dp9;
 
     }
 

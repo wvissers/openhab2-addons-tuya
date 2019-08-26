@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.json;
 
+import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.tuya.internal.DeviceDescriptor;
 
 import com.google.gson.annotations.SerializedName;
@@ -30,12 +32,38 @@ public class JsonColorLed extends JsonData {
         dps = new Dps();
     }
 
-    public Dps getDps() {
-        return dps;
+    public JsonColorLed withPower(Command command) {
+        dps.dp1 = toBoolean(command);
+        return this;
     }
 
-    public void setDps(Dps dps) {
-        this.dps = dps;
+    public OnOffType getPower() {
+        return toOnOffType(dps.dp1);
+    }
+
+    public JsonColorLed withColorMode(Command command) {
+        dps.dp2 = toBoolean(command) == null ? null : toBoolean(command) ? "colour" : "white";
+        return this;
+    }
+
+    public OnOffType getColorMode() {
+        return dps.dp2 == null ? null : dps.dp2.equals("colour") ? OnOffType.ON : OnOffType.OFF;
+    }
+
+    public JsonColorLed withBrightness(Command command) {
+        dps.dp3 = toInt8(command);
+        dps.dp1 = dps.dp3 > 0;
+        return this;
+    }
+
+    public JsonColorLed withColorTemperature(Command command) {
+        dps.dp4 = toInt8(command);
+        return this;
+    }
+
+    public JsonColorLed withColor(Command command) {
+        dps.dp5 = toColorString(command);
+        return this;
     }
 
     /**
@@ -78,64 +106,6 @@ public class JsonColorLed extends JsonData {
 
         @SerializedName("9")
         private Integer dp9;
-
-        public boolean isDp1() {
-            return dp1;
-        }
-
-        public void setDp1(boolean dp1) {
-            this.dp1 = dp1;
-        }
-
-        public String getDp2() {
-            return dp2;
-        }
-
-        public void setDp2(String dp2) {
-            this.dp2 = dp2;
-        }
-
-        public int getDp3() {
-            return dp3;
-        }
-
-        /**
-         * In addition to setting the brightness 0..100, make sure the switch is
-         * set accordingly.
-         *
-         * @param dp3
-         */
-        public void setDp3(int dp3) {
-            this.dp3 = dp3;
-            this.dp1 = dp3 > 0;
-            this.dp2 = "white";
-        }
-
-        public int getDp4() {
-            return dp4;
-        }
-
-        public void setDp4(int dp4) {
-            this.dp4 = dp4;
-            this.dp2 = "white";
-        }
-
-        public String getDp5() {
-            return dp5;
-        }
-
-        public void setDp5(String dp5) {
-            this.dp5 = dp5;
-            this.dp2 = "colour";
-        }
-
-        public int getDp9() {
-            return dp9;
-        }
-
-        public void setDp9(int dp9) {
-            this.dp9 = dp9;
-        }
 
     }
 

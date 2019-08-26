@@ -9,39 +9,40 @@
 package org.openhab.binding.tuya.internal;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.eclipse.smarthome.core.types.Command;
+import org.openhab.binding.tuya.internal.CommandDispatcher.CommandEvent;
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonData;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
 import org.openhab.binding.tuya.internal.util.ParseException;
+import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * Generic handler of openHAB commands. In particular, it dispatches commands to the right handlers for processing.
  *
+ * &lt;D&gt; Datatype for dispatching.
+ *
  * @author Wim Vissers.
  *
  */
-public class CommandDispatcher {
+public class CommandDispatcher extends SingletonEventEmitter<CommandEvent, Command, JsonData> {
 
     /**
      * Key: the event key. Value: a list of consumer wrappers to call when the event
      * happens.
      */
-    private final ConcurrentHashMap<String, List<Function<Command, JsonData>>> eventCallbacks;
+    // private final ConcurrentHashMap<String, List<Function<Command, JsonData>>> eventCallbacks;
     private Logger logger = LoggerFactory.getLogger(CommandDispatcher.class);
     private final ThingUID thingUID;
 
     public CommandDispatcher(ThingUID thingUID) {
-        eventCallbacks = new ConcurrentHashMap<>();
+        // eventCallbacks = new ConcurrentHashMap<>();
         this.thingUID = thingUID;
     }
 
@@ -54,34 +55,24 @@ public class CommandDispatcher {
      *                         sending.
      * @return this CommandHandler.
      */
-    public synchronized CommandDispatcher on(String channel, Class<?> commandClass,
-            Function<Command, JsonData> callback) {
+    public CommandDispatcher on(String channel, Class<?> commandClass,
+            BiFunction<CommandEvent, Command, JsonData> callback) {
         CommandEvent event = new CommandEvent(new ChannelUID(thingUID, channel), commandClass);
-        List<Function<Command, JsonData>> callbackList = eventCallbacks.get(event.getKey());
-        if (callbackList == null) {
-            callbackList = new ArrayList<>();
-            eventCallbacks.put(event.getKey(), callbackList);
-        }
-        callbackList.add(callback);
+        on(event, callback);
         return this;
     }
 
     public boolean dispatchCommand(DeviceEventEmitter emitter, ChannelUID channelUID, Command command,
             CommandByte commandByte) {
         CommandEvent event = new CommandEvent(channelUID, command.getClass());
-        List<Function<Command, JsonData>> callbackList = eventCallbacks.get(event.getKey());
-        if (callbackList != null) {
-            callbackList.forEach(callback -> {
-                JsonData data = callback.apply(command);
-                if (data != null) {
-                    try {
-                        emitter.send(data, commandByte);
-                        event.setHandled(true);
-                    } catch (IOException | ParseException e) {
-                        logger.error("Error dispatching command.", e);
-                    }
-                }
-            });
+        JsonData data = emit(event, command);
+        if (data != null) {
+            try {
+                emitter.send(data, commandByte);
+                event.setHandled(true);
+            } catch (IOException | ParseException e) {
+                logger.error("Error dispatching command.", e);
+            }
         }
         return event.isHandled();
     }
@@ -94,7 +85,7 @@ public class CommandDispatcher {
      * @author Wim Vissers.
      *
      */
-    protected class CommandEvent {
+    public class CommandEvent {
 
         private final ChannelUID channelUID;
         private final Class<?> commandClass;
@@ -105,13 +96,46 @@ public class CommandDispatcher {
             this.commandClass = commandClass;
         }
 
-        /**
-         * Construct a unique key for the event.
-         *
-         * @return
-         */
-        public String getKey() {
-            return channelUID.getAsString() + ":" + commandClass.getName();
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + getOuterType().hashCode();
+            result = prime * result + ((channelUID == null) ? 0 : channelUID.hashCode());
+            result = prime * result + ((commandClass == null) ? 0 : commandClass.toString().hashCode());
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            CommandEvent other = (CommandEvent) obj;
+            if (!getOuterType().equals(other.getOuterType())) {
+                return false;
+            }
+            if (channelUID == null) {
+                if (other.channelUID != null) {
+                    return false;
+                }
+            } else if (!channelUID.equals(other.channelUID)) {
+                return false;
+            }
+            if (commandClass == null) {
+                if (other.commandClass != null) {
+                    return false;
+                }
+            } else if (!commandClass.equals(other.commandClass)) {
+                return false;
+            }
+            return true;
         }
 
         public boolean isHandled() {
@@ -120,6 +144,10 @@ public class CommandDispatcher {
 
         public void setHandled(boolean handled) {
             this.handled = handled;
+        }
+
+        private CommandDispatcher getOuterType() {
+            return CommandDispatcher.this;
         }
 
     }

@@ -17,6 +17,7 @@ import java.net.SocketTimeoutException;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
+import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +27,7 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class DatagramEventEmitter extends EventEmitter<DatagramEventEmitter.Event, Packet> {
+public class DatagramEventEmitter extends SingletonEventEmitter<DatagramEventEmitter.Event, Packet, Boolean> {
 
     private Future<?> task;
     private int port;

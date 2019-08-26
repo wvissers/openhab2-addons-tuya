@@ -36,9 +36,14 @@ public class ColorLedHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        // ColorLedDevice dev = message.toColorLedDevice();
-        // updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getDps().isDp1() ? OnOffType.ON :
-        // OnOffType.OFF);
+        if (message != null) {
+            JsonColorLed dev = message.toColorLed();
+            if (dev != null) {
+                if (dev.getPower() != null) {
+                    updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getPower());
+                }
+            }
+        }
     }
 
     /**
@@ -47,41 +52,31 @@ public class ColorLedHandler extends AbstractTuyaHandler {
     @Override
     protected void initCommandDispatcher() {
         // Channel power command with OnOffType.
-        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, command -> {
-            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
-            dev.getDps().setDp1(command == OnOffType.ON);
-            return dev;
+        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
+            return new JsonColorLed(deviceDescriptor).withPower(command);
         });
 
         // Color mode command with OnOffType.
-        commandDispatcher.on(CHANNEL_COLOR_MODE, OnOffType.class, command -> {
-            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
-            dev.getDps().setDp2(command == OnOffType.ON ? "colour" : "white");
-            return dev;
+        commandDispatcher.on(CHANNEL_COLOR_MODE, OnOffType.class, (ev, command) -> {
+            return new JsonColorLed(deviceDescriptor).withColorMode(command);
         });
 
         // Brightness with DecimalType.
-        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, command -> {
-            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
-            dev.getDps().setDp3(numberTo255(command));
+        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-            return dev;
+            return new JsonColorLed(deviceDescriptor).withBrightness(command).withColorMode(OnOffType.OFF);
         });
 
         // Color temperature with DecimalType.
-        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, command -> {
-            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
-            dev.getDps().setDp4(numberTo255(command));
+        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-            return dev;
+            return new JsonColorLed(deviceDescriptor).withColorTemperature(command).withColorMode(OnOffType.OFF);
         });
 
         // Color with HSBType.
-        commandDispatcher.on(CHANNEL_COLOR, HSBType.class, command -> {
-            JsonColorLed dev = new JsonColorLed(deviceDescriptor);
-            dev.getDps().setDp5(colorToCommandString((HSBType) command));
+        commandDispatcher.on(CHANNEL_COLOR, HSBType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.ON);
-            return dev;
+            return new JsonColorLed(deviceDescriptor).withColor(command).withColorMode(OnOffType.ON);
         });
     }
 

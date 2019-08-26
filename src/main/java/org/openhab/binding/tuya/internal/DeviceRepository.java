@@ -13,15 +13,15 @@ import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.function.Consumer;
+import java.util.function.BiFunction;
 
 import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DatagramEventEmitter;
-import org.openhab.binding.tuya.internal.net.EventEmitter;
 import org.openhab.binding.tuya.internal.net.Message;
 import org.openhab.binding.tuya.internal.net.Packet;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.openhab.binding.tuya.internal.util.ParseException;
+import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class DeviceRepository extends EventEmitter<DeviceRepository.Event, DeviceDescriptor> {
+public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescriptor, Boolean> {
 
     private MessageParser parser;
     /**
@@ -76,8 +76,8 @@ public class DeviceRepository extends EventEmitter<DeviceRepository.Event, Devic
     public void start(ScheduledExecutorService scheduler) {
         if (encryptedListener == null) {
             encryptedListener = new DatagramEventEmitter(DEFAULT_ECRYPTED_UDP_PORT);
-            encryptedListener.on(DatagramEventEmitter.Event.UDP_PACKET_RECEIVED, packet -> {
-                processPacket(packet);
+            encryptedListener.on(DatagramEventEmitter.Event.UDP_PACKET_RECEIVED, (event, packet) -> {
+                return processPacket(packet);
             });
             encryptedListener.start(scheduler);
         }
@@ -99,7 +99,7 @@ public class DeviceRepository extends EventEmitter<DeviceRepository.Event, Devic
      *
      * @param packet the packet.
      */
-    private void processPacket(Packet packet) {
+    private boolean processPacket(Packet packet) {
         try {
             List<Message> udpMessages = parser.parse(packet.getBuffer(), packet.getLength());
             for (Message message : udpMessages) {
@@ -108,12 +108,14 @@ public class DeviceRepository extends EventEmitter<DeviceRepository.Event, Devic
                 if (dd == null) {
                     dd = new DeviceDescriptor(jd);
                     devices.put(jd.getGwId(), dd);
-                    emit(Event.DEVICE_FOUND, dd);
+                    emit(jd.getGwId(), dd);
                     logger.info("Add device '{}' with IP address '{}' to the repository", jd.getGwId(), jd.getIp());
                 }
             }
+            return true;
         } catch (ParseException e) {
             logger.error("UDP packet could not be parsed", e);
+            return false;
         }
     }
 
@@ -131,24 +133,10 @@ public class DeviceRepository extends EventEmitter<DeviceRepository.Event, Devic
      * When a new handler is added, emit all the already discovered devices.
      */
     @Override
-    protected void handlerAdded(Event event, Consumer<DeviceDescriptor> eventConsumer,
-            Consumer<Exception> exceptionConsumer) {
-        if (event.equals(Event.DEVICE_FOUND)) {
-            devices.forEach((key, descriptor) -> {
-                eventConsumer.accept(descriptor);
-            });
-        }
-    }
-
-    /**
-     * Event that may be emitted by this repository.
-     *
-     * @author Wim Vissers.
-     *
-     */
-    public enum Event {
-        DEVICE_FOUND,
-        DEVICE_CHANGED
+    protected void handlerAdded(String gwId, BiFunction<String, DeviceDescriptor, Boolean> eventCallback) {
+        devices.forEach((key, descriptor) -> {
+            eventCallback.apply(gwId, descriptor);
+        });
     }
 
 }
