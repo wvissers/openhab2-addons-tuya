@@ -28,7 +28,7 @@
             <default>true</default>
             <advanced>true</advanced>
             <label>Keep alive</label>
-            <description>Send heart beat messages regularly. Switch off to save processor time.</description>
+            <description>Send heart beat messages regularly. Switch off to allow device to disconnect. The binding will reconnect when a command is sent.</description>
         </parameter>
  	</config-description>
 
