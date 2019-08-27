@@ -71,7 +71,15 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
     public void dispose() {
         if (deviceEventEmitter != null) {
             deviceEventEmitter.stop();
+            deviceEventEmitter = null;
         }
+        if (deviceDescriptor != null && deviceDescriptor.getGwId() != null) {
+            DeviceRepository.getInstance().removeHandler(deviceDescriptor.getGwId());
+        }
+        if (commandDispatcher != null) {
+            commandDispatcher.removeAllHandlers();
+        }
+        deviceDescriptor = null;
     }
 
     /**
@@ -102,7 +110,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
 
                     // Handle error events
                     deviceEventEmitter.on(Event.CONNECTION_ERROR, (ev, msg) -> {
-                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, msg.getData());
+                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR);
                         return true;
                     });
 
@@ -125,7 +133,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
                     });
 
                     // Start the event emitter.
-                    deviceEventEmitter.start(scheduler);
+                    deviceEventEmitter.start(scheduler, device.isKeepAlive());
                 }
             }
         }
@@ -165,15 +173,16 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler {
         String version = config.get("version").toString();
         parser = new MessageParser(version, key);
         String ip = (String) config.get("ip");
+        boolean keepAlive = (Boolean) config.get("keepAlive");
 
         // If ip-address is specified, try to use it.
         if (ip != null && !ip.isEmpty()) {
-            deviceFound(new DeviceDescriptor(new JsonDiscovery(id, version, ip)));
+            deviceFound(new DeviceDescriptor(new JsonDiscovery(id, version, ip)).withKeepAlive(keepAlive));
         }
 
         // Initialize auto-discovery of the ip-address.
         DeviceRepository.getInstance().on(id, (ev, device) -> {
-            deviceFound(device);
+            deviceFound(device.withKeepAlive(keepAlive));
             return true;
         });
 

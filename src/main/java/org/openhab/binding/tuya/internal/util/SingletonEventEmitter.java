@@ -63,12 +63,18 @@ public class SingletonEventEmitter<E, P, R> {
     }
 
     /**
-     *
+     * Remove the handler associated with the given event.
+     * 
      * @param event
      * @return
      */
-    public synchronized SingletonEventEmitter<E, P, R> removeAllConsumers(E event) {
+    public SingletonEventEmitter<E, P, R> removeHandler(E event) {
         callbacks.remove(event);
+        return this;
+    }
+
+    public SingletonEventEmitter<E, P, R> removeAllHandlers() {
+        callbacks.clear();
         return this;
     }
 

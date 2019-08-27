@@ -16,11 +16,11 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.json.JsonData;
@@ -42,7 +42,7 @@ import com.google.gson.Gson;
 public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter.Event, Message, Boolean> {
 
     private Future<?> task;
-    private Future<?> heartbeat;
+    ScheduledFuture<?> heartbeat;
     private final Logger logger;
     private final String host;
     private final int port;
@@ -50,9 +50,10 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
     private Socket clientSocket;
     private long currentSequenceNo;
     private boolean running;
+    private boolean online;
     private final LinkedBlockingQueue<byte[]> queue;
     private static final Gson gson = new Gson();
-    private static ExecutorService executor = Executors.newCachedThreadPool();
+    // private static ExecutorService executor = Executors.newCachedThreadPool();
 
     /**
      * Create a device event emitter. Use connect() after creation to establish a connection.
@@ -65,7 +66,7 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
         this.host = host;
         this.port = port;
         this.parser = parser;
-        this.queue = new LinkedBlockingQueue<>(4);
+        this.queue = new LinkedBlockingQueue<>(QUEUE_SIZE);
     }
 
     /**
@@ -77,8 +78,15 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
      * @throws ParseException
      */
     public void send(String message, CommandByte command) throws IOException, ParseException {
-        byte[] packet = parser.encode(message.getBytes(), command, currentSequenceNo++);
-        queue.offer(packet);
+        if (queue.remainingCapacity() == 0) {
+            if (online) {
+                online = false;
+                emit(Event.CONNECTION_ERROR, null);
+            }
+        } else {
+            byte[] packet = parser.encode(message.getBytes(), command, currentSequenceNo++);
+            queue.offer(packet);
+        }
     }
 
     /**
@@ -102,6 +110,7 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
             clientSocket.setReuseAddress(true);
             clientSocket.connect(new InetSocketAddress(host, port));
             if (clientSocket.isConnected()) {
+                online = true;
                 emit(Event.CONNECTED, null);
             }
         } catch (IOException e) {
@@ -114,6 +123,7 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
      * fails.
      */
     private void disconnect() {
+        online = false;
         if (clientSocket != null) {
             try {
                 clientSocket.close();
@@ -127,6 +137,7 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
 
     @Override
     public void stop() {
+        online = false;
         running = false;
         disconnect();
         if (task != null) {
@@ -170,7 +181,8 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
                                 queue.poll();
                                 retries--;
                             }
-                            if (in != null && in.available() > 5) {
+                            Thread.sleep(200);
+                            if (in != null && in.available() > 10) {
                                 Thread.sleep(20);
                                 int len = in.read(buffer, 0, TCP_SOCKET_BUFFER_SIZE);
                                 List<Message> res = parser.parse(buffer, len);
@@ -224,16 +236,10 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                while (running) {
-                    try {
-                        send("", CommandByte.HEART_BEAT);
-                    } catch (IOException | ParseException e) {
-                        // Should not happen
-                    }
-                    try {
-                        Thread.sleep(HEARTBEAT_SECONDS * 1000);
-                    } catch (InterruptedException e) {
-                    }
+                try {
+                    send("", CommandByte.HEART_BEAT);
+                } catch (IOException | ParseException e) {
+                    // Should not happen
                 }
             }
         };
@@ -247,13 +253,12 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
      *
      * @param scheduler
      */
-    public void start(ScheduledExecutorService scheduler) {
+    public void start(ScheduledExecutorService scheduler, boolean keepAlive) {
         if (task == null) {
-            task = executor.submit(createMainTask());
+            task = scheduler.submit(createMainTask());
         }
-        if (heartbeat == null) {
-            heartbeat = executor.submit(createHeartBeat());
-            // heartbeat = executor.scheduleAtFixedRate(createHeartBeat(), 5, HEARTBEAT_SECONDS, TimeUnit.SECONDS);
+        if (heartbeat == null && keepAlive) {
+            heartbeat = scheduler.scheduleAtFixedRate(createHeartBeat(), 0, HEARTBEAT_SECONDS, TimeUnit.SECONDS);
         }
     }
 

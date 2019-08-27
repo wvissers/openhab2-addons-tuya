@@ -55,5 +55,6 @@ public class TuyaBindingConstants {
     public static final int TCP_SOCKET_BUFFER_SIZE = 1024;
     public static final int MAX_RETRIES = 5;
     public static final int HEARTBEAT_SECONDS = 10;
+    public static final int QUEUE_SIZE = 3;
 
 }

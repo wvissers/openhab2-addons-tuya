@@ -22,6 +22,10 @@ public class DeviceDescriptor {
      * The datagram retrieved from the UDP broadcast.
      */
     private JsonDiscovery jsonDiscovery;
+    /**
+     * If this device is using heart beat messages to keep the connection alive. Default is true.
+     */
+    private boolean keepAlive = true;
 
     public DeviceDescriptor() {
     }
@@ -58,6 +62,15 @@ public class DeviceDescriptor {
 
     public void setDeviceDatagram(JsonDiscovery deviceDatagram) {
         this.jsonDiscovery = deviceDatagram;
+    }
+
+    public boolean isKeepAlive() {
+        return keepAlive;
+    }
+
+    public DeviceDescriptor withKeepAlive(boolean keepAlive) {
+        this.keepAlive = keepAlive;
+        return this;
     }
 
 }

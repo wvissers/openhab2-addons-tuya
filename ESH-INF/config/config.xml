@@ -19,11 +19,17 @@
 			<default>3.3</default>
 			<description>Device API version (typically 3.3)</description>
 		</parameter>
-		<parameter name="ip" type="text" required="false">
-			<advanced>true</advanced>
-			<label>IP address</label>
-			<description>Device IP address (needed only when it could not be discovered automatically)</description>
-		</parameter>
-	</config-description>
+        <parameter name="ip" type="text" required="false">
+            <advanced>true</advanced>
+            <label>IP address</label>
+            <description>Device IP address (leave empty to listen for broadcast)</description>
+        </parameter>
+        <parameter name="keepAlive" type="boolean">
+            <default>true</default>
+            <advanced>true</advanced>
+            <label>Keep alive</label>
+            <description>Send heart beat messages regularly. Switch off to save processor time.</description>
+        </parameter>
+ 	</config-description>
 
 </config-description:config-descriptions>
