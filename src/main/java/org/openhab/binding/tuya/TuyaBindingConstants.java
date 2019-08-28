@@ -41,20 +41,4 @@ public class TuyaBindingConstants {
     // Default API version (currently only 3.3 supported).
     public static final String DEFAULT_VERSION = "3.3";
 
-    // The default key to decrypt UDP broadcast messages.
-    public static final String DEFAULT_UDP_KEY = "yGAdlopoPVldABfn";
-
-    // Setting for UDP broadcast listener (currently only encrypted implemented).
-    public static final int DEFAULT_UNECRYPTED_UDP_PORT = 6666;
-    public static final int DEFAULT_ECRYPTED_UDP_PORT = 6667;
-    public static final int UDP_SOCKET_TIMEOUT = 60000;
-    public static final int UDP_SOCKET_BUFFER_SIZE = 1024;
-
-    // Settings for the TCP client (the device is the server).
-    public static final int DEFAULT_SERVER_PORT = 6668;
-    public static final int TCP_SOCKET_BUFFER_SIZE = 1024;
-    public static final int MAX_RETRIES = 5;
-    public static final int HEARTBEAT_SECONDS = 10;
-    public static final int QUEUE_SIZE = 3;
-
 }

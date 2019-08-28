@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
 
 /**
  * Utility class for buffer operations.
@@ -20,6 +21,21 @@ import java.io.OutputStream;
  *
  */
 public class BufferUtils {
+
+    /**
+     * Extract the contents of the byte buffer as a new array for further processing
+     * in byte array oriented APis. In particular, the bytes between position() and
+     * limit() are copied.The position in the buffer is increased by the number of
+     * remaining bytes.
+     *
+     * @param buffer the buffer.
+     * @return the copy of the contents of the buffer as byte array.
+     */
+    public static byte[] getBytes(ByteBuffer buffer) {
+        byte[] result = new byte[buffer.remaining()];
+        buffer.get(result);
+        return result;
+    }
 
     /**
      * Get an unsigned 4 bytes number from the byte buffer.

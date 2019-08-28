@@ -17,7 +17,6 @@ import javax.crypto.IllegalBlockSizeException;
 
 import org.openhab.binding.tuya.internal.json.CommandByte;
 import org.openhab.binding.tuya.internal.net.Message;
-import org.openhab.binding.tuya.internal.net.Packet;
 
 /**
  * Parser for messages, with decryption where needed. Hence, a parser
@@ -55,17 +54,6 @@ public class MessageParser {
         List<Message> result = new ArrayList<>();
         parseRecursive(result, buffer, length);
         return result;
-    }
-
-    /**
-     * Parse the packet.
-     *
-     * @param packet the packet to parse.
-     * @return a List of Message.
-     * @throws ParseException when anything goes wrong.
-     */
-    public List<Message> parse(Packet packet) throws ParseException {
-        return parse(packet.getBuffer(), packet.getLength());
     }
 
     private void parseRecursive(List<Message> result, byte[] buffer, int length) throws ParseException {

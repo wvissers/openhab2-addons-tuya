@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 42,
+      <title>File: 43,
              Errors: 0,
-             Warnings: 33,
-             Infos: 39
+             Warnings: 34,
+             Infos: 41
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -133,7 +133,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.TuyaCipher.java">src/main/java/org/openhab/binding/tuya/internal/util/TuyaCipher.java</a>
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   1
@@ -438,6 +438,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TcpSettings.java">src/main/java/org/openhab/binding/tuya/internal/net/TcpSettings.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.DeviceRepository.java">src/main/java/org/openhab/binding/tuya/internal/DeviceRepository.java</a>
                 </td>
                 <td>
@@ -480,6 +494,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.UdpSettings.java">src/main/java/org/openhab/binding/tuya/internal/net/UdpSettings.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.ParseException.java">src/main/java/org/openhab/binding/tuya/internal/util/ParseException.java</a>
                 </td>
                 <td>
@@ -501,20 +529,6 @@ under the License.
                 </td>
                 <td>
                   0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.Packet.java">src/main/java/org/openhab/binding/tuya/internal/net/Packet.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
                 </td>
                 <td>
                   0

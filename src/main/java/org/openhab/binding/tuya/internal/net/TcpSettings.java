@@ -9,27 +9,18 @@
 package org.openhab.binding.tuya.internal.net;
 
 /**
- * Raw packet, containing a buffer and actual data length.
+ * Setting for TCP clients.
  *
  * @author Wim Vissers.
  *
  */
-public class Packet {
+public interface TcpSettings {
 
-    private final byte[] buffer;
-    private final int length;
-
-    public Packet(byte[] buffer, int length) {
-        this.buffer = buffer;
-        this.length = length;
-    }
-
-    public byte[] getBuffer() {
-        return buffer;
-    }
-
-    public int getLength() {
-        return length;
-    }
+    // Settings for the TCP client (the device is the server).
+    public static final int DEFAULT_SERVER_PORT = 6668;
+    public static final int TCP_SOCKET_BUFFER_SIZE = 1024;
+    public static final int MAX_RETRIES = 5;
+    public static final int HEARTBEAT_SECONDS = 10;
+    public static final int QUEUE_SIZE = 3;
 
 }

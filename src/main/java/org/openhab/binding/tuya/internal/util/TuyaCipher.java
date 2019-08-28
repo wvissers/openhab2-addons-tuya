@@ -8,9 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.util;
 
-import static org.openhab.binding.tuya.TuyaBindingConstants.DEFAULT_UDP_KEY;
-
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,8 +18,10 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.ShortBufferException;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.openhab.binding.tuya.internal.net.UdpSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class TuyaCipher {
+public class TuyaCipher implements UdpSettings {
 
     private static byte[] udpKey;
     private static Logger logger;
@@ -73,6 +74,28 @@ public class TuyaCipher {
      * @return the encrypted output.
      * @throws UnsupportedEncodingException
      */
+    public ByteBuffer encrypt(ByteBuffer buffer) {
+        try {
+            ByteBuffer result = ByteBuffer.allocate(buffer.capacity() + 16);
+            SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            cipher.doFinal(buffer, result);
+            return result;
+        } catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
+                | BadPaddingException | ShortBufferException e1) {
+            // Should not happen
+            return null;
+        }
+    }
+
+    /**
+     * Encrypt an input buffer with the key specified in the constructor.
+     *
+     * @param buffer the input buffer.
+     * @return the encrypted output.
+     * @throws UnsupportedEncodingException
+     */
     public byte[] encrypt(byte[] buffer) {
         try {
             SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
@@ -84,6 +107,31 @@ public class TuyaCipher {
             // Should not happen
             return null;
         }
+    }
+
+    /**
+     * Decrypt an input buffer with the key specified in the constructor.
+     *
+     * @param buffer the input buffer.
+     * @return the encrypted output.
+     * @throws IllegalBlockSizeException
+     * @throws UnsupportedEncodingException
+     */
+    public ByteBuffer decrypt(ByteBuffer buffer) {
+        try {
+            ByteBuffer result = ByteBuffer.allocate(buffer.capacity());
+            SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+            Cipher cipher;
+            cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            cipher.doFinal(buffer, result);
+            return result;
+        } catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | ShortBufferException
+                | IllegalBlockSizeException | BadPaddingException e1) {
+            // logger.error("Unexpected error when decrypting.", e1);
+            return null;
+        }
+
     }
 
     /**

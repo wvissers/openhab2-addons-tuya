@@ -10,6 +10,7 @@ package org.openhab.binding.tuya.internal;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
+import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
@@ -18,7 +19,8 @@ import java.util.function.BiFunction;
 import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DatagramEventEmitter;
 import org.openhab.binding.tuya.internal.net.Message;
-import org.openhab.binding.tuya.internal.net.Packet;
+import org.openhab.binding.tuya.internal.net.UdpSettings;
+import org.openhab.binding.tuya.internal.util.BufferUtils;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.openhab.binding.tuya.internal.util.ParseException;
 import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
@@ -31,7 +33,7 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescriptor, Boolean> {
+public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescriptor, Boolean> implements UdpSettings {
 
     private MessageParser parser;
     /**
@@ -99,9 +101,11 @@ public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescri
      *
      * @param packet the packet.
      */
-    private boolean processPacket(Packet packet) {
+    private boolean processPacket(ByteBuffer packet) {
         try {
-            List<Message> udpMessages = parser.parse(packet.getBuffer(), packet.getLength());
+            packet.flip();
+            byte[] buf = BufferUtils.getBytes(packet);
+            List<Message> udpMessages = parser.parse(buf, buf.length);
             for (Message message : udpMessages) {
                 JsonDiscovery jd = message.toJsonDiscovery();
                 DeviceDescriptor dd = devices.get(jd.getGwId());

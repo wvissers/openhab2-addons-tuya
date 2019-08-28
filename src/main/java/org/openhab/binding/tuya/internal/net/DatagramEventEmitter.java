@@ -8,12 +8,11 @@
  */
 package org.openhab.binding.tuya.internal.net;
 
-import static org.openhab.binding.tuya.TuyaBindingConstants.*;
-
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
 import java.net.SocketTimeoutException;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -27,7 +26,8 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class DatagramEventEmitter extends SingletonEventEmitter<DatagramEventEmitter.Event, Packet, Boolean> {
+public class DatagramEventEmitter extends SingletonEventEmitter<DatagramEventEmitter.Event, ByteBuffer, Boolean>
+        implements UdpSettings {
 
     private Future<?> task;
     private int port;
@@ -48,23 +48,30 @@ public class DatagramEventEmitter extends SingletonEventEmitter<DatagramEventEmi
                 @Override
                 public void run() {
                     running = true;
-                    DatagramSocket listener = null;
-                    byte[] result = new byte[UDP_SOCKET_BUFFER_SIZE];
+                    DatagramChannel channel = null;
+                    ByteBuffer buf = ByteBuffer.allocate(UDP_SOCKET_BUFFER_SIZE);
                     while (running) {
                         try {
-                            if (listener == null || listener.isClosed()) {
-                                listener = new DatagramSocket(port);
-                                listener.setSoTimeout(UDP_SOCKET_TIMEOUT);
+                            if (channel == null) {
+                                channel = DatagramChannel.open();
+                                channel.socket().bind(new InetSocketAddress(port));
                             }
-                            DatagramPacket dp = new DatagramPacket(result, UDP_SOCKET_BUFFER_SIZE);
-                            listener.receive(dp);
-                            emit(Event.UDP_PACKET_RECEIVED, new Packet(result, dp.getLength()));
+                            buf.clear();
+                            channel.receive(buf);
+                            byte[] res = new byte[buf.position()];
+                            buf.flip();
+                            buf.get(res);
+                            emit(Event.UDP_PACKET_RECEIVED, buf);
                         } catch (SocketTimeoutException ignored) {
                         } catch (IOException ex1) {
                             logger.error("DatagramEventEmitter", ex1);
                         } finally {
-                            if (listener != null) {
-                                listener.close();
+                            if (channel != null) {
+                                try {
+                                    channel.close();
+                                    channel = null;
+                                } catch (IOException e) {
+                                }
                             }
                         }
                     }

@@ -8,8 +8,6 @@
  */
 package org.openhab.binding.tuya.internal.net;
 
-import static org.openhab.binding.tuya.TuyaBindingConstants.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,7 +37,8 @@ import com.google.gson.Gson;
  * @author Wim Vissers.
  *
  */
-public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter.Event, Message, Boolean> {
+public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter.Event, Message, Boolean>
+        implements TcpSettings {
 
     private Future<?> task;
     ScheduledFuture<?> heartbeat;
@@ -53,7 +52,6 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
     private boolean online;
     private final LinkedBlockingQueue<byte[]> queue;
     private static final Gson gson = new Gson();
-    // private static ExecutorService executor = Executors.newCachedThreadPool();
 
     /**
      * Create a device event emitter. Use connect() after creation to establish a connection.
@@ -181,7 +179,7 @@ public class DeviceEventEmitter extends SingletonEventEmitter<DeviceEventEmitter
                                 queue.poll();
                                 retries--;
                             }
-                            Thread.sleep(200);
+                            Thread.sleep(75);
                             if (in != null && in.available() > 10) {
                                 Thread.sleep(20);
                                 int len = in.read(buffer, 0, TCP_SOCKET_BUFFER_SIZE);

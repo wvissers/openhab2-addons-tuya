@@ -25,6 +25,7 @@ import org.openhab.binding.tuya.internal.json.JsonDiscovery;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
 import org.openhab.binding.tuya.internal.net.DeviceEventEmitter.Event;
 import org.openhab.binding.tuya.internal.net.Message;
+import org.openhab.binding.tuya.internal.net.TcpSettings;
 import org.openhab.binding.tuya.internal.util.MessageParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Wim Vissers - Initial contribution
  */
-public abstract class AbstractTuyaHandler extends BaseThingHandler {
+public abstract class AbstractTuyaHandler extends BaseThingHandler implements TcpSettings {
 
     private Logger logger = LoggerFactory.getLogger(AbstractTuyaHandler.class);
 
