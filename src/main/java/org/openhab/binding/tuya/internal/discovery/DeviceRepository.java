@@ -6,24 +6,22 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal;
+package org.openhab.binding.tuya.internal.discovery;
 
-import static org.openhab.binding.tuya.TuyaBindingConstants.*;
+import static org.openhab.binding.tuya.TuyaBindingConstants.DEFAULT_VERSION;
 
 import java.nio.ByteBuffer;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.function.BiFunction;
 
-import org.openhab.binding.tuya.internal.json.JsonDiscovery;
-import org.openhab.binding.tuya.internal.net.DatagramEventEmitter;
-import org.openhab.binding.tuya.internal.net.Message;
-import org.openhab.binding.tuya.internal.net.UdpSettings;
+import org.openhab.binding.tuya.internal.data.Message;
+import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.net.DatagramListener;
+import org.openhab.binding.tuya.internal.net.UdpConfig;
 import org.openhab.binding.tuya.internal.util.BufferUtils;
 import org.openhab.binding.tuya.internal.util.MessageParser;
-import org.openhab.binding.tuya.internal.util.ParseException;
-import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
+import org.openhab.binding.tuya.internal.util.SingleEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescriptor, Boolean> implements UdpSettings {
+public class DeviceRepository extends SingleEventEmitter<String, DeviceDescriptor, Boolean> implements UdpConfig {
 
     private MessageParser parser;
     /**
@@ -43,7 +41,7 @@ public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescri
     /**
      * Listener for UDP packets transmitted to advertise devices.
      */
-    private DatagramEventEmitter encryptedListener;
+    private DatagramListener encryptedListener;
     /**
      * The logger instance.
      */
@@ -77,8 +75,8 @@ public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescri
      */
     public void start(ScheduledExecutorService scheduler) {
         if (encryptedListener == null) {
-            encryptedListener = new DatagramEventEmitter(DEFAULT_ECRYPTED_UDP_PORT);
-            encryptedListener.on(DatagramEventEmitter.Event.UDP_PACKET_RECEIVED, (event, packet) -> {
+            encryptedListener = new DatagramListener(DEFAULT_ECRYPTED_UDP_PORT);
+            encryptedListener.on(DatagramListener.Event.UDP_PACKET_RECEIVED, (event, packet) -> {
                 return processPacket(packet);
             });
             encryptedListener.start(scheduler);
@@ -105,16 +103,14 @@ public class DeviceRepository extends SingletonEventEmitter<String, DeviceDescri
         try {
             packet.flip();
             byte[] buf = BufferUtils.getBytes(packet);
-            List<Message> udpMessages = parser.parse(buf, buf.length);
-            for (Message message : udpMessages) {
-                JsonDiscovery jd = message.toJsonDiscovery();
-                DeviceDescriptor dd = devices.get(jd.getGwId());
-                if (dd == null) {
-                    dd = new DeviceDescriptor(jd);
-                    devices.put(jd.getGwId(), dd);
-                    emit(jd.getGwId(), dd);
-                    logger.info("Add device '{}' with IP address '{}' to the repository", jd.getGwId(), jd.getIp());
-                }
+            Message message = parser.decode(buf);
+            JsonDiscovery jd = message.toJsonDiscovery();
+            DeviceDescriptor dd = devices.get(jd.getGwId());
+            if (dd == null) {
+                dd = new DeviceDescriptor(jd);
+                devices.put(jd.getGwId(), dd);
+                emit(jd.getGwId(), dd);
+                logger.info("Add device '{}' with IP address '{}' to the repository", jd.getGwId(), jd.getIp());
             }
             return true;
         } catch (ParseException e) {

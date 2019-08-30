@@ -16,7 +16,7 @@ import java.nio.channels.DatagramChannel;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
-import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
+import org.openhab.binding.tuya.internal.util.SingleEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,15 +26,15 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class DatagramEventEmitter extends SingletonEventEmitter<DatagramEventEmitter.Event, ByteBuffer, Boolean>
-        implements UdpSettings {
+public class DatagramListener extends SingleEventEmitter<DatagramListener.Event, ByteBuffer, Boolean>
+        implements UdpConfig {
 
     private Future<?> task;
     private int port;
     private final Logger logger;
     private boolean running;
 
-    public DatagramEventEmitter(int port) {
+    public DatagramListener(int port) {
         logger = LoggerFactory.getLogger(this.getClass());
         this.port = port;
     }

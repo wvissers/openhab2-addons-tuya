@@ -21,7 +21,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.ShortBufferException;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.openhab.binding.tuya.internal.net.UdpSettings;
+import org.openhab.binding.tuya.internal.net.UdpConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class TuyaCipher implements UdpSettings {
+public class TuyaCipher implements UdpConfig {
 
     private static byte[] udpKey;
     private static Logger logger;

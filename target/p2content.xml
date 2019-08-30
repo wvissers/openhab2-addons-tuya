@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='1'>
-  <unit id='org.openhab.binding.tuya' version='2.4.0.201908281521' generation='2'>
-    <update id='org.openhab.binding.tuya' range='[0.0.0,2.4.0.201908281521)' severity='0'/>
+  <unit id='org.openhab.binding.tuya' version='2.4.0.201908301837' generation='2'>
+    <update id='org.openhab.binding.tuya' range='[0.0.0,2.4.0.201908301837)' severity='0'/>
     <properties size='5'>
       <property name='org.eclipse.equinox.p2.name' value='Java System Binding'/>
       <property name='org.eclipse.equinox.p2.provider' value='openHAB'/>
@@ -10,18 +10,18 @@
       <property name='maven-version' value='2.4.0-SNAPSHOT'/>
     </properties>
     <provides size='6'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='org.openhab.binding.tuya' version='2.4.0.201908281521'/>
-      <provided namespace='osgi.bundle' name='org.openhab.binding.tuya' version='2.4.0.201908281521'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.openhab.binding.tuya' version='2.4.0.201908301837'/>
+      <provided namespace='osgi.bundle' name='org.openhab.binding.tuya' version='2.4.0.201908301837'/>
       <provided namespace='java.package' name='org.openhab.binding.tuya' version='0.0.0'/>
       <provided namespace='java.package' name='org.openhab.binding.tuya.handler' version='0.0.0'/>
-      <provided namespace='osgi.identity' name='org.openhab.binding.tuya' version='2.4.0.201908281521'>
+      <provided namespace='osgi.identity' name='org.openhab.binding.tuya' version='2.4.0.201908301837'>
         <properties size='1'>
           <property name='type' value='osgi.bundle'/>
         </properties>
       </provided>
       <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
     </provides>
-    <requires size='15'>
+    <requires size='13'>
       <required namespace='java.package' name='com.google.gson' range='2.5.0'/>
       <required namespace='java.package' name='com.google.gson.annotations' range='2.7.0'/>
       <required namespace='java.package' name='org.eclipse.jdt.annotation' range='0.0.0' optional='true' greedy='false'/>
@@ -33,19 +33,17 @@
       <required namespace='java.package' name='org.eclipse.smarthome.core.thing.binding.builder' range='0.0.0'/>
       <required namespace='java.package' name='org.eclipse.smarthome.core.thing.type' range='0.0.0'/>
       <required namespace='java.package' name='org.eclipse.smarthome.core.types' range='0.0.0'/>
-      <required namespace='java.package' name='org.openhab.binding.tuya' range='0.0.0'/>
-      <required namespace='java.package' name='org.openhab.binding.tuya.handler' range='0.0.0'/>
       <required namespace='java.package' name='org.slf4j' range='0.0.0'/>
       <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.8))'/>
     </requires>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='org.openhab.binding.tuya' version='2.4.0.201908281521'/>
+      <artifact classifier='osgi.bundle' id='org.openhab.binding.tuya' version='2.4.0.201908301837'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-SymbolicName: org.openhab.binding.tuya;singleton:=true&#xA;Bundle-Version: 2.4.0.201908281521&#xA;
+          Bundle-SymbolicName: org.openhab.binding.tuya;singleton:=true&#xA;Bundle-Version: 2.4.0.201908301837&#xA;
         </instruction>
       </instructions>
     </touchpointData>

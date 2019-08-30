@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 43,
+      <title>File: 48,
              Errors: 0,
-             Warnings: 34,
-             Infos: 41
+             Warnings: 40,
+             Infos: 46
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -46,7 +46,35 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonPowerPlug.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonPowerPlug.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.PowerPlugState.java">src/main/java/org/openhab/binding/tuya/internal/data/PowerPlugState.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.HandlerInitializationException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/HandlerInitializationException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.CommandDispatcher.java">src/main/java/org/openhab/binding/tuya/internal/util/CommandDispatcher.java</a>
                 </td>
                 <td>
                   1
@@ -61,20 +89,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.MessageParser.java">src/main/java/org/openhab/binding/tuya/internal/util/MessageParser.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.CommandByte.java">src/main/java/org/openhab/binding/tuya/internal/json/CommandByte.java</a>
                 </td>
                 <td>
                   1
@@ -158,20 +172,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonDiscovery.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonDiscovery.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#ESH-INF.config.config.xml">ESH-INF/config/config.xml</a>
                 </td>
                 <td>
@@ -187,6 +187,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.FilamentLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/FilamentLedHandler.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.CommandByte.java">src/main/java/org/openhab/binding/tuya/internal/data/CommandByte.java</a>
                 </td>
                 <td>
                   1
@@ -242,7 +256,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.UnsupportedVersionException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/UnsupportedVersionException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.ColorLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/ColorLedHandler.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.ColorLedState.java">src/main/java/org/openhab/binding/tuya/internal/data/ColorLedState.java</a>
                 </td>
                 <td>
                   1
@@ -284,13 +326,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonStatusQuery.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonStatusQuery.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.StatusQuery.java">src/main/java/org/openhab/binding/tuya/internal/data/StatusQuery.java</a>
                 </td>
                 <td>
                   1
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TuyaClient.java">src/main/java/org/openhab/binding/tuya/internal/net/TuyaClient.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  2
                 </td>
                 <td>
                   0
@@ -312,6 +368,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.NoDataException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/NoDataException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#build.properties">build.properties</a>
                 </td>
                 <td>
@@ -326,13 +396,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.DeviceEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/net/DeviceEventEmitter.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TuyaClientService.java">src/main/java/org/openhab/binding/tuya/internal/net/TuyaClientService.java</a>
                 </td>
                 <td>
                   3
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   0
@@ -340,7 +410,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonColorLed.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonColorLed.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.SingleEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/util/SingleEventEmitter.java</a>
                 </td>
                 <td>
                   1
@@ -368,6 +438,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.DeviceDescriptor.java">src/main/java/org/openhab/binding/tuya/internal/discovery/DeviceDescriptor.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java">src/main/java/org/openhab/binding/tuya/internal/discovery/TuyaDiscoveryService.java</a>
                 </td>
                 <td>
@@ -382,7 +466,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonFilamentLed.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonFilamentLed.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.ParseException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/ParseException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.DeviceRepository.java">src/main/java/org/openhab/binding/tuya/internal/discovery/DeviceRepository.java</a>
                 </td>
                 <td>
                   1
@@ -402,7 +500,21 @@ under the License.
                   0
                 </td>
                 <td>
-                  2
+                  4
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.Message.java">src/main/java/org/openhab/binding/tuya/internal/data/Message.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0
@@ -424,7 +536,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.DeviceDescriptor.java">src/main/java/org/openhab/binding/tuya/internal/DeviceDescriptor.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.FilamentLedState.java">src/main/java/org/openhab/binding/tuya/internal/data/FilamentLedState.java</a>
                 </td>
                 <td>
                   1
@@ -438,21 +550,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TcpSettings.java">src/main/java/org/openhab/binding/tuya/internal/net/TcpSettings.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.DeviceRepository.java">src/main/java/org/openhab/binding/tuya/internal/DeviceRepository.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.JsonDiscovery.java">src/main/java/org/openhab/binding/tuya/internal/discovery/JsonDiscovery.java</a>
                 </td>
                 <td>
                   1
@@ -480,7 +578,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.SingletonEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/util/SingletonEventEmitter.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.DeviceState.java">src/main/java/org/openhab/binding/tuya/internal/data/DeviceState.java</a>
                 </td>
                 <td>
                   1
@@ -494,21 +592,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.UdpSettings.java">src/main/java/org/openhab/binding/tuya/internal/net/UdpSettings.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.ParseException.java">src/main/java/org/openhab/binding/tuya/internal/util/ParseException.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.DatagramListener.java">src/main/java/org/openhab/binding/tuya/internal/net/DatagramListener.java</a>
                 </td>
                 <td>
                   1
@@ -536,6 +620,34 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TcpConfig.java">src/main/java/org/openhab/binding/tuya/internal/net/TcpConfig.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.UdpConfig.java">src/main/java/org/openhab/binding/tuya/internal/net/UdpConfig.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">src/main/java/org/openhab/binding/tuya/handler/AbstractTuyaHandler.java</a>
                 </td>
                 <td>
@@ -550,27 +662,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.json.JsonData.java">src/main/java/org/openhab/binding/tuya/internal/json/JsonData.java</a>
-                </td>
-                <td>
-                  1
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.annotations.Channel.java">src/main/java/org/openhab/binding/tuya/internal/annotations/Channel.java</a>
                 </td>
                 <td>
                   1
                 </td>
                 <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.CommandDispatcher.java">src/main/java/org/openhab/binding/tuya/internal/CommandDispatcher.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
                 </td>
                 <td>
                   0
@@ -606,38 +704,10 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.DatagramEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/net/DatagramEventEmitter.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#OSGI-INF.TuyaDiscoveryService.xml">OSGI-INF/TuyaDiscoveryService.xml</a>
                 </td>
                 <td>
                   0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.Message.java">src/main/java/org/openhab/binding/tuya/internal/net/Message.java</a>
-                </td>
-                <td>
-                  1
                 </td>
                 <td>
                   1

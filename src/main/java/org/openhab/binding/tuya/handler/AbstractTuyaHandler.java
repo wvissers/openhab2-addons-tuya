@@ -9,7 +9,10 @@
 package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
-import static org.openhab.binding.tuya.internal.json.CommandByte.*;
+import static org.openhab.binding.tuya.internal.data.CommandByte.*;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -18,17 +21,24 @@ import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.CommandDispatcher;
-import org.openhab.binding.tuya.internal.DeviceDescriptor;
-import org.openhab.binding.tuya.internal.DeviceRepository;
-import org.openhab.binding.tuya.internal.json.JsonDiscovery;
-import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
-import org.openhab.binding.tuya.internal.net.DeviceEventEmitter.Event;
-import org.openhab.binding.tuya.internal.net.Message;
-import org.openhab.binding.tuya.internal.net.TcpSettings;
-import org.openhab.binding.tuya.internal.util.MessageParser;
+import org.openhab.binding.tuya.internal.data.CommandByte;
+import org.openhab.binding.tuya.internal.data.DeviceState;
+import org.openhab.binding.tuya.internal.data.Message;
+import org.openhab.binding.tuya.internal.data.StatusQuery;
+import org.openhab.binding.tuya.internal.discovery.DeviceDescriptor;
+import org.openhab.binding.tuya.internal.discovery.DeviceRepository;
+import org.openhab.binding.tuya.internal.discovery.JsonDiscovery;
+import org.openhab.binding.tuya.internal.exceptions.HandlerInitializationException;
+import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.exceptions.UnsupportedVersionException;
+import org.openhab.binding.tuya.internal.net.TcpConfig;
+import org.openhab.binding.tuya.internal.net.TuyaClient;
+import org.openhab.binding.tuya.internal.net.TuyaClient.Event;
+import org.openhab.binding.tuya.internal.util.CommandDispatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.JsonSyntaxException;
 
 /**
  * The {@link AmbilightHandler} is responsible for handling commands, which are
@@ -36,20 +46,39 @@ import org.slf4j.LoggerFactory;
  *
  * @author Wim Vissers - Initial contribution
  */
-public abstract class AbstractTuyaHandler extends BaseThingHandler implements TcpSettings {
+public abstract class AbstractTuyaHandler extends BaseThingHandler implements TcpConfig {
 
     private Logger logger = LoggerFactory.getLogger(AbstractTuyaHandler.class);
 
-    protected MessageParser parser;
     protected String id;
 
     protected DeviceDescriptor deviceDescriptor;
-    protected DeviceEventEmitter deviceEventEmitter;
+    protected TuyaClient tuyaClient;
     protected final CommandDispatcher commandDispatcher;
 
     public AbstractTuyaHandler(Thing thing) {
         super(thing);
         commandDispatcher = new CommandDispatcher(thing.getUID());
+    }
+
+    /**
+     * Update the states of channels that are changed.
+     *
+     * @param dev the device data.
+     */
+    protected void updateStates(Message message, Class<? extends DeviceState> clazz) {
+        if (message != null && message.getData() != null && message.getData().startsWith("{")) {
+            try {
+                DeviceState dev = message.toDeviceState(clazz);
+                if (dev != null) {
+                    dev.forChangedProperties((channel, state) -> {
+                        updateState(new ChannelUID(thing.getUID(), channel), state);
+                    });
+                }
+            } catch (JsonSyntaxException e) {
+                logger.error("Statusmessage invalid", e);
+            }
+        }
     }
 
     /**
@@ -63,6 +92,12 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      * This method is called when the device is connected, for an initial status request if the device supports it.
      */
     protected void sendStatusQuery() {
+        try {
+            StatusQuery query = new StatusQuery(deviceDescriptor);
+            tuyaClient.send(query, CommandByte.DP_QUERY);
+        } catch (IOException | ParseException e) {
+            logger.error("Error on status request", e);
+        }
     }
 
     /**
@@ -70,9 +105,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      */
     @Override
     public void dispose() {
-        if (deviceEventEmitter != null) {
-            deviceEventEmitter.stop();
-            deviceEventEmitter = null;
+        if (tuyaClient != null) {
+            tuyaClient.stop();
+            tuyaClient = null;
         }
         if (deviceDescriptor != null && deviceDescriptor.getGwId() != null) {
             DeviceRepository.getInstance().removeHandler(deviceDescriptor.getGwId());
@@ -97,8 +132,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      * Handle a device found by the discovery service. In particular, set or update the IP address.
      *
      * @param device the device descriptor, received from the DeviceRepository service.
+     * @throws UnsupportedVersionException
      */
-    private void deviceFound(DeviceDescriptor device) {
+    private void deviceFound(DeviceDescriptor device) throws UnsupportedVersionException {
         if (device != null) {
             JsonDiscovery jd = device.getJsonDiscovery();
             if (jd != null && jd.getGwId() != null && jd.getGwId().equals(id)) {
@@ -107,34 +143,39 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                     deviceDescriptor = device;
                     updateProperties(false);
                     thing.getConfiguration().put("ip", device.getIp());
-                    deviceEventEmitter = new DeviceEventEmitter(device.getIp(), DEFAULT_SERVER_PORT, parser);
+                    tuyaClient = new TuyaClient(device.getIp(), DEFAULT_SERVER_PORT, device.getVersion(),
+                            device.getLocalKey());
 
                     // Handle error events
-                    deviceEventEmitter.on(Event.CONNECTION_ERROR, (ev, msg) -> {
+                    tuyaClient.on(Event.CONNECTION_ERROR, (ev, msg) -> {
                         updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR);
                         return true;
                     });
 
                     // Handle connected event.
-                    deviceEventEmitter.on(Event.CONNECTED, (ev, msg) -> {
+                    tuyaClient.on(Event.CONNECTED, (ev, msg) -> {
                         updateStatus(ThingStatus.ONLINE);
                         updateProperties(false);
-                        sendStatusQuery();
+                        // Ask status after some delay to let the items be created first.
+                        scheduler.schedule(new Runnable() {
+                            @Override
+                            public void run() {
+                                sendStatusQuery();
+                            }
+                        }, STATUS_REQUEST_DELAY_SECONDS, TimeUnit.SECONDS);
                         return true;
                     });
 
                     // Handle messages received.
-                    deviceEventEmitter.on(DeviceEventEmitter.Event.MESSAGE_RECEIVED, (ev, msg) -> {
+                    tuyaClient.on(Event.MESSAGE_RECEIVED, (ev, msg) -> {
                         if (msg.getCommandByte() == STATUS || msg.getCommandByte() == DP_QUERY) {
-                            handleStatusMessage(msg);
-                        } else if (msg.getCommandByte() != HEART_BEAT) {
                             handleStatusMessage(msg);
                         }
                         return true;
                     });
 
-                    // Start the event emitter.
-                    deviceEventEmitter.start(scheduler, device.isKeepAlive());
+                    // Start the client.
+                    tuyaClient.start(scheduler);
                 }
             }
         }
@@ -146,7 +187,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (!commandDispatcher.dispatchCommand(deviceEventEmitter, channelUID, command, CONTROL)) {
+        if (!commandDispatcher.dispatchCommand(tuyaClient, channelUID, command, CONTROL)) {
             logger.info("Command {} for channel {} could not be handled.", command, channelUID);
         }
     }
@@ -170,22 +211,32 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
         updateProperties(true);
 
         id = config.get("id").toString();
-        String key = config.get("key").toString();
+        String localKey = config.get("key").toString();
         String version = config.get("version").toString();
-        parser = new MessageParser(version, key);
         String ip = (String) config.get("ip");
-        boolean keepAlive = (Boolean) config.get("keepAlive");
 
         // If ip-address is specified, try to use it.
         if (ip != null && !ip.isEmpty()) {
-            deviceFound(new DeviceDescriptor(new JsonDiscovery(id, version, ip)).withKeepAlive(keepAlive));
+            try {
+                deviceFound(new DeviceDescriptor(new JsonDiscovery(id, version, ip)).withLocalKey(localKey));
+            } catch (UnsupportedVersionException e) {
+                throw new HandlerInitializationException(e.getMessage());
+            }
         }
 
         // Initialize auto-discovery of the ip-address.
-        DeviceRepository.getInstance().on(id, (ev, device) -> {
-            deviceFound(device.withKeepAlive(keepAlive));
-            return true;
-        });
+        try {
+            DeviceRepository.getInstance().on(id, (ev, device) -> {
+                try {
+                    deviceFound(device.withLocalKey(localKey));
+                } catch (UnsupportedVersionException e) {
+                    throw new HandlerInitializationException(e.getMessage());
+                }
+                return true;
+            });
+        } catch (Exception e) {
+            throw new HandlerInitializationException("Device ID already assigned to a Tuya thing.");
+        }
 
         // Init dispatcher.
         initCommandDispatcher();

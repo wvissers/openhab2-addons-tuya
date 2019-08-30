@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal;
+package org.openhab.binding.tuya.internal.util;
 
 import java.io.IOException;
 import java.util.function.BiFunction;
@@ -14,12 +14,11 @@ import java.util.function.BiFunction;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.CommandDispatcher.CommandEvent;
-import org.openhab.binding.tuya.internal.json.CommandByte;
-import org.openhab.binding.tuya.internal.json.JsonData;
-import org.openhab.binding.tuya.internal.net.DeviceEventEmitter;
-import org.openhab.binding.tuya.internal.util.ParseException;
-import org.openhab.binding.tuya.internal.util.SingletonEventEmitter;
+import org.openhab.binding.tuya.internal.data.CommandByte;
+import org.openhab.binding.tuya.internal.data.DeviceState;
+import org.openhab.binding.tuya.internal.exceptions.ParseException;
+import org.openhab.binding.tuya.internal.net.TuyaClient;
+import org.openhab.binding.tuya.internal.util.CommandDispatcher.CommandEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,13 +30,8 @@ import org.slf4j.LoggerFactory;
  * @author Wim Vissers.
  *
  */
-public class CommandDispatcher extends SingletonEventEmitter<CommandEvent, Command, JsonData> {
+public class CommandDispatcher extends SingleEventEmitter<CommandEvent, Command, DeviceState> {
 
-    /**
-     * Key: the event key. Value: a list of consumer wrappers to call when the event
-     * happens.
-     */
-    // private final ConcurrentHashMap<String, List<Function<Command, JsonData>>> eventCallbacks;
     private Logger logger = LoggerFactory.getLogger(CommandDispatcher.class);
     private final ThingUID thingUID;
 
@@ -51,24 +45,23 @@ public class CommandDispatcher extends SingletonEventEmitter<CommandEvent, Comma
      *
      * @param channelUID   the channel UID.
      * @param commandClass the command class.
-     * @param callback     the callback function that must return a JsonData object to transmit, or null to avoid
+     * @param callback     the callback function that must return a DeviceState object to transmit, or null to avoid
      *                         sending.
      * @return this CommandHandler.
      */
     public CommandDispatcher on(String channel, Class<?> commandClass,
-            BiFunction<CommandEvent, Command, JsonData> callback) {
+            BiFunction<CommandEvent, Command, DeviceState> callback) {
         CommandEvent event = new CommandEvent(new ChannelUID(thingUID, channel), commandClass);
         on(event, callback);
         return this;
     }
 
-    public boolean dispatchCommand(DeviceEventEmitter emitter, ChannelUID channelUID, Command command,
-            CommandByte commandByte) {
+    public boolean dispatchCommand(TuyaClient client, ChannelUID channelUID, Command command, CommandByte commandByte) {
         CommandEvent event = new CommandEvent(channelUID, command.getClass());
-        JsonData data = emit(event, command);
+        DeviceState data = emit(event, command);
         if (data != null) {
             try {
-                emitter.send(data, commandByte);
+                client.send(data, commandByte);
                 event.setHandled(true);
             } catch (IOException | ParseException e) {
                 logger.error("Error dispatching command.", e);

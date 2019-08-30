@@ -8,8 +8,6 @@
  */
 package org.openhab.binding.tuya.internal.util;
 
-import java.nio.ByteBuffer;
-
 /**
  * Specific CRC calculation conform Tuya protocol.
  *
@@ -49,35 +47,16 @@ public class Crc {
             0xC4614AB8, 0x5D681B02, 0x2A6F2B94, 0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D };
 
     /**
-     * Computes a Tuya flavored CRC32
+     * Computes a Tuya flavored CRC32.
      *
-     * @param buffer
+     * @param buffer the byte buffer.
      * @returns Tuya CRC32
      */
     public static long crc32(byte[] buffer) {
         long crc = 0xFFFFFFFFL;
-
         for (byte b : buffer) {
             crc = ((crc >>> 8) & 0xFFFFFFFFL) ^ (crc32Table[(int) ((crc ^ b) & 0xff)] & 0xFFFFFFFFL);
         }
-
-        return ((crc & 0xFFFFFFFFL) ^ 0xFFFFFFFFL) & 0xFFFFFFFFL; // return 0xFFFFFFFFL;
-    }
-
-    /**
-     * Computes a Tuya flavored CRC32
-     *
-     * @param buffer
-     * @returns Tuya CRC32
-     */
-    public static long crc32(ByteBuffer buffer) {
-        long crc = 0xFFFFFFFFL;
-
-        while (buffer.hasRemaining()) {
-            byte b = buffer.get();
-            crc = ((crc >>> 8) & 0xFFFFFFFFL) ^ (crc32Table[(int) ((crc ^ b) & 0xff)] & 0xFFFFFFFFL);
-        }
-
         return ((crc & 0xFFFFFFFFL) ^ 0xFFFFFFFFL) & 0xFFFFFFFFL; // return 0xFFFFFFFFL;
     }
 

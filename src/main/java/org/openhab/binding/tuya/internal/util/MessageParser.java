@@ -9,14 +9,13 @@
 package org.openhab.binding.tuya.internal.util;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import javax.crypto.IllegalBlockSizeException;
 
-import org.openhab.binding.tuya.internal.json.CommandByte;
-import org.openhab.binding.tuya.internal.net.Message;
+import org.openhab.binding.tuya.internal.data.CommandByte;
+import org.openhab.binding.tuya.internal.data.Message;
+import org.openhab.binding.tuya.internal.exceptions.ParseException;
 
 /**
  * Parser for messages, with decryption where needed. Hence, a parser
@@ -42,28 +41,8 @@ public class MessageParser {
         this.version = version;
     }
 
-    /**
-     * The buffer may contain multiple packets. The
-     * packets are returned as a List of Message.
-     *
-     * @param buffer the byte array received.
-     * @return the List with packets.
-     * @throws ParseException
-     */
-    public List<Message> parse(byte[] buffer, int length) throws ParseException {
-        List<Message> result = new ArrayList<>();
-        parseRecursive(result, buffer, length);
-        return result;
-    }
-
-    private void parseRecursive(List<Message> result, byte[] buffer, int length) throws ParseException {
-        int leftover = parsePacket(result, buffer, 0, length);
-        while (leftover < length) {
-            leftover = parsePacket(result, buffer, leftover, length);
-        }
-    }
-
-    private int parsePacket(List<Message> result, byte[] buffer, int start, int length) throws ParseException {
+    public Message decode(byte[] buffer) throws ParseException {
+        int length = buffer.length;
         // Check for length
         // At minimum requires: prefix (4), sequence (4), command (4), length (4),
         // CRC (4), and suffix (4) for 24 total bytes
@@ -128,11 +107,10 @@ public class MessageParser {
             // String data = new String(cipher.decrypt(payload), "UTF-8");
             byte[] data = cipher.decrypt(payload);
             String text = correct ? new String(data, 16, data.length - 16) : new String(data, "UTF-8");
-            result.add(new Message(payload, sequenceNumber, commandByte, text));
+            return new Message(payload, sequenceNumber, commandByte, text);
         } catch (UnsupportedEncodingException | IllegalBlockSizeException e) {
-            result.add(new Message(payload, sequenceNumber, commandByte, new String(payload)));
+            return new Message(payload, sequenceNumber, commandByte, new String(payload));
         }
-        return length;
     }
 
     public byte[] encode(byte[] input, CommandByte command, long sequenceNo) {
@@ -173,7 +151,6 @@ public class MessageParser {
         byte[] crcbuf = new byte[payload.length + 16];
         BufferUtils.copy(crcbuf, buffer, 0, payload.length + 16);
         BufferUtils.putUInt32(buffer, payload.length + 16, Crc.crc32(crcbuf));
-        System.out.println(Crc.crc32(crcbuf));
         BufferUtils.putUInt32(buffer, payload.length + 20, 0x0000AA55);
 
         return buffer;

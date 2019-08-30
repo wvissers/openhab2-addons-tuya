@@ -6,13 +6,9 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.net;
+package org.openhab.binding.tuya.internal.data;
 
-import org.openhab.binding.tuya.internal.json.CommandByte;
-import org.openhab.binding.tuya.internal.json.JsonColorLed;
-import org.openhab.binding.tuya.internal.json.JsonDiscovery;
-import org.openhab.binding.tuya.internal.json.JsonFilamentLed;
-import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
+import org.openhab.binding.tuya.internal.discovery.JsonDiscovery;
 
 import com.google.gson.Gson;
 
@@ -25,8 +21,8 @@ import com.google.gson.Gson;
 public class Message {
 
     private byte[] payload;
-    private String data;
-    private static Gson gson;
+    private final String data;
+    private static final Gson GSON = new Gson();
 
     private long sequenceNumber;
     private CommandByte commandByte;
@@ -36,21 +32,29 @@ public class Message {
     }
 
     public Message(byte[] payload, long sequenceNumber, long commandByte, String data) {
+        this(data);
         this.payload = payload;
         this.sequenceNumber = sequenceNumber;
         this.commandByte = CommandByte.valueOf((int) commandByte);
-        this.data = data;
-        if (gson == null) {
-            gson = new Gson();
-        }
     }
 
+    /**
+     * The raw data may be just an error message, or decoded more complex data.
+     * 
+     * @return
+     */
     public String getData() {
         return data;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    /**
+     * Return true is the message contains data that is probably json encoded. If this method returns false, it is
+     * useless to try to parse it as json data. An empty json object is still valid data, so "{}" will also return true.
+     *
+     * @return true if the message contains data.
+     */
+    public boolean hasData() {
+        return data != null && !data.isEmpty() && data.startsWith("{");
     }
 
     public byte[] getPayload() {
@@ -84,37 +88,21 @@ public class Message {
      * @return the DeviceDatagram if possible.
      */
     public JsonDiscovery toJsonDiscovery() {
-        return gson.fromJson(getData(), JsonDiscovery.class);
+        return GSON.fromJson(getData(), JsonDiscovery.class);
     }
 
     /**
-     * Try to parse the message data as a PowerPlug.
+     * Try to parse the message data to the given class.
      *
-     * @param message the message (returned previously by the parser).
-     * @return the PowerPlug if possible.
-     */
-    public JsonPowerPlug toPowerPlug() {
-        return gson.fromJson(getData(), JsonPowerPlug.class);
-    }
-
-    /**
-     * Try to parse the message data as a ColorLed.
+     * @param       %lt;T&gt; This method converts the data to DeviceState or subclasses thereof, given by the target
+     *                  class.
      *
-     * @param message the message (returned previously by the parser).
-     * @return the ColorLed if possible.
+     * @param clazz the target class.
+     * @return
+     * @return a new instance of clazz filled with the message data.
      */
-    public JsonColorLed toColorLed() {
-        return gson.fromJson(getData(), JsonColorLed.class);
-    }
-
-    /**
-     * Try to parse the message data as a FilamentLed.
-     *
-     * @param message the message (returned previously by the parser).
-     * @return the FilamentLed if possible.
-     */
-    public JsonFilamentLed toFilamentLed() {
-        return gson.fromJson(getData(), JsonFilamentLed.class);
+    public <T extends DeviceState> T toDeviceState(Class<T> clazz) {
+        return GSON.fromJson(getData(), clazz);
     }
 
 }

@@ -12,10 +12,9 @@ import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
 import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
-import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
-import org.openhab.binding.tuya.internal.json.JsonFilamentLed;
-import org.openhab.binding.tuya.internal.net.Message;
+import org.openhab.binding.tuya.internal.data.FilamentLedState;
+import org.openhab.binding.tuya.internal.data.Message;
 
 /**
  * A handler for a Tuya Filament LED device.
@@ -35,14 +34,7 @@ public class FilamentLedHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        if (message != null) {
-            JsonFilamentLed dev = message.toFilamentLed();
-            if (dev != null) {
-                if (dev.getPower() != null) {
-                    updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getPower());
-                }
-            }
-        }
+        updateStates(message, FilamentLedState.class);
     }
 
     /**
@@ -52,17 +44,17 @@ public class FilamentLedHandler extends AbstractTuyaHandler {
     protected void initCommandDispatcher() {
         // Channel power command with OnOffType.
         commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
-            return new JsonFilamentLed(deviceDescriptor).withPower(command);
+            return new FilamentLedState(deviceDescriptor).withPower(command);
         });
 
         // Brightness with DecimalType.
         commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, (ev, command) -> {
-            return new JsonFilamentLed(deviceDescriptor).withBrightness(command);
+            return new FilamentLedState(deviceDescriptor).withBrightness(command);
         });
 
         // Color temperature with DecimalType.
         commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, (ev, command) -> {
-            return new JsonFilamentLed(deviceDescriptor).withColorTemperature(command);
+            return new FilamentLedState(deviceDescriptor).withColorTemperature(command);
         });
     }
 

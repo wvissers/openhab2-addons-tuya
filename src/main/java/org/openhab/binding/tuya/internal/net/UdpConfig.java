@@ -14,7 +14,7 @@ package org.openhab.binding.tuya.internal.net;
  * @author Wim Vissers.
  *
  */
-public interface UdpSettings {
+public interface UdpConfig {
 
     // Setting for UDP broadcast listener (currently only encrypted implemented).
     public static final int DEFAULT_UNECRYPTED_UDP_PORT = 6666;

@@ -24,12 +24,6 @@
             <label>IP address</label>
             <description>Device IP address (leave empty to listen for broadcast)</description>
         </parameter>
-        <parameter name="keepAlive" type="boolean">
-            <default>true</default>
-            <advanced>true</advanced>
-            <label>Keep alive</label>
-            <description>Send heart beat messages regularly. Switch off to allow device to disconnect. The binding will reconnect when a command is sent.</description>
-        </parameter>
  	</config-description>
 
 </config-description:config-descriptions>

@@ -20,14 +20,14 @@ import java.util.function.BiFunction;
  * @param &lt;P&gt; the type of payload the consumer accepts.
  * @param &lt;R&gt; the type of return object the callback functions provide.
  */
-public class SingletonEventEmitter<E, P, R> {
+public class SingleEventEmitter<E, P, R> {
 
     /**
      * Key: the event name. Value: a BiFunction to call when the event happens.
      */
     private final ConcurrentHashMap<E, BiFunction<E, P, R>> callbacks;
 
-    public SingletonEventEmitter() {
+    public SingleEventEmitter() {
         callbacks = new ConcurrentHashMap<>();
     }
 
@@ -37,7 +37,7 @@ public class SingletonEventEmitter<E, P, R> {
      * @param eventName the name of the event to listen to.
      * @param consumer  the consumer to call.
      */
-    public synchronized SingletonEventEmitter<E, P, R> on(E event, BiFunction<E, P, R> callback) {
+    public synchronized SingleEventEmitter<E, P, R> on(E event, BiFunction<E, P, R> callback) {
         if (event != null) {
             if (callbacks.containsKey(event)) {
                 throw new IllegalArgumentException("Cannot add more than one callback for an event.");
@@ -55,7 +55,7 @@ public class SingletonEventEmitter<E, P, R> {
      * @param consumer  the consumer to call.
      */
     @SafeVarargs
-    public final SingletonEventEmitter<E, P, R> handle(BiFunction<E, P, R> callback, E... events) {
+    public final SingleEventEmitter<E, P, R> handle(BiFunction<E, P, R> callback, E... events) {
         for (E event : events) {
             on(event, callback);
         }
@@ -64,16 +64,16 @@ public class SingletonEventEmitter<E, P, R> {
 
     /**
      * Remove the handler associated with the given event.
-     * 
+     *
      * @param event
      * @return
      */
-    public SingletonEventEmitter<E, P, R> removeHandler(E event) {
+    public SingleEventEmitter<E, P, R> removeHandler(E event) {
         callbacks.remove(event);
         return this;
     }
 
-    public SingletonEventEmitter<E, P, R> removeAllHandlers() {
+    public SingleEventEmitter<E, P, R> removeAllHandlers() {
         callbacks.clear();
         return this;
     }

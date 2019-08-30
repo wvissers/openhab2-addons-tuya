@@ -8,12 +8,13 @@
  */
 package org.openhab.binding.tuya.internal.discovery;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.smarthome.config.discovery.AbstractDiscoveryService;
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
-import org.openhab.binding.tuya.internal.DeviceRepository;
+import org.openhab.binding.tuya.internal.net.TuyaClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,11 +56,16 @@ public class TuyaDiscoveryService extends AbstractDiscoveryService {
     @Override
     protected void startBackgroundDiscovery() {
         DeviceRepository.getInstance().start(scheduler);
+        try {
+            TuyaClientService.getInstance().start();
+        } catch (IOException e) {
+        }
     }
 
     @Override
     protected void stopBackgroundDiscovery() {
         DeviceRepository.getInstance().stop();
+        TuyaClientService.getInstance().stop();
     }
 
     @Override

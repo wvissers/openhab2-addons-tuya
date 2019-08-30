@@ -5,7 +5,9 @@ In The Netherlands, a series of compatible product are available from the Action
 
 This binding is based on the reverse engineering done for the tuyapi project. Please make sure to check out [https://github.com/codetheweb/tuyapi](https://github.com/codetheweb/tuyapi) if you want to know more about Tuya devices. This is also a great resource for other Tuya based software project.
 
-Please note that this binding is under construction. Let me know what you think about this, but don't expect everything to work perfectly. The binding is offered 'as is' with no warranty of any kind. Use it at your own risk.
+Please note that this binding is under construction. Let me know what you think about this, but don't expect everything to work perfectly yet. The binding is offered 'as is' with no warranty of any kind. Use it at your own risk.
+
+I'm planning to implement a more efficient way to handle the Tuya clients, based on the Java nio api. This is especially important when a lot of Tuya devices need to be served. 
 
 ## Setup
 

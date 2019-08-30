@@ -6,11 +6,14 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.json;
+package org.openhab.binding.tuya.internal.data;
+
+import static org.openhab.binding.tuya.TuyaBindingConstants.CHANNEL_POWER;
 
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.DeviceDescriptor;
+import org.openhab.binding.tuya.internal.annotations.Channel;
+import org.openhab.binding.tuya.internal.discovery.DeviceDescriptor;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,14 +24,15 @@ import com.google.gson.annotations.SerializedName;
  * @author Wim Vissers.
  *
  */
-public class JsonPowerPlug extends JsonData {
+public class PowerPlugState extends DeviceState {
 
     private Dps dps;
 
-    public JsonPowerPlug() {
+    public PowerPlugState() {
+        dps = new Dps();
     }
 
-    public JsonPowerPlug(DeviceDescriptor deviceDescriptor) {
+    public PowerPlugState(DeviceDescriptor deviceDescriptor) {
         super(deviceDescriptor);
         dps = new Dps();
     }
@@ -41,11 +45,12 @@ public class JsonPowerPlug extends JsonData {
         this.dps = dps;
     }
 
-    public JsonPowerPlug withPower(Command command) {
+    public PowerPlugState withPower(Command command) {
         dps.dp1 = toBoolean(command);
         return this;
     }
 
+    @Channel(CHANNEL_POWER)
     public OnOffType getPower() {
         return toOnOffType(dps.dp1);
     }

@@ -6,11 +6,15 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.json;
+package org.openhab.binding.tuya.internal.data;
 
+import static org.openhab.binding.tuya.TuyaBindingConstants.*;
+
+import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.types.Command;
-import org.openhab.binding.tuya.internal.DeviceDescriptor;
+import org.openhab.binding.tuya.internal.annotations.Channel;
+import org.openhab.binding.tuya.internal.discovery.DeviceDescriptor;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -20,48 +24,60 @@ import com.google.gson.annotations.SerializedName;
  * @author Wim Vissers.
  *
  */
-public class JsonColorLed extends JsonData {
+public class ColorLedState extends DeviceState {
 
     private Dps dps;
 
-    public JsonColorLed() {
+    public ColorLedState() {
     }
 
-    public JsonColorLed(DeviceDescriptor deviceDescriptor) {
+    public ColorLedState(DeviceDescriptor deviceDescriptor) {
         super(deviceDescriptor);
         dps = new Dps();
     }
 
-    public JsonColorLed withPower(Command command) {
+    public ColorLedState withPower(Command command) {
         dps.dp1 = toBoolean(command);
         return this;
     }
 
+    @Channel(CHANNEL_POWER)
     public OnOffType getPower() {
         return toOnOffType(dps.dp1);
     }
 
-    public JsonColorLed withColorMode(Command command) {
+    public ColorLedState withColorMode(Command command) {
         dps.dp2 = toBoolean(command) == null ? null : toBoolean(command) ? "colour" : "white";
         return this;
     }
 
+    @Channel(CHANNEL_COLOR_MODE)
     public OnOffType getColorMode() {
         return dps.dp2 == null ? null : dps.dp2.equals("colour") ? OnOffType.ON : OnOffType.OFF;
     }
 
-    public JsonColorLed withBrightness(Command command) {
+    public ColorLedState withBrightness(Command command) {
         dps.dp3 = toInt8(command);
         dps.dp1 = dps.dp3 > 0;
         return this;
     }
 
-    public JsonColorLed withColorTemperature(Command command) {
+    @Channel(CHANNEL_BRIGHTNESS)
+    public DecimalType getBrightness() {
+        return dps.dp3 == null ? null : toDecimalType(dps.dp3);
+    }
+
+    public ColorLedState withColorTemperature(Command command) {
         dps.dp4 = toInt8(command);
         return this;
     }
 
-    public JsonColorLed withColor(Command command) {
+    @Channel(CHANNEL_COLOR_TEMPERATURE)
+    public DecimalType getColorTemperature() {
+        return dps.dp4 == null ? null : toDecimalType(dps.dp4);
+    }
+
+    public ColorLedState withColor(Command command) {
         dps.dp5 = toColorString(command);
         return this;
     }

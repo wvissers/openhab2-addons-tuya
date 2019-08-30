@@ -8,11 +8,9 @@
  */
 package org.openhab.binding.tuya.internal.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
+
+import org.openhab.binding.tuya.internal.exceptions.ParseException;
 
 /**
  * Utility class for buffer operations.
@@ -153,34 +151,6 @@ public class BufferUtils {
             buffer[i] = fill;
         }
         return buffer;
-    }
-
-    public static final int EOF = -1;
-
-    public static long copyLarge(final InputStream input, final OutputStream output, final byte[] buffer)
-            throws IOException {
-        long count = 0;
-        int n;
-        while (EOF != (n = input.read(buffer))) {
-            output.write(buffer, 0, n);
-            count += n;
-        }
-        return count;
-    }
-
-    public static int copy(final InputStream input, final OutputStream output) throws IOException {
-        final long count = copyLarge(input, output, new byte[1024]);
-        if (count > Integer.MAX_VALUE) {
-            return -1;
-        }
-        return (int) count;
-    }
-
-    public static byte[] toByteArray(final InputStream input) throws IOException {
-        try (final ByteArrayOutputStream output = new ByteArrayOutputStream()) {
-            copy(input, output);
-            return output.toByteArray();
-        }
     }
 
 }

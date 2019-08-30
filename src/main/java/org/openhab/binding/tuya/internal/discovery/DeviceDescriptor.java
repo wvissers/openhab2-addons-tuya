@@ -6,9 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal;
-
-import org.openhab.binding.tuya.internal.json.JsonDiscovery;
+package org.openhab.binding.tuya.internal.discovery;
 
 /**
  * Descriptor of the device in the repository.
@@ -23,9 +21,9 @@ public class DeviceDescriptor {
      */
     private JsonDiscovery jsonDiscovery;
     /**
-     * If this device is using heart beat messages to keep the connection alive. Default is true.
+     * The local encryption key must be set in the configuration. It is not transmitted by UDP.
      */
-    private boolean keepAlive = true;
+    private String localKey;
 
     public DeviceDescriptor() {
     }
@@ -64,12 +62,12 @@ public class DeviceDescriptor {
         this.jsonDiscovery = deviceDatagram;
     }
 
-    public boolean isKeepAlive() {
-        return keepAlive;
+    public String getLocalKey() {
+        return localKey;
     }
 
-    public DeviceDescriptor withKeepAlive(boolean keepAlive) {
-        this.keepAlive = keepAlive;
+    public DeviceDescriptor withLocalKey(String localKey) {
+        this.localKey = localKey;
         return this;
     }
 

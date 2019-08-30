@@ -10,16 +10,10 @@ package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.CHANNEL_POWER;
 
-import java.io.IOException;
-
 import org.eclipse.smarthome.core.library.types.OnOffType;
-import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
-import org.openhab.binding.tuya.internal.json.CommandByte;
-import org.openhab.binding.tuya.internal.json.JsonPowerPlug;
-import org.openhab.binding.tuya.internal.json.JsonStatusQuery;
-import org.openhab.binding.tuya.internal.net.Message;
-import org.openhab.binding.tuya.internal.util.ParseException;
+import org.openhab.binding.tuya.internal.data.Message;
+import org.openhab.binding.tuya.internal.data.PowerPlugState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,27 +37,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        if (message != null) {
-            JsonPowerPlug dev = message.toPowerPlug();
-            if (dev != null) {
-                if (dev.getPower() != null) {
-                    updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getPower());
-                }
-            }
-        }
-    }
-
-    /**
-     * This method is called when the device is connected, for an initial status request if the device supports it.
-     */
-    @Override
-    protected void sendStatusQuery() {
-        try {
-            JsonStatusQuery query = new JsonStatusQuery(deviceDescriptor);
-            deviceEventEmitter.send(query, CommandByte.DP_QUERY);
-        } catch (IOException | ParseException e) {
-            logger.error("Error on status request", e);
-        }
+        updateStates(message, PowerPlugState.class);
     }
 
     /**
@@ -73,7 +47,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
     protected void initCommandDispatcher() {
         // Channel power command with OnOffType.
         commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
-            return new JsonPowerPlug(deviceDescriptor).withPower(command);
+            return new PowerPlugState(deviceDescriptor).withPower(command);
         });
     }
 

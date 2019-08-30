@@ -15,8 +15,8 @@ import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.Thing;
-import org.openhab.binding.tuya.internal.json.JsonColorLed;
-import org.openhab.binding.tuya.internal.net.Message;
+import org.openhab.binding.tuya.internal.data.ColorLedState;
+import org.openhab.binding.tuya.internal.data.Message;
 
 /**
  * A handler for a Tuya Color LED device.
@@ -36,14 +36,7 @@ public class ColorLedHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
-        if (message != null) {
-            JsonColorLed dev = message.toColorLed();
-            if (dev != null) {
-                if (dev.getPower() != null) {
-                    updateState(new ChannelUID(thing.getUID(), CHANNEL_POWER), dev.getPower());
-                }
-            }
-        }
+        updateStates(message, ColorLedState.class);
     }
 
     /**
@@ -53,30 +46,30 @@ public class ColorLedHandler extends AbstractTuyaHandler {
     protected void initCommandDispatcher() {
         // Channel power command with OnOffType.
         commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
-            return new JsonColorLed(deviceDescriptor).withPower(command);
+            return new ColorLedState(deviceDescriptor).withPower(command);
         });
 
         // Color mode command with OnOffType.
         commandDispatcher.on(CHANNEL_COLOR_MODE, OnOffType.class, (ev, command) -> {
-            return new JsonColorLed(deviceDescriptor).withColorMode(command);
+            return new ColorLedState(deviceDescriptor).withColorMode(command);
         });
 
         // Brightness with DecimalType.
         commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-            return new JsonColorLed(deviceDescriptor).withBrightness(command).withColorMode(OnOffType.OFF);
+            return new ColorLedState(deviceDescriptor).withBrightness(command).withColorMode(OnOffType.OFF);
         });
 
         // Color temperature with DecimalType.
         commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
-            return new JsonColorLed(deviceDescriptor).withColorTemperature(command).withColorMode(OnOffType.OFF);
+            return new ColorLedState(deviceDescriptor).withColorTemperature(command).withColorMode(OnOffType.OFF);
         });
 
         // Color with HSBType.
         commandDispatcher.on(CHANNEL_COLOR, HSBType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.ON);
-            return new JsonColorLed(deviceDescriptor).withColor(command).withColorMode(OnOffType.ON);
+            return new ColorLedState(deviceDescriptor).withColor(command).withColorMode(OnOffType.ON);
         });
     }
 

@@ -6,19 +6,19 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.util;
+package org.openhab.binding.tuya.internal.exceptions;
 
 /**
- * Exception when unable to pase a packet or message.
- *
- * @author Wim Vissers.
+ * Unchecked exception for reporting unrecoverable errors.
+ * 
+ * @author wim
  *
  */
-public class ParseException extends Exception {
+public class HandlerInitializationException extends RuntimeException {
 
-    private static final long serialVersionUID = 2360268045997933969L;
+    private static final long serialVersionUID = 2970404104689196085L;
 
-    public ParseException(String message) {
+    public HandlerInitializationException(String message) {
         super(message);
     }
 

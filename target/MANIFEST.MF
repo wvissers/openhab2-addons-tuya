@@ -3,7 +3,7 @@ Bundle-SymbolicName: org.openhab.binding.tuya;singleton:=true
 Export-Package: org.openhab.binding.tuya,org.openhab.binding.tuya.hand
  ler
 Bundle-Name: Java System Binding
-Bundle-Version: 2.4.0.201908281521
+Bundle-Version: 2.4.0.201908301837
 Bundle-ClassPath: .
 Bundle-ManifestVersion: 2
 Bundle-ActivationPolicy: lazy
@@ -15,7 +15,6 @@ Import-Package: com.google.gson;version="2.5.0",com.google.gson.annota
  very,org.eclipse.smarthome.core.library.types,org.eclipse.smarthome.c
  ore.thing,org.eclipse.smarthome.core.thing.binding,org.eclipse.smarth
  ome.core.thing.binding.builder,org.eclipse.smarthome.core.thing.type,
- org.eclipse.smarthome.core.types,org.openhab.binding.tuya,org.openhab
- .binding.tuya.handler,org.slf4j
+ org.eclipse.smarthome.core.types,org.slf4j
 Service-Component: OSGI-INF/*.xml
 
