@@ -20,6 +20,7 @@ import org.eclipse.smarthome.core.thing.binding.ThingHandler;
 import org.openhab.binding.tuya.handler.ColorLedHandler;
 import org.openhab.binding.tuya.handler.FilamentLedHandler;
 import org.openhab.binding.tuya.handler.PowerPlugHandler;
+import org.openhab.binding.tuya.handler.SirenHandler;
 
 /**
  * The {@link TuyaHandlerFactory} is responsible for creating things and thing
@@ -38,6 +39,7 @@ public class TuyaHandlerFactory extends BaseThingHandlerFactory {
             supportedThingTypes.add(THING_TYPE_POWER_PLUG);
             supportedThingTypes.add(THING_TYPE_COLOR_LED);
             supportedThingTypes.add(THING_TYPE_FILAMENT_LED);
+            supportedThingTypes.add(THING_TYPE_SIREN);
         }
         return supportedThingTypes.contains(thingTypeUID);
     }
@@ -53,6 +55,8 @@ public class TuyaHandlerFactory extends BaseThingHandlerFactory {
             return new ColorLedHandler(thing);
         } else if (thingTypeUID.equals(THING_TYPE_FILAMENT_LED)) {
             return new FilamentLedHandler(thing);
+        } else if (thingTypeUID.equals(THING_TYPE_SIREN)) {
+            return new SirenHandler(thing);
         }
 
         return null;

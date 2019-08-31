@@ -21,6 +21,9 @@
    <file name=".binding.tuya\ESH-INF\thing\powerplug.xml">
       <message tool="checkstyle" line="7" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
    </file>
+   <file name=".binding.tuya\ESH-INF\thing\siren.xml">
+      <message tool="checkstyle" line="7" message="There were whitespace characters used for indentation. Please use tab characters instead" priority="2" rule="OnlyTabIndentationInXmlFilesCheck" category="style"/>
+   </file>
    <file name=".binding.tuya\META-INF\MANIFEST.MF">
       <message tool="checkstyle" line="11" message="The version of the package com.google.gson should not be specified" priority="2" rule="ManifestPackageVersionCheck" category="style"/>
       <message tool="checkstyle" line="12" message="The version of the package com.google.gson.annotations should not be specified" priority="2" rule="ManifestPackageVersionCheck" category="style"/>
@@ -51,6 +54,10 @@
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="23" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
+   <file name="org.openhab.binding.tuya.handler.SirenHandler.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="24" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+   </file>
    <file name="org.openhab.binding.tuya.internal.annotations.Channel.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
    </file>
@@ -76,6 +83,10 @@
       <message tool="checkstyle" line="18" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.data.PowerPlugState.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+      <message tool="checkstyle" line="24" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.tuya.internal.data.SirenState.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="24" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
@@ -139,7 +150,7 @@
       <message tool="checkstyle" line="14" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.TuyaHandlerFactory.java">
-      <message tool="checkstyle" line="47" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="49" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.util.BufferUtils.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -171,10 +182,13 @@
       <message tool="checkstyle" line="30" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="31" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="32" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
-      <message tool="checkstyle" line="35" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="33" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="36" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="37" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="38" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
       <message tool="checkstyle" line="39" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="40" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="41" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
+      <message tool="checkstyle" line="42" message="'static' modifier out of order with the JLS suggestions." priority="3" rule="ModifierOrderCheck" category="style"/>
    </file>
 </sca>

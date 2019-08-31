@@ -34,5 +34,17 @@
         <label>The color temperature</label>
         <description>The color temperature of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode</description>
     </channel-type>
+    <!-- Alarm channel -->
+    <channel-type id="alarm-channel">
+        <item-type>Switch</item-type>
+        <label>The siren on or off</label>
+        <description>Switch to on for sound and/or light on.</description>
+    </channel-type>
+    <!-- Volume channel -->
+    <channel-type id="volume-channel">
+        <item-type>Number</item-type>
+        <label>The siren volume</label>
+        <description>The siren volume (0..100%) in steps of 25%.</description>
+    </channel-type>
 
 </thing:thing-descriptions>

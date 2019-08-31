@@ -25,10 +25,10 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2019 openHAB.org</copyright>
     <item>
-      <title>File: 48,
+      <title>File: 51,
              Errors: 0,
-             Warnings: 40,
-             Infos: 46
+             Warnings: 43,
+             Infos: 51
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -102,13 +102,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.TuyaHandlerFactory.java">src/main/java/org/openhab/binding/tuya/internal/TuyaHandlerFactory.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.SirenHandler.java">src/main/java/org/openhab/binding/tuya/handler/SirenHandler.java</a>
                 </td>
                 <td>
                   1
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -158,66 +158,10 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#OSGI-INF.TuyaHandlerFactory.xml">OSGI-INF/TuyaHandlerFactory.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.config.config.xml">ESH-INF/config/config.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.FilamentLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/FilamentLedHandler.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.CommandByte.java">src/main/java/org/openhab/binding/tuya/internal/data/CommandByte.java</a>
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.Crc.java">src/main/java/org/openhab/binding/tuya/internal/util/Crc.java</a>
-                </td>
-                <td>
-                  2
                 </td>
                 <td>
                   1
@@ -256,69 +200,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.UnsupportedVersionException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/UnsupportedVersionException.java</a>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.SirenState.java">src/main/java/org/openhab/binding/tuya/internal/data/SirenState.java</a>
                 </td>
                 <td>
                   1
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.ColorLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/ColorLedHandler.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.ColorLedState.java">src/main/java/org/openhab/binding/tuya/internal/data/ColorLedState.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.binding.binding.xml">ESH-INF/binding/binding.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#pom.xml">pom.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -327,48 +215,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.StatusQuery.java">src/main/java/org/openhab/binding/tuya/internal/data/StatusQuery.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TuyaClient.java">src/main/java/org/openhab/binding/tuya/internal/net/TuyaClient.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
-                </td>
-                <td>
-                  8
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.NoDataException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/NoDataException.java</a>
                 </td>
                 <td>
                   1
@@ -396,20 +242,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TuyaClientService.java">src/main/java/org/openhab/binding/tuya/internal/net/TuyaClientService.java</a>
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.SingleEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/util/SingleEventEmitter.java</a>
                 </td>
                 <td>
@@ -417,48 +249,6 @@ under the License.
                 </td>
                 <td>
                   1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.colorled.xml">ESH-INF/thing/colorled.xml</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.DeviceDescriptor.java">src/main/java/org/openhab/binding/tuya/internal/discovery/DeviceDescriptor.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java">src/main/java/org/openhab/binding/tuya/internal/discovery/TuyaDiscoveryService.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -480,20 +270,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.DeviceRepository.java">src/main/java/org/openhab/binding/tuya/internal/discovery/DeviceRepository.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="${project.url}/checkstyle.html#META-INF.MANIFEST.MF">META-INF/MANIFEST.MF</a>
                 </td>
                 <td>
@@ -501,34 +277,6 @@ under the License.
                 </td>
                 <td>
                   4
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.Message.java">src/main/java/org/openhab/binding/tuya/internal/data/Message.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#about.html">about.html</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -582,6 +330,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.siren.xml">ESH-INF/thing/siren.xml</a>
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   1
@@ -676,7 +438,133 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.i18n.tuya_nl.properties">ESH-INF/i18n/tuya_nl.properties</a>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.filamentled.xml">ESH-INF/thing/filamentled.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.TuyaHandlerFactory.java">src/main/java/org/openhab/binding/tuya/internal/TuyaHandlerFactory.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#OSGI-INF.TuyaHandlerFactory.xml">OSGI-INF/TuyaHandlerFactory.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.config.config.xml">ESH-INF/config/config.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.FilamentLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/FilamentLedHandler.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.Crc.java">src/main/java/org/openhab/binding/tuya/internal/util/Crc.java</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.UnsupportedVersionException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/UnsupportedVersionException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.ColorLedHandler.java">src/main/java/org/openhab/binding/tuya/handler/ColorLedHandler.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.ColorLedState.java">src/main/java/org/openhab/binding/tuya/internal/data/ColorLedState.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.binding.binding.xml">ESH-INF/binding/binding.xml</a>
                 </td>
                 <td>
                   0
@@ -690,13 +578,167 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.filamentled.xml">ESH-INF/thing/filamentled.xml</a>
+                  <a href="${project.url}/checkstyle.html#pom.xml">pom.xml</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TuyaClient.java">src/main/java/org/openhab/binding/tuya/internal/net/TuyaClient.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
+                </td>
+                <td>
+                  11
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.NoDataException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/NoDataException.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.net.TuyaClientService.java">src/main/java/org/openhab/binding/tuya/internal/net/TuyaClientService.java</a>
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.thing.colorled.xml">ESH-INF/thing/colorled.xml</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.DeviceDescriptor.java">src/main/java/org/openhab/binding/tuya/internal/discovery/DeviceDescriptor.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.TuyaDiscoveryService.java">src/main/java/org/openhab/binding/tuya/internal/discovery/TuyaDiscoveryService.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.discovery.DeviceRepository.java">src/main/java/org/openhab/binding/tuya/internal/discovery/DeviceRepository.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.Message.java">src/main/java/org/openhab/binding/tuya/internal/data/Message.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#about.html">about.html</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#ESH-INF.i18n.tuya_nl.properties">ESH-INF/i18n/tuya_nl.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0

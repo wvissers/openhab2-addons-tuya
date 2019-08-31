@@ -30,6 +30,7 @@ public class TuyaBindingConstants {
     public final static ThingTypeUID THING_TYPE_POWER_PLUG = new ThingTypeUID(BINDING_ID, "powerplug");
     public final static ThingTypeUID THING_TYPE_COLOR_LED = new ThingTypeUID(BINDING_ID, "colorled");
     public final static ThingTypeUID THING_TYPE_FILAMENT_LED = new ThingTypeUID(BINDING_ID, "filamentled");
+    public final static ThingTypeUID THING_TYPE_SIREN = new ThingTypeUID(BINDING_ID, "siren");
 
     // List of all Channel ids.
     public final static String CHANNEL_POWER = "power";
@@ -37,6 +38,8 @@ public class TuyaBindingConstants {
     public final static String CHANNEL_COLOR = "color";
     public final static String CHANNEL_COLOR_TEMPERATURE = "colorTemperature";
     public final static String CHANNEL_COLOR_MODE = "colorMode";
+    public final static String CHANNEL_ALARM = "alarm";
+    public final static String CHANNEL_VOLUME = "volume";
 
     // Default API version (currently only 3.3 supported).
     public static final String DEFAULT_VERSION = "3.3";
