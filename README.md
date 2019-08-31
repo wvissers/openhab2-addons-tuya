@@ -7,15 +7,13 @@ This binding is based on the reverse engineering done for the tuyapi project. Pl
 
 Please note that this binding is under construction. Let me know what you think about this, but don't expect everything to work perfectly yet. The binding is offered 'as is' with no warranty of any kind. Use it at your own risk.
 
-I'm planning to implement a more efficient way to handle the Tuya clients, based on the Java nio api. This is especially important when a lot of Tuya devices need to be served. 
-
 ## Setup
 
-Unfortunately, since the local device communication is encrypted, you will need to obtain the encryption keys and the device ids. Every device has its own key, so this is needed for every new device you want to add. These keys can be found by analyzing the traffic between the Tuya app and the Tuya cloud service. Since this communication is also encrypted using https, a little effort is needed here. 
+Since the local device communication is encrypted, you will need to obtain the encryption keys and the device ids. Every Tuya device has its own key, so this is needed for every new device you want to add. These keys can be found by analyzing the traffic between the Tuya app and the Tuya cloud service. Since this communication is also encrypted using https, a little effort is needed here. The 'trick' is to use a computer as proxy server for your mobile device. There is good free software available that allows you to view the requests passing the proxy server in readable text.
 
-Look at these [setup instructions using Windows](http://www.htgsd.com/information-technology/apple/homekit/how-to-capture-tuya-lan-homebridge-device-devid-and-key-on-windows-10/) or these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids.
+Look at these [setup instructions using Windows](http://www.htgsd.com/information-technology/apple/homekit/how-to-capture-tuya-lan-homebridge-device-devid-and-key-on-windows-10/) or these [setup instructions](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) to get the encryption keys and device ids. 
 
-Please note, that the tuya devices only accept a single connection. If you use both the app and openHAB simultaneously or more openHAB instances, it might not work properly.
+Please note, that usually only a single connection can be made with every device. It might not work properly if you use multiple local connections.
 
 ## Supported Things
 

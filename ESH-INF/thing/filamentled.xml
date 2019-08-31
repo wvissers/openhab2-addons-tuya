@@ -7,7 +7,7 @@
     <!-- Smart Filament LED lamp Thing Type -->
     <thing-type id="filamentled">
         <label>Tuya Smart Filament LED lamp</label>
-        <description>Tuya smart filament LED lamp device with on/off and dimmer channels</description>
+        <description>Tuya smart filament LED lamp device with on/off, dimmer and color temperature channels.</description>
         <channels>
             <channel id="power" typeId="power-channel" />
             <channel id="brightness" typeId="brightness-channel" />
