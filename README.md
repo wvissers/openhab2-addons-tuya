@@ -24,7 +24,7 @@ Currently it supports the LSC Smart Connect Power Plug,  Smart LED white and col
 For a quick start to review this binding, proceed as follows:
 
 1. Download the file [org.openhab.binding.tuya-2.4.0-SNAPSHOT.jar](https://github.com/wvissers/openhab2-addons-tuya/raw/master/target/org.openhab.binding.tuya-2.4.0-SNAPSHOT.jar) in the target folder of this repository.
-2. Copy this file to the addons folder of the operational openHAB system.
+2. Copy this file to the addons directory of openhab2.
 3. Use the Paper UI to create a new thing, using the "Tuya" binding.
 4. With the Paper UI, set the devId, localKey and version. 
 5. Add an item as desired.
