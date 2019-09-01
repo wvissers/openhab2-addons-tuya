@@ -28,7 +28,7 @@ under the License.
       <title>File: 51,
              Errors: 0,
              Warnings: 43,
-             Infos: 51
+             Infos: 53
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -105,7 +105,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.SirenHandler.java">src/main/java/org/openhab/binding/tuya/handler/SirenHandler.java</a>
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   1
@@ -609,7 +609,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.TuyaBindingConstants.java">src/main/java/org/openhab/binding/tuya/TuyaBindingConstants.java</a>
                 </td>
                 <td>
-                  11
+                  12
                 </td>
                 <td>
                   0

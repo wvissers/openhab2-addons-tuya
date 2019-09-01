@@ -110,7 +110,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
                 }, HEARTBEAT_SECONDS, HEARTBEAT_SECONDS, TimeUnit.SECONDS);
             }
         } catch (IOException e) {
-            emit(Event.CONNECTION_ERROR, null);
+            emit(Event.CONNECTION_ERROR, new Message(e.getClass().getName()));
         }
     }
 
@@ -152,7 +152,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         if (queue.remainingCapacity() == 0) {
             if (online) {
                 online = false;
-                emit(Event.CONNECTION_ERROR, null);
+                emit(Event.CONNECTION_ERROR, new Message("send queue overflow"));
             }
         } else {
             byte[] packet = messageParser.encode(message.getBytes(), command, currentSequenceNo++);
@@ -197,12 +197,13 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
      * @param ex  the IOException (may by null).
      */
     void handleDisconnect(SelectionKey key, IOException ex) {
+        logger.debug("Disconnected", ex);
         this.key = null;
         online = false;
         if (ex == null) {
             emit(Event.DISCONNECTED, null);
         } else {
-            emit(Event.CONNECTION_ERROR, null);
+            emit(Event.CONNECTION_ERROR, new Message(ex.getClass().getName()));
         }
     }
 

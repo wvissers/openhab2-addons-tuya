@@ -40,6 +40,7 @@ public class TuyaBindingConstants {
     public final static String CHANNEL_COLOR_MODE = "colorMode";
     public final static String CHANNEL_ALARM = "alarm";
     public final static String CHANNEL_VOLUME = "volume";
+    public final static String CHANNEL_DURATION = "duration";
 
     // Default API version (currently only 3.3 supported).
     public static final String DEFAULT_VERSION = "3.3";

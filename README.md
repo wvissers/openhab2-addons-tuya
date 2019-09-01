@@ -49,4 +49,46 @@ The channels can be retrieved from the Paper UI after configuring. They should b
 
 ## Full Example
 
-Todo..
+After adding the binding add the thing using the Paper UI in the Configuration -> Things section with the + sign. Select the Tuya binding and the right thing, and enter the devId and localKey. You may also want to choose a more convenient thing ID than the default one. The device should report ONLINE in the Paper UI after adding. 
+
+Next, create items to link the thing to. Create a file (e.g. tuya.items) in the conf/items directory of openhab2. Add something like the next example. This assumes you have a power plug with thing id "plug", a color LED lamp with thing id "led" and a siren with thing id "siren".
+
+```
+Switch PowerPlug            "Power Plug [%s]"   { channel="tuya:powerplug:plug:power" }
+
+Switch ColorLampPower       "Color lamp [%s]"   { channel="tuya:colorled:led:power" }
+Switch ColorLampMode        "Color mode [%s]"   { channel="tuya:colorled:led:colorMode" }
+Dimmer ColorLampBrightness  "Brightness"        { channel="tuya:colorled:led:brightness" }
+Dimmer ColorLampTemp        "Color temperature" { channel="tuya:colorled:led:colorTemperature" }
+Color  ColorLampColor       "Color"             { channel="tuya:colorled:led:color" }
+
+Switch SirenAlarm           "Siren alarm [%s]"  { channel="tuya:siren:siren:alarm" }
+Dimmer SirenVolume          "Volume [%d%%]"     { channel="tuya:siren:siren:volume" }
+Number SirenDuration        "Duration [%d sec]" { channel="tuya:siren:siren:duration" }
+
+```
+
+Next, to show it in the basic UI, create a sitemap file in the conf/sitemaps directory. You may also add the Frames to an already existing sitemap.
+
+```
+sitemap tuya label="Tuya demo"
+{
+    Frame label="Power plug" {
+        Switch item=PowerPlug
+    }
+    Frame label="Color LED lamp" {
+        Switch item=ColorLampPower
+        Switch item=ColorLampMode
+        Slider item=ColorLampBrightness
+        Slider item=ColorLampTemp
+        Colorpicker item=ColorLampColor
+    }
+    Frame label="Siren" {
+        Switch item=SirenAlarm
+        Slider item=SirenVolume
+        Setpoint item=SirenDuration minValue=1 maxValue=30 step=1
+    }
+}
+```
+
+After this, you should be able to view the sitemap with the Basic UI (/basicui/app?sitemap=tuya) and control the devices. 

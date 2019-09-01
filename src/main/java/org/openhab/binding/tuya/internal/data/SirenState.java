@@ -53,8 +53,18 @@ public class SirenState extends DeviceState {
 
     @Channel(CHANNEL_VOLUME)
     public DecimalType getVolume() {
-        Volume result = Volume.getByName(dps.dp5);
-        return result.getUntil() < 0.51 ? new DecimalType(result.getFrom()) : new DecimalType(result.getUntil());
+        return new DecimalType(Volume.getByName(dps.dp5).getValue());
+    }
+
+    public SirenState withDuration(Command command) {
+        dps.dp7 = ((DecimalType) command).intValue();
+        dps.dp7 = dps.dp7 < 1 ? 1 : dps.dp7 > 30 ? 30 : dps.dp7;
+        return this;
+    }
+
+    @Channel(CHANNEL_DURATION)
+    public DecimalType getDuration() {
+        return new DecimalType(dps.dp7);
     }
 
     /**
@@ -72,6 +82,12 @@ public class SirenState extends DeviceState {
         private Boolean dp13;
 
         /**
+         * Alarm duration 1..30 seconds.
+         */
+        @SerializedName("7")
+        private Integer dp7;
+
+        /**
          * Volume: mute, low, middle, high.
          */
         @SerializedName("5")
@@ -80,26 +96,20 @@ public class SirenState extends DeviceState {
     }
 
     private enum Volume {
-        MUTE(0.0, 0.25),
-        LOW(0.26, 0.5),
-        MIDDLE(0.51, 0.75),
-        HIGH(0.76, 1.1),
-        UNDEFINED(0.0, 0.0);
+        MUTE(0.0),
+        LOW(0.33),
+        MIDDLE(0.66),
+        HIGH(1.0),
+        UNDEFINED(0.0);
 
-        private final double from;
-        private final double until;
+        private final double value;
 
-        private Volume(double from, double until) {
-            this.from = from;
-            this.until = until;
+        private Volume(double value) {
+            this.value = value;
         }
 
-        public double getFrom() {
-            return from;
-        }
-
-        public double getUntil() {
-            return until;
+        public double getValue() {
+            return value;
         }
 
         public String getName() {
@@ -108,7 +118,7 @@ public class SirenState extends DeviceState {
 
         public static final Volume getByLevel(double level) {
             for (Volume volume : Volume.values()) {
-                if (level < volume.until) {
+                if (level < volume.value + 0.165) {
                     return volume;
                 }
             }

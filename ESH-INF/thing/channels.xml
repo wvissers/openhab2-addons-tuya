@@ -46,5 +46,11 @@
         <label>The siren volume</label>
         <description>The siren volume (0..100%) in steps of 25%.</description>
     </channel-type>
+    <!-- Duration channel -->
+    <channel-type id="duration-channel">
+        <item-type>Number</item-type>
+        <label>The siren duration</label>
+        <description>The siren duration (1..30) in seconds.</description>
+    </channel-type>
 
 </thing:thing-descriptions>

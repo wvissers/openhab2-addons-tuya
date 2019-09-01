@@ -11,6 +11,7 @@
         <channels>
             <channel id="alarm" typeId="alarm-channel" />
             <channel id="volume" typeId="volume-channel" />
+            <channel id="duration" typeId="duration-channel" />
         </channels>
         <config-description-ref uri="thing-type:tuya:config" />
     </thing-type>
