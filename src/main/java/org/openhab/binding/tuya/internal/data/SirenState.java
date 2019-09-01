@@ -83,7 +83,7 @@ public class SirenState extends DeviceState {
         MUTE(0.0, 0.25),
         LOW(0.26, 0.5),
         MIDDLE(0.51, 0.75),
-        HIGH(0.76, 1.0),
+        HIGH(0.76, 1.1),
         UNDEFINED(0.0, 0.0);
 
         private final double from;

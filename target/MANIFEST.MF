@@ -3,7 +3,7 @@ Bundle-SymbolicName: org.openhab.binding.tuya;singleton:=true
 Export-Package: org.openhab.binding.tuya,org.openhab.binding.tuya.hand
  ler
 Bundle-Name: Java System Binding
-Bundle-Version: 2.4.0.201908311805
+Bundle-Version: 2.4.0.201909010647
 Bundle-ClassPath: .
 Bundle-ManifestVersion: 2
 Bundle-ActivationPolicy: lazy

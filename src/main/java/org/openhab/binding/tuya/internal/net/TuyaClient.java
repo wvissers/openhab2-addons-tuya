@@ -158,9 +158,9 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
             byte[] packet = messageParser.encode(message.getBytes(), command, currentSequenceNo++);
             queue.offer(packet);
             if (command.equals(CommandByte.HEART_BEAT)) {
-                if (heartbeatCnt.incrementAndGet() > 2) {
+                if (heartbeatCnt.incrementAndGet() > HEARTBEAT_RETRIES) {
                     online = false;
-                    emit(Event.CONNECTION_ERROR, null);
+                    emit(Event.CONNECTION_ERROR, new Message("no response to heartbeat"));
                 }
             }
             key.interestOps(OP_WRITE);

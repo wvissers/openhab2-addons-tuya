@@ -148,7 +148,8 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
 
                     // Handle error events
                     tuyaClient.on(Event.CONNECTION_ERROR, (ev, msg) -> {
-                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR);
+                        updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR,
+                                msg == null ? "" : msg.getData());
                         return true;
                     });
 
