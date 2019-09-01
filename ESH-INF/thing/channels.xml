@@ -38,13 +38,13 @@
     <channel-type id="alarm-channel">
         <item-type>Switch</item-type>
         <label>The siren on or off</label>
-        <description>Switch to on for sound and/or light on.</description>
+        <description>Switch sound and/or light on or off.</description>
     </channel-type>
     <!-- Volume channel -->
     <channel-type id="volume-channel">
         <item-type>Number</item-type>
         <label>The siren volume</label>
-        <description>The siren volume (0..100%) in steps of 25%.</description>
+        <description>The siren volume (0..100%) in steps of 33%.</description>
     </channel-type>
     <!-- Duration channel -->
     <channel-type id="duration-channel">

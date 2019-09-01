@@ -7,7 +7,7 @@
     <!-- Smart Siren Thing Type -->
     <thing-type id="siren">
         <label>Tuya Smart Siren</label>
-        <description>Tuya smart siren device with on/off, volume and time channels.</description>
+        <description>Tuya smart siren device with on/off, volume and duration channels.</description>
         <channels>
             <channel id="alarm" typeId="alarm-channel" />
             <channel id="volume" typeId="volume-channel" />
