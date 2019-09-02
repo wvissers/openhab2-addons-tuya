@@ -1,11 +1,11 @@
 # Tuya binding
 
 This is a binding for devices that are controlled using the TCP/UDP Tuya protocol over the local WiFi network. Devices using this protocol are available in a wide variety of brands. If you have devices you can control with apps like TuyaSmart, Smart Life or LSCSmartControl are likely to be compatible.
-In The Netherlands, a series of compatible product are available from the Action stores, labeled with the brand name LSC Smart Connect. 
+A series of compatible product are available from the Action stores throughout Europe, labeled with the brand name LSC Smart Connect. 
 
-This binding is based on the reverse engineering done for the tuyapi project. Please make sure to check out [https://github.com/codetheweb/tuyapi](https://github.com/codetheweb/tuyapi) if you want to know more about Tuya devices. This is also a great resource for other Tuya based software project.
+This binding is based on the tuyapi project. Please make sure to check out [https://github.com/codetheweb/tuyapi](https://github.com/codetheweb/tuyapi) if you want to know more about Tuya devices, or are interested in other implementations to control these devices. They did a great job creating this! 
 
-This implementation is still experimental. Let me know what you think about this, but don't expect everything to work perfectly yet. The binding is offered 'as is' with no warranty of any kind. Use it at your own risk. 
+This binding implementation is still experimental. Let me know what you think about this, but don't expect everything to work perfectly yet. The binding is offered 'as is' with no warranty of any kind. Use it at your own risk. 
 
 ## Setup
 

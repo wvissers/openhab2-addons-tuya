@@ -11,6 +11,8 @@ package org.openhab.binding.tuya.internal.util;
 /**
  * Specific CRC calculation conform Tuya protocol.
  *
+ * Ported from https://github.com/codetheweb/tuyapi. Reverse engineered by kueblc.
+ *
  * @author Wim Vissers.
  *
  */

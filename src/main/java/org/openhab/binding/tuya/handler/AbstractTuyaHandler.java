@@ -21,6 +21,7 @@ import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
+import org.openhab.binding.tuya.internal.CommandDispatcher;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.DeviceState;
 import org.openhab.binding.tuya.internal.data.Message;
@@ -34,7 +35,6 @@ import org.openhab.binding.tuya.internal.exceptions.UnsupportedVersionException;
 import org.openhab.binding.tuya.internal.net.TcpConfig;
 import org.openhab.binding.tuya.internal.net.TuyaClient;
 import org.openhab.binding.tuya.internal.net.TuyaClient.Event;
-import org.openhab.binding.tuya.internal.util.CommandDispatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

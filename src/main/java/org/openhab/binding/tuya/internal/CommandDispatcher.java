@@ -6,7 +6,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.openhab.binding.tuya.internal.util;
+package org.openhab.binding.tuya.internal;
 
 import java.io.IOException;
 import java.util.function.BiFunction;
@@ -14,11 +14,12 @@ import java.util.function.BiFunction;
 import org.eclipse.smarthome.core.thing.ChannelUID;
 import org.eclipse.smarthome.core.thing.ThingUID;
 import org.eclipse.smarthome.core.types.Command;
+import org.openhab.binding.tuya.internal.CommandDispatcher.CommandEvent;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.DeviceState;
 import org.openhab.binding.tuya.internal.exceptions.ParseException;
 import org.openhab.binding.tuya.internal.net.TuyaClient;
-import org.openhab.binding.tuya.internal.util.CommandDispatcher.CommandEvent;
+import org.openhab.binding.tuya.internal.util.SingleEventEmitter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +57,15 @@ public class CommandDispatcher extends SingleEventEmitter<CommandEvent, Command,
         return this;
     }
 
+    /**
+     * Dispatch a single command.
+     *
+     * @param client      the client object.
+     * @param channelUID  the channel uid this client received in its handleCommand call.
+     * @param command     the command this client received in its handleCommand call.
+     * @param commandByte the Tuya commandbyte that will be used to construct the mesage to teh Tuya device.
+     * @return true when the command is handled, otherwise false.
+     */
     public boolean dispatchCommand(TuyaClient client, ChannelUID channelUID, Command command, CommandByte commandByte) {
         CommandEvent event = new CommandEvent(channelUID, command.getClass());
         DeviceState data = emit(event, command);
@@ -73,7 +83,7 @@ public class CommandDispatcher extends SingleEventEmitter<CommandEvent, Command,
     /**
      * The wrapper for the command and the channel the command applies to. The CommandHandler can be used to add
      * handlers for combinations of ChannelUID and Command class. This class is only used internally in this command
-     * handler.
+     * handler. It overrides the hashCode and equals methods, in order to use it as a key in a Map.
      *
      * @author Wim Vissers.
      *

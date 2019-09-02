@@ -21,6 +21,8 @@ import org.openhab.binding.tuya.internal.exceptions.ParseException;
  * Parser for messages, with decryption where needed. Hence, a parser
  * is device dependent.
  *
+ * Ported from https://github.com/codetheweb/tuyapi.
+ *
  * @author Wim Vissers.
  *
  */

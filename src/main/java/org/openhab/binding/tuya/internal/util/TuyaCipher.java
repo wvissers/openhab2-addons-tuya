@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Cipher class for encrypting and decrypting messages.
  *
+ * Ported from https://github.com/codetheweb/tuyapi.
+ *
  * @author Wim Vissers.
  *
  */
