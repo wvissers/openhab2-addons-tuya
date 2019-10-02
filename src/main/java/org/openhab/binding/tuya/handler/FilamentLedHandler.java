@@ -10,6 +10,7 @@ package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
+import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -47,13 +48,23 @@ public class FilamentLedHandler extends AbstractTuyaHandler {
             return new FilamentLedState(deviceDescriptor).withPower(command);
         });
 
-        // Brightness with DecimalType.
+        // Brightness with PercentType.
         commandDispatcher.on(CHANNEL_BRIGHTNESS, PercentType.class, (ev, command) -> {
             return new FilamentLedState(deviceDescriptor).withBrightness(command);
         });
 
-        // Color temperature with DecimalType.
+        // Brightness with DecimalType (deprecated).
+        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, (ev, command) -> {
+            return new FilamentLedState(deviceDescriptor).withBrightness(command);
+        });
+
+        // Color temperature with PercentType.
         commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, PercentType.class, (ev, command) -> {
+            return new FilamentLedState(deviceDescriptor).withColorTemperature(command);
+        });
+
+        // Color temperature with DecimalType (deprecated).
+        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, (ev, command) -> {
             return new FilamentLedState(deviceDescriptor).withColorTemperature(command);
         });
     }

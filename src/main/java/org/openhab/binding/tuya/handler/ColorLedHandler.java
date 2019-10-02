@@ -10,6 +10,7 @@ package org.openhab.binding.tuya.handler;
 
 import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 
+import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
@@ -60,8 +61,20 @@ public class ColorLedHandler extends AbstractTuyaHandler {
             return new ColorLedState(deviceDescriptor).withBrightness(command).withColorMode(OnOffType.OFF);
         });
 
-        // Color temperature with DecimalType.
+        // Brightness with DecimalType (deprecated).
+        commandDispatcher.on(CHANNEL_BRIGHTNESS, DecimalType.class, (ev, command) -> {
+            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
+            return new ColorLedState(deviceDescriptor).withBrightness(command).withColorMode(OnOffType.OFF);
+        });
+
+        // Color temperature with PercentType.
         commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, PercentType.class, (ev, command) -> {
+            updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
+            return new ColorLedState(deviceDescriptor).withColorTemperature(command).withColorMode(OnOffType.OFF);
+        });
+
+        // Color temperature with DecimalType (deprecated).
+        commandDispatcher.on(CHANNEL_COLOR_TEMPERATURE, DecimalType.class, (ev, command) -> {
             updateState(new ChannelUID(thing.getUID(), CHANNEL_COLOR_MODE), OnOffType.OFF);
             return new ColorLedState(deviceDescriptor).withColorTemperature(command).withColorMode(OnOffType.OFF);
         });
