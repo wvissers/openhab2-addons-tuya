@@ -16,6 +16,7 @@ import java.util.function.BiConsumer;
 import org.eclipse.smarthome.core.library.types.DecimalType;
 import org.eclipse.smarthome.core.library.types.HSBType;
 import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.State;
 import org.openhab.binding.tuya.internal.annotations.Channel;
@@ -72,7 +73,9 @@ public class DeviceState {
      * @return the numeric value in the range 0..255.
      */
     protected Integer toInt8(Command command) {
-        if (command instanceof Number) {
+        if (command instanceof PercentType) {
+            return (int) ((Math.round(((PercentType) (command)).intValue() * 255 / 100)) & 0xFF);
+        } else if (command instanceof Number) {
             return (int) ((Math.round(((Number) (command)).doubleValue() * 255)) & 0xFF);
         } else {
             return null;
@@ -81,7 +84,7 @@ public class DeviceState {
 
     /**
      * Convert from a long value to a DecimalType indicating dimmer values.
-     * 
+     *
      * @param value the long must be in the rande 0..255.
      * @return the DecimalType in the range 0..1.
      */

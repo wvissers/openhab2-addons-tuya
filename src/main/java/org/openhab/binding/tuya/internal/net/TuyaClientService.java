@@ -159,7 +159,7 @@ public class TuyaClientService implements Runnable, TcpConfig {
             channel.register(selector, OP_WRITE);
             client.handleConnect(key);
         } catch (IOException e) {
-            logger.error("Error connecting {}.", client);
+            logger.debug("Error connecting {}.", client);
             key.channel().close();
             key.cancel();
             if (client != null) {

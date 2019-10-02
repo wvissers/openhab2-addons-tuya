@@ -103,7 +103,6 @@ public class SingleEventEmitter<E, P, R> {
      * When a new handler is added, this method is called. Override when necessary.
      */
     protected void handlerAdded(E event, BiFunction<E, P, R> callback) {
-
     }
 
 }

@@ -203,7 +203,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         if (ex == null) {
             emit(Event.DISCONNECTED, null);
         } else {
-            emit(Event.CONNECTION_ERROR, new Message(ex.getClass().getName()));
+            emit(Event.CONNECTION_ERROR, new Message(ex.getMessage()));
         }
     }
 

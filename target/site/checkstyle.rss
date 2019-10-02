@@ -28,7 +28,7 @@ under the License.
       <title>File: 51,
              Errors: 0,
              Warnings: 43,
-             Infos: 53
+             Infos: 52
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -61,20 +61,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.exceptions.HandlerInitializationException.java">src/main/java/org/openhab/binding/tuya/internal/exceptions/HandlerInitializationException.java</a>
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.CommandDispatcher.java">src/main/java/org/openhab/binding/tuya/internal/util/CommandDispatcher.java</a>
                 </td>
                 <td>
                   1
@@ -245,7 +231,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.util.SingleEventEmitter.java">src/main/java/org/openhab/binding/tuya/internal/util/SingleEventEmitter.java</a>
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   1
@@ -725,6 +711,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.CommandDispatcher.java">src/main/java/org/openhab/binding/tuya/internal/CommandDispatcher.java</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0

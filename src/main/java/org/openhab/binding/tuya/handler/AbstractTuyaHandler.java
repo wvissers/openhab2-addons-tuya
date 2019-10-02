@@ -58,7 +58,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
 
     public AbstractTuyaHandler(Thing thing) {
         super(thing);
-        commandDispatcher = new CommandDispatcher(thing.getUID());
+        this.commandDispatcher = new CommandDispatcher(thing.getUID());
     }
 
     /**
@@ -101,10 +101,17 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
     }
 
     /**
-     * Dispose of allocated resources.
+     * Clean up resources on removal.
      */
     @Override
-    public void dispose() {
+    public void handleRemoval() {
+        cleanUp();
+    }
+
+    /**
+     * Cleanup for reinitializing or removing this handler.
+     */
+    private void cleanUp() {
         if (tuyaClient != null) {
             tuyaClient.stop();
             tuyaClient = null;
@@ -116,6 +123,15 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
             commandDispatcher.removeAllHandlers();
         }
         deviceDescriptor = null;
+    }
+
+    /**
+     * Dispose of allocated resources.
+     */
+    @Override
+    public void dispose() {
+        cleanUp();
+        super.dispose();
     }
 
     /**
@@ -203,7 +219,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
     public void initialize() {
 
         // Dispose of allocated resources when re-initializing.
-        dispose();
+        cleanUp();
 
         // Get the configuration object.
         Configuration config = thing.getConfiguration();

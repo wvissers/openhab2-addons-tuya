@@ -24,13 +24,13 @@
     </channel-type>
     <!-- Brightness Channel Type -->
     <channel-type id="brightness-channel">
-        <item-type>Number</item-type>
+        <item-type>Dimmer</item-type>
         <label>The brightness</label>
         <description>The brightness of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode</description>
     </channel-type>
     <!-- Color temperature Channel Type -->
     <channel-type id="color-temperature-channel">
-        <item-type>Number</item-type>
+        <item-type>Dimmer</item-type>
         <label>The color temperature</label>
         <description>The color temperature of the lamp (0%..100%). Changing this will automatically set the lamp in 'white' mode</description>
     </channel-type>

@@ -111,6 +111,8 @@ public class DeviceRepository extends SingleEventEmitter<String, DeviceDescripto
                 devices.put(jd.getGwId(), dd);
                 emit(jd.getGwId(), dd);
                 logger.info("Add device '{}' with IP address '{}' to the repository", jd.getGwId(), jd.getIp());
+            } else if (dd.getLocalKey() == null) {
+                emit(jd.getGwId(), dd);
             }
             return true;
         } catch (ParseException e) {
