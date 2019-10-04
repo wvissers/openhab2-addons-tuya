@@ -28,7 +28,7 @@ public interface TcpConfig {
     public static final int HEARTBEAT_SECONDS = 12;
     public static final int HEARTBEAT_RETRIES = 5;
     // public static final int RECONNECT_CHECK_SECONDS = 120;
-    public static final int DEFAULT_QUEUE_SIZE = 10;
+    public static final int DEFAULT_QUEUE_SIZE = 25;
     public static final int STATUS_REQUEST_DELAY_SECONDS = 15;
 
     /**
