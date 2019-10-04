@@ -8,6 +8,8 @@
  */
 package org.openhab.binding.tuya.internal.discovery;
 
+import org.openhab.binding.tuya.handler.AbstractTuyaHandler;
+
 /**
  * Descriptor of the device in the repository.
  *
@@ -24,6 +26,7 @@ public class DeviceDescriptor {
      * The local encryption key must be set in the configuration. It is not transmitted by UDP.
      */
     private String localKey;
+    private AbstractTuyaHandler handler;
 
     public DeviceDescriptor() {
     }
@@ -69,6 +72,14 @@ public class DeviceDescriptor {
     public DeviceDescriptor withLocalKey(String localKey) {
         this.localKey = localKey;
         return this;
+    }
+
+    public AbstractTuyaHandler getHandler() {
+        return handler;
+    }
+
+    public void setHandler(AbstractTuyaHandler handler) {
+        this.handler = handler;
     }
 
 }

@@ -37,6 +37,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
+        super.handleStatusMessage(message);
         updateStates(message, PowerPlugState.class);
     }
 

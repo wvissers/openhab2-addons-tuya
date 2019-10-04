@@ -45,6 +45,7 @@ public class SirenHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
+        super.handleStatusMessage(message);
         updateStates(message, SirenState.class);
     }
 

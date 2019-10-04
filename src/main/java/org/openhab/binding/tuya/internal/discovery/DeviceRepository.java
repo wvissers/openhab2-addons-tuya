@@ -43,6 +43,10 @@ public class DeviceRepository extends SingleEventEmitter<String, DeviceDescripto
      */
     private DatagramListener encryptedListener;
     /**
+     * Listener for UDP packets transmitted to advertise devices.
+     */
+    private DatagramListener unencryptedListener;
+    /**
      * The logger instance.
      */
     private Logger logger = LoggerFactory.getLogger(DeviceRepository.class);
@@ -81,6 +85,13 @@ public class DeviceRepository extends SingleEventEmitter<String, DeviceDescripto
             });
             encryptedListener.start(scheduler);
         }
+        if (unencryptedListener == null) {
+            unencryptedListener = new DatagramListener(DEFAULT_UNECRYPTED_UDP_PORT);
+            unencryptedListener.on(DatagramListener.Event.UDP_PACKET_RECEIVED, (event, packet) -> {
+                return processPacket(packet);
+            });
+            encryptedListener.start(scheduler);
+        }
     }
 
     /**
@@ -91,6 +102,10 @@ public class DeviceRepository extends SingleEventEmitter<String, DeviceDescripto
         if (encryptedListener != null) {
             encryptedListener.stop();
             encryptedListener = null;
+        }
+        if (unencryptedListener != null) {
+            unencryptedListener.stop();
+            unencryptedListener = null;
         }
     }
 
@@ -112,6 +127,9 @@ public class DeviceRepository extends SingleEventEmitter<String, DeviceDescripto
                 emit(jd.getGwId(), dd);
                 logger.info("Add device '{}' with IP address '{}' to the repository", jd.getGwId(), jd.getIp());
             } else if (dd.getLocalKey() == null) {
+                if (dd.getHandler() != null && !dd.getHandler().isOnline()) {
+                    dd.getHandler().initialize();
+                }
                 emit(jd.getGwId(), dd);
             }
             return true;

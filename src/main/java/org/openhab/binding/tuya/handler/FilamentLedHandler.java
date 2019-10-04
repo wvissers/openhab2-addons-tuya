@@ -35,6 +35,7 @@ public class FilamentLedHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void handleStatusMessage(Message message) {
+        super.handleStatusMessage(message);
         updateStates(message, FilamentLedState.class);
     }
 

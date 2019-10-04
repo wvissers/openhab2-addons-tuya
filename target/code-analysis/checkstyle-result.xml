@@ -46,8 +46,8 @@
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\README.md">
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\handler\AbstractTuyaHandler.java">
-<error line="220" severity="info" message="Remove empty line after opening brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
-<error line="260" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
+<error line="232" severity="info" message="Remove empty line after opening brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
+<error line="272" severity="info" message="Remove empty line before closing brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\handler\ColorLedHandler.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
@@ -64,7 +64,7 @@
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\handler\SirenHandler.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 <error line="27" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
-<error line="56" severity="info" message="Remove empty line after opening brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
+<error line="57" severity="info" message="Remove empty line after opening brace" source="org.openhab.tools.analysis.checkstyle.NoEmptyLineSeparatorCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\annotations\Channel.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
@@ -107,7 +107,7 @@
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\discovery\DeviceDescriptor.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
-<error line="14" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
+<error line="16" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\discovery\DeviceRepository.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
@@ -147,7 +147,7 @@
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\TuyaClient.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>
 <error line="37" severity="warning" message="First javadoc author should have &quot;Initial contribution&quot; contribution description." source="org.openhab.tools.analysis.checkstyle.AuthorContributionDescriptionCheck"/>
-<error line="102" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
+<error line="106" severity="warning" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." source="org.openhab.tools.analysis.checkstyle.AvoidScheduleAtFixedRateCheck"/>
 </file>
 <file name="c:\OH2.4dev\openhab2-master\git\openhab2-addons\addons\binding\org.openhab.binding.tuya\src\main\java\org\openhab\binding\tuya\internal\net\TuyaClientService.java">
 <error line="0" severity="info" message="File does not end with a newline." source="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"/>

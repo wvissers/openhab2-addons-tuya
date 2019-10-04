@@ -82,10 +82,21 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
     }
 
     /**
+     * Return true if connected.
+     * 
+     * @return
+     */
+    public boolean isOnline() {
+        return tuyaClient.isOnline();
+    }
+
+    /**
      * This method is called when a DeviceEventEmitter.Event.MESSAGE_RECEIVED is received from the device. In
      * subclasses, this should result in a possible state change of the things channels.
      */
     protected void handleStatusMessage(Message message) {
+        // When a message is received, the thing is ONLINE.
+        updateStatus(ThingStatus.ONLINE);
     }
 
     /**
@@ -158,6 +169,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                     updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.CONFIGURATION_PENDING, device.getIp());
                     deviceDescriptor = device;
                     updateProperties(false);
+                    device.setHandler(this);
                     thing.getConfiguration().put("ip", device.getIp());
                     tuyaClient = new TuyaClient(device.getIp(), DEFAULT_SERVER_PORT, device.getVersion(),
                             device.getLocalKey());

@@ -58,6 +58,9 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     // Count heartbeats that have not been acknowledged yet.
     private final AtomicInteger heartbeatCnt;
 
+    // Count retries when connection is reset by peer.
+    private final AtomicInteger retryCnt;
+
     // Host and port
     private String host;
     private int port;
@@ -87,6 +90,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         this.host = host;
         this.port = port < 0 ? DEFAULT_SERVER_PORT : port;
         heartbeatCnt = new AtomicInteger();
+        retryCnt = new AtomicInteger();
     }
 
     /**
@@ -187,6 +191,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     void handleConnect(SelectionKey key) {
         this.key = key;
         online = true;
+        retryCnt.set(0);
         emit(Event.CONNECTED, null);
     }
 
@@ -203,7 +208,11 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         if (ex == null) {
             emit(Event.DISCONNECTED, null);
         } else {
-            emit(Event.CONNECTION_ERROR, new Message(ex.getMessage()));
+            if (retryCnt.addAndGet(1) < MAX_RETRIES) {
+                emit(Event.CONNECTION_ERROR_WITHIN_RETRY, new Message(ex.getMessage()));
+            } else {
+                emit(Event.CONNECTION_ERROR, new Message(ex.getMessage()));
+            }
         }
     }
 
@@ -232,6 +241,15 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     }
 
     /**
+     * Return true if running and connected.
+     *
+     * @return
+     */
+    public boolean isOnline() {
+        return online;
+    }
+
+    /**
      * Called by the service when ready for writing.
      *
      * @param key the selection key.
@@ -251,6 +269,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
 
     public enum Event {
         CONNECTION_ERROR,
+        CONNECTION_ERROR_WITHIN_RETRY,
         CONNECTED,
         DISCONNECTED,
         MESSAGE_RECEIVED;
