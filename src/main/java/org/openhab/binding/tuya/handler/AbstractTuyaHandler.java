@@ -121,6 +121,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
     @Override
     public void handleRemoval() {
         cleanUp();
+        super.handleRemoval();
     }
 
     /**

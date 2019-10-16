@@ -39,8 +39,8 @@
 
 
    <file name="org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">
-      <message tool="checkstyle" line="249" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
-      <message tool="checkstyle" line="296" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
+      <message tool="checkstyle" line="250" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="297" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.handler.ColorLedHandler.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
