@@ -102,19 +102,20 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     public void start(ScheduledExecutorService scheduler) {
         try {
             connect();
-            if (heartbeat == null) {
-                heartbeat = scheduler.scheduleAtFixedRate(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            send("", CommandByte.HEART_BEAT);
-                        } catch (IOException | ParseException e) {
-                        }
-                    }
-                }, HEARTBEAT_SECONDS, HEARTBEAT_SECONDS, TimeUnit.SECONDS);
-            }
         } catch (IOException e) {
+            online = false;
             emit(Event.CONNECTION_ERROR, new Message(e.getClass().getName()));
+        }
+        if (heartbeat == null) {
+            heartbeat = scheduler.scheduleAtFixedRate(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        send("", CommandByte.HEART_BEAT);
+                    } catch (IOException | ParseException e) {
+                    }
+                }
+            }, HEARTBEAT_SECONDS, HEARTBEAT_SECONDS, TimeUnit.SECONDS);
         }
     }
 
@@ -153,7 +154,9 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         if (!online || key == null) {
             connect();
         }
-        if (queue.remainingCapacity() == 0) {
+        if (queue.remainingCapacity() < DEFAULT_QUEUE_SIZE / 2 && command.equals(CommandByte.HEART_BEAT)) {
+            logger.debug("Skipping heartbeat since queue is more than 50% full.");
+        } else if (queue.remainingCapacity() == 0) {
             if (online) {
                 online = false;
                 emit(Event.CONNECTION_ERROR, new Message("send queue overflow"));

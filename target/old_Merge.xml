@@ -39,8 +39,8 @@
 
 
    <file name="org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">
-      <message tool="checkstyle" line="232" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
-      <message tool="checkstyle" line="272" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="238" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="285" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.handler.ColorLedHandler.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -142,7 +142,7 @@
    <file name="org.openhab.binding.tuya.internal.net.TuyaClient.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="37" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
-      <message tool="checkstyle" line="106" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
+      <message tool="checkstyle" line="110" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.net.TuyaClientService.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>

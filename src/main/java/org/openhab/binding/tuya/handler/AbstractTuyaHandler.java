@@ -12,6 +12,7 @@ import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 import static org.openhab.binding.tuya.internal.data.CommandByte.*;
 
 import java.io.IOException;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import org.eclipse.smarthome.config.core.Configuration;
@@ -55,6 +56,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
     protected DeviceDescriptor deviceDescriptor;
     protected TuyaClient tuyaClient;
     protected final CommandDispatcher commandDispatcher;
+    private ScheduledFuture<?> watchdog;
 
     public AbstractTuyaHandler(Thing thing) {
         super(thing);
@@ -83,7 +85,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
 
     /**
      * Return true if connected.
-     * 
+     *
      * @return
      */
     public boolean isOnline() {
@@ -126,6 +128,10 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
         if (tuyaClient != null) {
             tuyaClient.stop();
             tuyaClient = null;
+        }
+        if (watchdog != null) {
+            watchdog.cancel(true);
+            watchdog = null;
         }
         if (deviceDescriptor != null && deviceDescriptor.getGwId() != null) {
             DeviceRepository.getInstance().removeHandler(deviceDescriptor.getGwId());
@@ -270,6 +276,21 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
         // Init dispatcher.
         initCommandDispatcher();
 
+        // Start the watchdog to reinitialize when offline.
+        startWatchdog();
+    }
+
+    private void startWatchdog() {
+        if (watchdog == null) {
+            watchdog = scheduler.scheduleAtFixedRate(new Runnable() {
+                @Override
+                public void run() {
+                    if (getThing().getStatus() != ThingStatus.ONLINE) {
+                        initialize();
+                    }
+                }
+            }, WATCHDOG_CHECK_SECONDS, WATCHDOG_CHECK_SECONDS, TimeUnit.SECONDS);
+        }
     }
 
 }
