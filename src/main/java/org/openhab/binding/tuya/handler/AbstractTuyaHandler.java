@@ -36,6 +36,7 @@ import org.openhab.binding.tuya.internal.exceptions.UnsupportedVersionException;
 import org.openhab.binding.tuya.internal.net.TcpConfig;
 import org.openhab.binding.tuya.internal.net.TuyaClient;
 import org.openhab.binding.tuya.internal.net.TuyaClient.Event;
+import org.openhab.binding.tuya.internal.net.TuyaClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -286,6 +287,12 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                 @Override
                 public void run() {
                     if (getThing().getStatus() != ThingStatus.ONLINE) {
+                        try {
+                            // Make sure the client service is running.
+                            TuyaClientService.getInstance().start();
+                        } catch (IOException e) {
+                            logger.error("Error starting TuyaClientService.", e);
+                        }
                         initialize();
                     }
                 }
