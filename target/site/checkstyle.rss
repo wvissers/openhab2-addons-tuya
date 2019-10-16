@@ -28,7 +28,7 @@ under the License.
       <title>File: 51,
              Errors: 0,
              Warnings: 44,
-             Infos: 52
+             Infos: 51
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -399,7 +399,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.handler.AbstractTuyaHandler.java">src/main/java/org/openhab/binding/tuya/handler/AbstractTuyaHandler.java</a>
                 </td>
                 <td>
-                  2
+                  1
                 </td>
                 <td>
                   1

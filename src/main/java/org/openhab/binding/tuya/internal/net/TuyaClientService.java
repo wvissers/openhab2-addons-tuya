@@ -84,9 +84,12 @@ public class TuyaClientService implements Runnable, TcpConfig {
      * @throws IOException when something goes wrong.
      */
     public SelectionKey register(TuyaClient client, String host, int port) throws IOException {
+        // Open a channel
         SocketChannel channel = SocketChannel.open();
         channel.configureBlocking(false);
         channel.connect(new InetSocketAddress(host, port < 0 ? DEFAULT_SERVER_PORT : port));
+
+        // Register client
         SelectionKey key = channel.register(selector, OP_CONNECT);
         clients.put(key, client);
         start();
@@ -99,10 +102,7 @@ public class TuyaClientService implements Runnable, TcpConfig {
     private void cleanClientsMap() {
         clients.keySet().forEach(key -> {
             if (!key.isValid()) {
-                try {
-                    key.channel().close();
-                } catch (IOException ignored) {
-                }
+                close(key.channel());
                 clients.remove(key);
             }
         });

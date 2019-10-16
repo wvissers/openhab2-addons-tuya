@@ -22,6 +22,7 @@ import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.ThingStatusDetail;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
+import org.eclipse.smarthome.core.types.RefreshType;
 import org.openhab.binding.tuya.internal.CommandDispatcher;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.DeviceState;
@@ -78,7 +79,6 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                     });
                 }
             } catch (JsonSyntaxException e) {
-
                 logger.error("Statusmessage invalid", e);
                 logger.debug("Message: {}", message.getData());
             }
@@ -212,8 +212,14 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                         return true;
                     });
 
-                    // Start the client.
-                    tuyaClient.start(scheduler);
+                    // Delay start of client to avoid blocking initialization too long.
+                    scheduler.schedule(new Runnable() {
+                        @Override
+                        public void run() {
+                            tuyaClient.start(scheduler);
+                        }
+
+                    }, 100, TimeUnit.MILLISECONDS);
                 }
             }
         }
@@ -225,7 +231,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (!commandDispatcher.dispatchCommand(tuyaClient, channelUID, command, CONTROL)) {
+        if (command instanceof RefreshType) {
+            sendStatusQuery();
+        } else if (!commandDispatcher.dispatchCommand(tuyaClient, channelUID, command, CONTROL)) {
             logger.info("Command {} for channel {} could not be handled.", command, channelUID);
         }
     }

@@ -89,8 +89,8 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         this.queue = new LinkedBlockingQueue<>(DEFAULT_QUEUE_SIZE);
         this.host = host;
         this.port = port < 0 ? DEFAULT_SERVER_PORT : port;
-        heartbeatCnt = new AtomicInteger();
-        retryCnt = new AtomicInteger();
+        heartbeatCnt = new AtomicInteger(0);
+        retryCnt = new AtomicInteger(0);
     }
 
     /**
@@ -103,9 +103,6 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         try {
             connect();
         } catch (IOException e) {
-            if (key != null) {
-                key.cancel();
-            }
             emit(Event.CONNECTION_ERROR, new Message(e.getClass().getName()));
         }
         if (heartbeat == null) {
@@ -128,6 +125,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     public void stop() {
         online = false;
         if (key != null) {
+            close(key.channel());
             key.cancel();
         }
         if (heartbeat != null) {
@@ -157,10 +155,14 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
      */
     public void send(String message, CommandByte command) throws IOException, ParseException {
         if (!online || key == null) {
+            if (key != null) {
+                close(key.channel());
+            }
             connect();
         }
-        if (queue.remainingCapacity() < DEFAULT_QUEUE_SIZE / 2 && command.equals(CommandByte.HEART_BEAT)) {
-            logger.debug("Skipping heartbeat since queue is more than 50% full.");
+        if (command.equals(CommandByte.HEART_BEAT) && queue.remainingCapacity() < DEFAULT_QUEUE_SIZE / 2) {
+            heartbeatCnt.set(OUTSTANDING_HEARTBEATS_LIMIT);
+            logger.debug("Skipping heartbeat since outstanding heartbeat > {}.", OUTSTANDING_HEARTBEATS_LIMIT);
         } else if (queue.remainingCapacity() == 0) {
             if (online) {
                 online = false;
@@ -212,9 +214,10 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     void handleDisconnect(SelectionKey key, IOException ex) {
         logger.debug("Disconnected", ex);
         if (key != null) {
+            close(key.channel());
             key.cancel();
+            this.key = null;
         }
-        this.key = null;
         online = false;
         if (ex == null) {
             emit(Event.DISCONNECTED, null);
@@ -225,6 +228,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
             } else {
                 // Remove the message from the queue after max retries.
                 logger.debug("Connection error exceeds retries, cancel request.");
+                retryCnt.set(0);
                 queue.poll();
                 emit(Event.CONNECTION_ERROR, new Message(ex.getMessage()));
             }
@@ -248,7 +252,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
             }
             emit(Event.MESSAGE_RECEIVED, message);
         } catch (ParseException e) {
-            logger.error("Invalid message received.");
+            logger.error("Invalid message received.", e);
         }
         queue.poll();
         if (!queue.isEmpty() && key != null) {
@@ -275,7 +279,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         SocketChannel channel = (SocketChannel) key.channel();
         try {
             if (!queue.isEmpty()) {
-                // channel.write(ByteBuffer.wrap(queue.poll()));
+                // Use peek to leave the message in the queue.
                 channel.write(ByteBuffer.wrap(queue.peek()));
             }
         } catch (IOException e) {
