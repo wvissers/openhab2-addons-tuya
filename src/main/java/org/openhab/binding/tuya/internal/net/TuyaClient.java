@@ -103,7 +103,9 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         try {
             connect();
         } catch (IOException e) {
-            online = false;
+            if (key != null) {
+                key.cancel();
+            }
             emit(Event.CONNECTION_ERROR, new Message(e.getClass().getName()));
         }
         if (heartbeat == null) {
@@ -206,14 +208,21 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
      */
     void handleDisconnect(SelectionKey key, IOException ex) {
         logger.debug("Disconnected", ex);
+        if (key != null) {
+            key.cancel();
+        }
         this.key = null;
         online = false;
         if (ex == null) {
             emit(Event.DISCONNECTED, null);
         } else {
             if (retryCnt.addAndGet(1) < MAX_RETRIES) {
+                logger.debug("Connection error in retry window.");
                 emit(Event.CONNECTION_ERROR_WITHIN_RETRY, new Message(ex.getMessage()));
             } else {
+                // Remove the message from the queue after max retries.
+                logger.debug("Connection error exceeds retries, cancel request.");
+                queue.poll();
                 emit(Event.CONNECTION_ERROR, new Message(ex.getMessage()));
             }
         }
@@ -238,6 +247,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         } catch (ParseException e) {
             logger.error("Invalid message received.");
         }
+        queue.poll();
         if (!queue.isEmpty() && key != null) {
             key.interestOps(OP_WRITE);
         }
@@ -262,7 +272,8 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         SocketChannel channel = (SocketChannel) key.channel();
         try {
             if (!queue.isEmpty()) {
-                channel.write(ByteBuffer.wrap(queue.poll()));
+                // channel.write(ByteBuffer.wrap(queue.poll()));
+                channel.write(ByteBuffer.wrap(queue.peek()));
             }
         } catch (IOException e) {
             return;

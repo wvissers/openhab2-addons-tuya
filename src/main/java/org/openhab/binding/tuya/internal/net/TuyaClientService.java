@@ -60,7 +60,7 @@ public class TuyaClientService implements Runnable, TcpConfig {
     /**
      * Private constructor to ensure singleton.
      */
-    public TuyaClientService() {
+    private TuyaClientService() {
         logger = LoggerFactory.getLogger(this.getClass());
         executor = Executors.newSingleThreadExecutor();
     }
