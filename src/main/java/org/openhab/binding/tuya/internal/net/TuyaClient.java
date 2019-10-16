@@ -127,6 +127,9 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     @Override
     public void stop() {
         online = false;
+        if (key != null) {
+            key.cancel();
+        }
         if (heartbeat != null) {
             heartbeat.cancel(false);
             heartbeat = null;
@@ -268,7 +271,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
      * @param key the selection key.
      */
     void writeData(SelectionKey key) {
-        logger.debug("Write data requested.");
+        logger.debug("Write data requested for channel {}.", key.channel());
         SocketChannel channel = (SocketChannel) key.channel();
         try {
             if (!queue.isEmpty()) {
@@ -276,6 +279,11 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
                 channel.write(ByteBuffer.wrap(queue.peek()));
             }
         } catch (IOException e) {
+            logger.debug("Exception in writeData.", e);
+            if (retryCnt.addAndGet(1) >= MAX_RETRIES) {
+                queue.poll();
+                retryCnt.set(0);
+            }
             return;
         }
         key.interestOps(OP_READ);
