@@ -78,7 +78,9 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                     });
                 }
             } catch (JsonSyntaxException e) {
+
                 logger.error("Statusmessage invalid", e);
+                logger.debug("Message: {}", message.getData());
             }
         }
     }

@@ -120,9 +120,6 @@ public class ColorLedState extends DeviceState {
         @SerializedName("5")
         private String dp5;
 
-        @SerializedName("9")
-        private Integer dp9;
-
     }
 
 }
