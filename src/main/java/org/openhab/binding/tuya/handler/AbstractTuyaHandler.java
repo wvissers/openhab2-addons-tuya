@@ -236,10 +236,14 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      */
     @Override
     public void handleCommand(ChannelUID channelUID, Command command) {
-        if (command instanceof RefreshType) {
-            sendStatusQuery();
-        } else if (!commandDispatcher.dispatchCommand(tuyaClient, channelUID, command, CONTROL)) {
-            logger.info("Command {} for channel {} could not be handled.", command, channelUID);
+        if (deviceDescriptor == null) {
+            logger.info("Command {} for channel {} not handled because deviceDescriptor is null.", command, channelUID);
+        } else {
+            if (command instanceof RefreshType) {
+                sendStatusQuery();
+            } else if (!commandDispatcher.dispatchCommand(tuyaClient, channelUID, command, CONTROL)) {
+                logger.info("Command {} for channel {} could not be handled.", command, channelUID);
+            }
         }
     }
 

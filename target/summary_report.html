@@ -11,8 +11,8 @@
    <body>
       <h2>Report
          					 
-         					(2019-10-16+02:00;
-         					 21:18:12.439+02:00)
+         					(2019-10-25+02:00;
+         					 09:50:05.25+02:00)
          				
       </h2>
       <h3>Summary Messages</h3>
@@ -42,7 +42,7 @@
             <td>pmd</td>
             <td align="left">2</td>
             <td> <a href="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln">SystemPrintln</a></td>
-            <td align="center">1</td>
+            <td align="center">2</td>
          </tr>
          <tr>
             <td colspan="5">style</td>
@@ -73,14 +73,14 @@
             <td>checkstyle</td>
             <td align="left">2</td>
             <td>AvoidScheduleAtFixedRateCheck</td>
-            <td align="center">2</td>
+            <td align="center">4</td>
          </tr>
          <tr class="alternate">
             <td></td>
             <td>checkstyle</td>
             <td align="left">2</td>
             <td>AuthorContributionDescriptionCheck</td>
-            <td align="center">30</td>
+            <td align="center">31</td>
          </tr>
          <tr class="alternate">
             <td></td>
@@ -94,7 +94,14 @@
             <td>checkstyle</td>
             <td align="left">3</td>
             <td>NoEmptyLineSeparatorCheck</td>
-            <td align="center">6</td>
+            <td align="center">8</td>
+         </tr>
+         <tr class="alternate">
+            <td></td>
+            <td>checkstyle</td>
+            <td align="left">3</td>
+            <td>UnusedImportsCheck</td>
+            <td align="center">1</td>
          </tr>
          <tr class="alternate">
             <td></td>
@@ -112,7 +119,7 @@
          </tr>
          <tr class="dark">
             <td colspan="4"></td>
-            <td align="center">97</td>
+            <td align="center">104</td>
          </tr>
       </table>
       <p></p>
@@ -296,13 +303,13 @@
                <div class="p1">0</div>
             </td>
             <td align="center">
-               <div class="p2">1</div>
+               <div class="p2">3</div>
             </td>
             <td align="center">
-               <div class="p3">1</div>
+               <div class="p3">3</div>
             </td>
             <td align="center">
-               <div class="p3">2</div>
+               <div class="p3">6</div>
             </td>
          </tr>
          <tr class="alternate">
@@ -446,13 +453,13 @@
                <div class="p1">0</div>
             </td>
             <td align="center">
-               <div class="p2">2</div>
+               <div class="p2">4</div>
             </td>
             <td align="center">
-               <div class="p3">1</div>
+               <div class="p3">2</div>
             </td>
             <td align="center">
-               <div class="p3">3</div>
+               <div class="p3">6</div>
             </td>
          </tr>
          <tr class="alternate">
@@ -806,13 +813,13 @@
                <div class="p1">0</div>
             </td>
             <td align="center">
-               <div class="p2">45</div>
+               <div class="p2">49</div>
             </td>
             <td align="center">
-               <div class="p3">52</div>
+               <div class="p3">55</div>
             </td>
             <td align="center">
-               <div class="p3">97</div>
+               <div class="p3">104</div>
             </td>
          </tr>
       </table>
@@ -1148,8 +1155,40 @@
          </tr>
          <tr class="alternate">
             <td>checkstyle</td>
+            <td>2</td>
+            <td>301</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>2</td>
+            <td>305</td>
+            <td>style</td>
+            <td>AvoidScheduleAtFixedRateCheck</td>
+            <td>For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
             <td>3</td>
             <td>250</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>254</td>
+            <td>style</td>
+            <td>NoEmptyLineSeparatorCheck</td>
+            <td>Remove empty line after opening brace</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>258</td>
             <td>style</td>
             <td>NoEmptyLineSeparatorCheck</td>
             <td>Remove empty line after opening brace</td>
@@ -1411,11 +1450,38 @@
          </tr>
          <tr class="alternate">
             <td>checkstyle</td>
+            <td>2</td>
+            <td>34</td>
+            <td>style</td>
+            <td>AuthorContributionDescriptionCheck</td>
+            <td>First javadoc author should have "Initial contribution" contribution description.</td>
+         </tr>
+         <tr class="alternate">
+            <td>pmd</td>
+            <td>2</td>
+            <td>142</td>
+            <td>java logging</td>
+            <td>SystemPrintln</td>
+            <td>
+               System.out.println is used
+               
+            </td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
             <td>3</td>
             <td>0</td>
             <td>style</td>
             <td>NewlineAtEndOfFileCheck</td>
             <td>File does not end with a newline.</td>
+         </tr>
+         <tr class="alternate">
+            <td>checkstyle</td>
+            <td>3</td>
+            <td>22</td>
+            <td>style</td>
+            <td>UnusedImportsCheck</td>
+            <td>Unused import - org.openhab.binding.tuya.handler.AbstractTuyaHandler.</td>
          </tr>
       </table><br><table width="90%" border="0" class="details">
          <th align="left" colspan="6"><a name="org.openhab.binding.tuya.internal.data.FilamentLedState.java">org.openhab.binding.tuya.internal.data.FilamentLedState.java</a></th>

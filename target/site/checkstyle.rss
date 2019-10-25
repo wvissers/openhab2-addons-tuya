@@ -28,7 +28,7 @@ under the License.
       <title>File: 51,
              Errors: 0,
              Warnings: 44,
-             Infos: 51
+             Infos: 52
       </title>
             <link>${project.url}/checkstyle.html</link>
       <description>
@@ -315,7 +315,7 @@ under the License.
                   <a href="${project.url}/checkstyle.html#src.main.java.org.openhab.binding.tuya.internal.data.DeviceState.java">src/main/java/org/openhab/binding/tuya/internal/data/DeviceState.java</a>
                 </td>
                 <td>
-                  1
+                  2
                 </td>
                 <td>
                   1
