@@ -50,7 +50,7 @@ import com.google.gson.JsonSyntaxException;
  */
 public abstract class AbstractTuyaHandler extends BaseThingHandler implements TcpConfig {
 
-    private Logger logger = LoggerFactory.getLogger(AbstractTuyaHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(AbstractTuyaHandler.class);
 
     protected String id;
 
@@ -108,8 +108,12 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      */
     protected void sendStatusQuery() {
         try {
-            StatusQuery query = new StatusQuery(deviceDescriptor);
-            tuyaClient.send(query, CommandByte.DP_QUERY);
+            if (deviceDescriptor == null) {
+                logger.info("No device descriptor, skipping status query.");
+            } else {
+                StatusQuery query = new StatusQuery(deviceDescriptor);
+                tuyaClient.send(query, CommandByte.DP_QUERY);
+            }
         } catch (IOException | ParseException e) {
             logger.error("Error on status request", e);
         }

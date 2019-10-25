@@ -63,7 +63,7 @@ public class CommandDispatcher extends SingleEventEmitter<CommandEvent, Command,
      * @param client      the client object.
      * @param channelUID  the channel uid this client received in its handleCommand call.
      * @param command     the command this client received in its handleCommand call.
-     * @param commandByte the Tuya commandbyte that will be used to construct the mesage to teh Tuya device.
+     * @param commandByte the Tuya commandbyte that will be used to construct the message to the Tuya device.
      * @return true when the command is handled, otherwise false.
      */
     public boolean dispatchCommand(TuyaClient client, ChannelUID channelUID, Command command, CommandByte commandByte) {

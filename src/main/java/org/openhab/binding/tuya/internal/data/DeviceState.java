@@ -19,8 +19,11 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.State;
+import org.openhab.binding.tuya.handler.AbstractTuyaHandler;
 import org.openhab.binding.tuya.internal.annotations.Channel;
 import org.openhab.binding.tuya.internal.discovery.DeviceDescriptor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -36,9 +39,14 @@ public class DeviceState {
     // To convert objects to a json String.
     private static final Gson GSON = new Gson();
 
+    // Empty array ready to use.
     private static final Object[] EMPTY_ARRAY = new Object[0];
 
+    // The device ID.
     private String devId;
+    
+    // The logger.
+    private final Logger logger = LoggerFactory.getLogger(DeviceState.class);
 
     @SerializedName("t")
     long time;
@@ -47,7 +55,7 @@ public class DeviceState {
     }
 
     public DeviceState(DeviceDescriptor deviceDescriptor) {
-        this.devId = deviceDescriptor.getGwId();
+        this.devId = deviceDescriptor == null ? "" : deviceDescriptor.getGwId();
         this.time = new Date().getTime() / 1000;
     }
 
