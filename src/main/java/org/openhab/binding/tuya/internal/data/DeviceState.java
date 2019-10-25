@@ -44,9 +44,6 @@ public class DeviceState {
 
     // The device ID.
     private String devId;
-    
-    // The logger.
-    private final Logger logger = LoggerFactory.getLogger(DeviceState.class);
 
     @SerializedName("t")
     long time;
