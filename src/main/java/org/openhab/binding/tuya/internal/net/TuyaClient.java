@@ -47,7 +47,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     private long currentSequenceNo;
 
     // The queue for outgoing messages.
-    private final LinkedBlockingQueue<byte[]> queue;
+    private final LinkedBlockingQueue<QueueItem> queue;
 
     // The selection key.
     private SelectionKey key;
@@ -82,7 +82,6 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         if (!version.equals(DEFAULT_VERSION)) {
             throw new UnsupportedVersionException("Currently only version 3.3. supported");
         }
-
         // Create a message parser for the given version and localKey.
         messageParser = new MessageParser(version, localKey);
         logger = LoggerFactory.getLogger(this.getClass());
@@ -110,7 +109,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
                 @Override
                 public void run() {
                     try {
-                        send("", CommandByte.HEART_BEAT);
+                        send(null, CommandByte.HEART_BEAT);
                     } catch (IOException | ParseException e) {
                     }
                 }
@@ -148,18 +147,18 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     /**
      * Send a message. If the device responds, the response will be emitted as a new event.
      *
-     * @param message the message to send as string.
-     * @param command the commandbyte enum constant.
+     * @param item the item to send.
      * @throws IOException
      * @throws ParseException
      */
-    public void send(String message, CommandByte command) throws IOException, ParseException {
+    private void send(QueueItem item) throws IOException, ParseException {
         if (!online || key == null) {
             if (key != null) {
                 close(key.channel());
             }
             connect();
         }
+        CommandByte command = item.getCommandByte();
         if (command.equals(CommandByte.HEART_BEAT) && queue.remainingCapacity() < DEFAULT_QUEUE_SIZE / 2) {
             heartbeatCnt.set(OUTSTANDING_HEARTBEATS_LIMIT);
             logger.debug("Skipping heartbeat since outstanding heartbeat > {}.", OUTSTANDING_HEARTBEATS_LIMIT);
@@ -169,8 +168,11 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
                 emit(Event.CONNECTION_ERROR, new Message("send queue overflow"));
             }
         } else {
-            byte[] packet = messageParser.encode(message.getBytes(), command, currentSequenceNo++);
-            queue.offer(packet);
+            // Remove conflicting items from the queue.
+            queue.removeIf(qi -> {
+                return qi.isConflicting(item);
+            });
+            queue.offer(item);
             if (command.equals(CommandByte.HEART_BEAT)) {
                 if (heartbeatCnt.incrementAndGet() > HEARTBEAT_RETRIES) {
                     online = false;
@@ -184,13 +186,13 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     /**
      * Send a message. If the device responds, the response will be emitted as a new event.
      *
-     * @param device  the device object that will be transformed to a json string.
+     * @param deviceState  the deviceState object that will be transformed to a json string.
      * @param command the commandbyte enum constant.
      * @throws IOException
      * @throws ParseException
      */
-    public void send(DeviceState device, CommandByte command) throws IOException, ParseException {
-        send(device.toJson(), command);
+    public void send(DeviceState deviceState, CommandByte command) throws IOException, ParseException {
+        send(new QueueItem(deviceState, command));
     }
 
     /**
@@ -280,7 +282,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
         try {
             if (!queue.isEmpty()) {
                 // Use peek to leave the message in the queue.
-                channel.write(ByteBuffer.wrap(queue.peek()));
+                channel.write(ByteBuffer.wrap(queue.peek().encode(messageParser, currentSequenceNo++)));
             }
         } catch (IOException e) {
             logger.debug("Exception in writeData.", e);

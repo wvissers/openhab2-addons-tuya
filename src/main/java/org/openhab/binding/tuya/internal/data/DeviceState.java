@@ -19,11 +19,9 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.library.types.PercentType;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.State;
-import org.openhab.binding.tuya.handler.AbstractTuyaHandler;
 import org.openhab.binding.tuya.internal.annotations.Channel;
 import org.openhab.binding.tuya.internal.discovery.DeviceDescriptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.openhab.binding.tuya.internal.net.QueueItem;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
@@ -155,6 +153,15 @@ public class DeviceState {
 
     public void setTime(long time) {
         this.time = time;
+    }
+    
+    /**
+     * Return true when the given QueueItem is conflicting with this item. This test is used to remove conflicting items from the queue. An example is a switch that may be on or off, and it makes no sense to have both an on and an off command in the queue at the same time.
+     * @param other the item to compare to.
+     * @return true when conflicting.
+     */
+    public boolean isConflicting(QueueItem other) {
+        return false;
     }
 
     /**

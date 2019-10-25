@@ -83,8 +83,13 @@
       <message tool="checkstyle" line="31" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    <message tool="pmd" line="134" message="&#xA;System.out.println is used&#xA;" priority="2" rule="SystemPrintln" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" category="java logging"/>
    <message tool="checkstyle" line="22" message="Unused import - org.openhab.binding.tuya.handler.AbstractTuyaHandler." priority="3" rule="UnusedImportsCheck" category="style"/>
+      <message tool="checkstyle" line="25" message="Unused import - org.slf4j.Logger." priority="3" rule="UnusedImportsCheck" category="style"/>
+      <message tool="checkstyle" line="26" message="Unused import - org.slf4j.LoggerFactory." priority="3" rule="UnusedImportsCheck" category="style"/>
       <message tool="checkstyle" line="34" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    <message tool="pmd" line="142" message="&#xA;System.out.println is used&#xA;" priority="2" rule="SystemPrintln" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" category="java logging"/>
+   <message tool="pmd" line="139" message="&#xA;System.out.println is used&#xA;" priority="2" rule="SystemPrintln" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" category="java logging"/>
+   <message tool="checkstyle" line="32" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+   <message tool="pmd" line="137" message="&#xA;System.out.println is used&#xA;" priority="2" rule="SystemPrintln" rule_url="https://pmd.github.io/pmd-5.8.1/pmd-java/rules/java/logging-java.html#SystemPrintln" category="java logging"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.data.FilamentLedState.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -97,6 +102,7 @@
    <file name="org.openhab.binding.tuya.internal.data.PowerPlugState.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="24" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
+   <message tool="checkstyle" line="25" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.data.SirenState.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
@@ -142,6 +148,9 @@
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="26" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
    </file>
+   <file name="org.openhab.binding.tuya.internal.net.QueueItem.java">
+      <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
+   </file>
    <file name="org.openhab.binding.tuya.internal.net.TcpConfig.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="17" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
@@ -150,6 +159,7 @@
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>
       <message tool="checkstyle" line="37" message="First javadoc author should have &#34;Initial contribution&#34; contribution description." priority="2" rule="AuthorContributionDescriptionCheck" category="style"/>
       <message tool="checkstyle" line="109" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
+   <message tool="checkstyle" line="108" message="For periodically executed jobs that do not require a fixed rate scheduleWithFixedDelay should be preferred over scheduleAtFixedRate." priority="2" rule="AvoidScheduleAtFixedRateCheck" category="style"/>
    </file>
    <file name="org.openhab.binding.tuya.internal.net.TuyaClientService.java">
       <message tool="checkstyle" line="0" message="File does not end with a newline." priority="3" rule="NewlineAtEndOfFileCheck" category="style"/>

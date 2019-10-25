@@ -14,6 +14,7 @@ import org.eclipse.smarthome.core.library.types.OnOffType;
 import org.eclipse.smarthome.core.types.Command;
 import org.openhab.binding.tuya.internal.annotations.Channel;
 import org.openhab.binding.tuya.internal.discovery.DeviceDescriptor;
+import org.openhab.binding.tuya.internal.net.QueueItem;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -53,6 +54,16 @@ public class PowerPlugState extends DeviceState {
     @Channel(CHANNEL_POWER)
     public OnOffType getPower() {
         return toOnOffType(dps.dp1);
+    }
+    
+    /**
+     * Return true when the given QueueItem is conflicting with this item. This test is used to remove conflicting items from the queue. An example is a switch that may be on or off, and it makes no sense to have both an on and an off command in the queue at the same time.
+     * @param other the item to compare to.
+     * @return true when conflicting.
+     */
+    public boolean isConflicting(QueueItem other) {
+        DeviceState ds = other == null ? null : other.getDeviceState();
+        return ds == null ? false : ds.getClass().equals(getClass()) && !((PowerPlugState)ds).dps.dp1.equals(dps.dp1);
     }
 
     public class Dps {
