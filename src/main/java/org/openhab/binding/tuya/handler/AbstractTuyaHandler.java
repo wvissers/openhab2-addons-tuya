@@ -12,6 +12,8 @@ import static org.openhab.binding.tuya.TuyaBindingConstants.*;
 import static org.openhab.binding.tuya.internal.data.CommandByte.*;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +26,7 @@ import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
 import org.eclipse.smarthome.core.types.RefreshType;
 import org.openhab.binding.tuya.internal.CommandDispatcher;
+import org.openhab.binding.tuya.internal.annotations.Property;
 import org.openhab.binding.tuya.internal.data.CommandByte;
 import org.openhab.binding.tuya.internal.data.DeviceState;
 import org.openhab.binding.tuya.internal.data.Message;
@@ -163,9 +166,21 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
      * overridden in subclasses to add more specific device properties.
      */
     protected void updateProperties(boolean clear) {
-        thing.setProperty(PROPERTY_VERSION, clear ? "" : deviceDescriptor.getVersion());
-        thing.setProperty(PROPERTY_IP_ADDRESS, clear ? "" : deviceDescriptor.getIp());
-        thing.setProperty(PROPERTY_PRODUCT_KEY, clear ? "" : deviceDescriptor.getProductKey());
+        for (Method method : DeviceDescriptor.class.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(Property.class) && method.getParameterCount() == 0) {
+                Property prop = method.getAnnotation(Property.class);
+                thing.setProperty(prop.value(), "");
+                if (!clear) {
+                    Object obj;
+                    try {
+                        obj = method.invoke(deviceDescriptor, (Object[]) null);
+                        thing.setProperty(prop.value(), obj == null ? prop.nullValue() : obj.toString());
+                    } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                        logger.error("Property value could not be retrieved", e);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -183,7 +198,7 @@ public abstract class AbstractTuyaHandler extends BaseThingHandler implements Tc
                             "IP address: " + device.getIp());
                     deviceDescriptor = device;
                     updateProperties(false);
-                    device.setHandler(this);
+                    deviceDescriptor.setHandler(this);
                     thing.getConfiguration().put("ip", device.getIp());
                     tuyaClient = new TuyaClient(device.getIp(), DEFAULT_SERVER_PORT, device.getVersion(),
                             device.getLocalKey());

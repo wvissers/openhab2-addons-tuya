@@ -19,9 +19,9 @@ package org.openhab.binding.tuya.internal.discovery;
 public class JsonDiscovery {
 
     private String gwId;
-    private int active;
-    private int ability;
-    private boolean encrypt;
+    private Integer active;
+    private Integer ability;
+    private Boolean encrypt;
     private String productKey;
     private String version;
     private String ip;
@@ -40,15 +40,15 @@ public class JsonDiscovery {
         return gwId;
     }
 
-    public int getActive() {
+    public Integer getActive() {
         return active;
     }
 
-    public int getAbility() {
+    public Integer getAbility() {
         return ability;
     }
 
-    public boolean isEncrypt() {
+    public Boolean isEncrypt() {
         return encrypt;
     }
 

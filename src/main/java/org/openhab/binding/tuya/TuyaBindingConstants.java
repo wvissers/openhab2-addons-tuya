@@ -18,11 +18,6 @@ import org.eclipse.smarthome.core.thing.ThingTypeUID;
  */
 public class TuyaBindingConstants {
 
-    // Device properties that can be inspected with e.g. the Paper UI.
-    public static final String PROPERTY_IP_ADDRESS = "ip-address";
-    public static final String PROPERTY_VERSION = "version";
-    public static final String PROPERTY_PRODUCT_KEY = "product-key";
-
     // Binding id.
     public static final String BINDING_ID = "tuya";
 

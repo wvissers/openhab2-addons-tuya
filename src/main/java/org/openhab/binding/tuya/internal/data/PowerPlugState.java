@@ -55,15 +55,19 @@ public class PowerPlugState extends DeviceState {
     public OnOffType getPower() {
         return toOnOffType(dps.dp1);
     }
-    
+
     /**
-     * Return true when the given QueueItem is conflicting with this item. This test is used to remove conflicting items from the queue. An example is a switch that may be on or off, and it makes no sense to have both an on and an off command in the queue at the same time.
+     * Return true when the given QueueItem is conflicting with this item. This test is used to remove conflicting items
+     * from the queue. An example is a switch that may be on or off, and it makes no sense to have both an on and an off
+     * command in the queue at the same time.
+     * 
      * @param other the item to compare to.
      * @return true when conflicting.
      */
+    @Override
     public boolean isConflicting(QueueItem other) {
         DeviceState ds = other == null ? null : other.getDeviceState();
-        return ds == null ? false : ds.getClass().equals(getClass()) && !((PowerPlugState)ds).dps.dp1.equals(dps.dp1);
+        return ds == null ? false : ds.getClass().equals(getClass()) && !((PowerPlugState) ds).dps.dp1.equals(dps.dp1);
     }
 
     public class Dps {

@@ -9,6 +9,7 @@
 package org.openhab.binding.tuya.internal.discovery;
 
 import org.openhab.binding.tuya.handler.AbstractTuyaHandler;
+import org.openhab.binding.tuya.internal.annotations.Property;
 
 /**
  * Descriptor of the device in the repository.
@@ -36,14 +37,17 @@ public class DeviceDescriptor {
     }
 
     // Convenience methods.
+    @Property("ip-address")
     public String getIp() {
         return jsonDiscovery.getIp();
     }
 
+    @Property("gw-id")
     public String getGwId() {
         return jsonDiscovery.getGwId();
     }
 
+    @Property("version")
     public String getVersion() {
         return jsonDiscovery.getVersion();
     }
@@ -52,8 +56,13 @@ public class DeviceDescriptor {
         return jsonDiscovery.getProductKey();
     }
 
-    public boolean isEncrypt() {
+    @Property("encrypted")
+    public Boolean isEncrypt() {
         return jsonDiscovery.isEncrypt();
+    }
+    
+    public Integer getActive() {
+        return jsonDiscovery.getActive();
     }
 
     // JsonDiscovery getters and setters
@@ -61,8 +70,8 @@ public class DeviceDescriptor {
         return jsonDiscovery;
     }
 
-    public void setDeviceDatagram(JsonDiscovery deviceDatagram) {
-        this.jsonDiscovery = deviceDatagram;
+    public void setJsonDiscovery(JsonDiscovery jsonDiscovery) {
+        this.jsonDiscovery = jsonDiscovery;
     }
 
     public String getLocalKey() {
