@@ -186,8 +186,8 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
     /**
      * Send a message. If the device responds, the response will be emitted as a new event.
      *
-     * @param deviceState  the deviceState object that will be transformed to a json string.
-     * @param command the commandbyte enum constant.
+     * @param deviceState the deviceState object that will be transformed to a json string.
+     * @param command     the commandbyte enum constant.
      * @throws IOException
      * @throws ParseException
      */
@@ -214,7 +214,7 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
      * @param ex  the IOException (may by null).
      */
     void handleDisconnect(SelectionKey key, IOException ex) {
-        logger.debug("Disconnected", ex);
+        logger.debug("Disconnected.", ex);
         if (key != null) {
             close(key.channel());
             key.cancel();
@@ -227,6 +227,12 @@ public class TuyaClient extends SingleEventEmitter<TuyaClient.Event, Message, Bo
             if (retryCnt.addAndGet(1) < MAX_RETRIES) {
                 logger.debug("Connection error in retry window.");
                 emit(Event.CONNECTION_ERROR_WITHIN_RETRY, new Message(ex.getMessage()));
+                try {
+                    // Wait a short time between retries
+                    Thread.sleep(RETRY_DELAY);
+                    send(queue.poll());
+                } catch (IOException | ParseException | InterruptedException e) {
+                }
             } else {
                 // Remove the message from the queue after max retries.
                 logger.debug("Connection error exceeds retries, cancel request.");

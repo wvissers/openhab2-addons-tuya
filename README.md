@@ -7,6 +7,16 @@ This binding is based on the tuyapi project. Please make sure to check out [http
 
 This binding implementation is still experimental. Let me know what you think about this, but don't expect everything to work perfectly yet. The binding is offered 'as is' with no warranty of any kind. Use it at your own risk. 
 
+The way the Tuya devices are designed makes it very difficult to create a 100% stable binding using the local API. Some guidelines to increase the stability:
+
+- After configuring the things with PaperUI, leave the binding some time (about 5 minutes minimum) to stabilize.
+- Leave the devices powered on. Switching lights on and off with a regular light switch is discouraged.
+- When updating the binding by copying a new jar file into the addons folder, restarting openHAB is encouraged.
+
+Due to the fact that it is apparently not going to be stable enough I will discontinue development. Feel free to
+use the code for your own purposes. 
+ 
+
 ## Setup
 
 Since the local device communication is encrypted, you will need to obtain the encryption keys and the device ids. Every Tuya device has its own key, so this is needed for every new device you want to add. These keys can be found by analyzing the traffic between the Tuya app and the Tuya cloud service. Since this communication is also encrypted using https, a little effort is needed here. The 'trick' is to use a computer as proxy server for your mobile device. There is good free software available that allows you to view the requests passing the proxy server in readable text.

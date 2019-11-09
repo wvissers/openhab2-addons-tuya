@@ -175,6 +175,10 @@ public class TuyaClientService implements Runnable, TcpConfig {
      * @throws IOException
      */
     protected void read(SelectionKey key) throws IOException {
+        if (key == null) {
+            logger.debug("No key: read cancelled.");
+            return;
+        }
         SocketChannel channel = (SocketChannel) key.channel();
         TuyaClient client = clients.get(key);
         if (client == null) {
@@ -204,7 +208,6 @@ public class TuyaClientService implements Runnable, TcpConfig {
                 client.handleDisconnect(key, new NoDataException());
             }
             return;
-
         }
 
         if (client != null) {

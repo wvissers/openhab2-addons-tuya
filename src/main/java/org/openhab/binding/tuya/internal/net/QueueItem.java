@@ -54,6 +54,9 @@ public class QueueItem {
      * @return true when conflicting.
      */
     public boolean isConflicting(QueueItem other) {
+        if (other != null && getCommandByte().equals(CommandByte.HEART_BEAT) && other.getCommandByte().equals(CommandByte.HEART_BEAT)) {
+            return true;
+        }
         return deviceState == null ? false : deviceState.isConflicting(other);
     }
 

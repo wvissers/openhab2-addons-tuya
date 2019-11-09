@@ -9,6 +9,7 @@
 package org.openhab.binding.tuya.internal;
 
 import java.io.IOException;
+import java.nio.channels.CancelledKeyException;
 import java.util.function.BiFunction;
 
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -73,7 +74,7 @@ public class CommandDispatcher extends SingleEventEmitter<CommandEvent, Command,
             try {
                 client.send(data, commandByte);
                 event.setHandled(true);
-            } catch (IOException | ParseException e) {
+            } catch (IOException | ParseException | CancelledKeyException e) {
                 logger.error("Error dispatching command.", e);
             }
         }
