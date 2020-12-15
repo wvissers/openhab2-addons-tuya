@@ -15,6 +15,7 @@ import org.eclipse.smarthome.core.thing.ThingTypeUID;
  * used across the whole binding.
  *
  * @author Wim Vissers - Initial contribution
+ * @author Gert Van Hoecke - Curtain switch added
  */
 public class TuyaBindingConstants {
 
@@ -37,6 +38,7 @@ public class TuyaBindingConstants {
     public final static String CHANNEL_ALARM = "alarm";
     public final static String CHANNEL_VOLUME = "volume";
     public final static String CHANNEL_DURATION = "duration";
+    public final static String CHANNEL_CURTAIN = "curtain";
 
     // Default API version (currently only 3.3 supported).
     public static final String DEFAULT_VERSION = "3.3";
