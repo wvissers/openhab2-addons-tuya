@@ -26,6 +26,7 @@ public class TuyaBindingConstants {
     public final static ThingTypeUID THING_TYPE_COLOR_LED = new ThingTypeUID(BINDING_ID, "colorled");
     public final static ThingTypeUID THING_TYPE_FILAMENT_LED = new ThingTypeUID(BINDING_ID, "filamentled");
     public final static ThingTypeUID THING_TYPE_SIREN = new ThingTypeUID(BINDING_ID, "siren");
+    public final static ThingTypeUID THING_TYPE_CURTAIN_SWITCH = new ThingTypeUID(BINDING_ID, "curtainswitch");
 
     // List of all Channel ids.
     public final static String CHANNEL_POWER = "power";
