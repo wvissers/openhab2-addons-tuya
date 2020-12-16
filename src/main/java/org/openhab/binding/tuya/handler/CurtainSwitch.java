@@ -11,6 +11,7 @@ package org.openhab.binding.tuya.handler;
 import static org.openhab.binding.tuya.TuyaBindingConstants.CHANNEL_POWER;
 
 import org.eclipse.smarthome.core.library.types.OnOffType;
+import org.eclipse.smarthome.core.library.types.StopMoveType;
 import org.eclipse.smarthome.core.thing.Thing;
 import org.openhab.binding.tuya.internal.data.Message;
 import org.openhab.binding.tuya.internal.data.PowerPlugState;
@@ -23,11 +24,11 @@ import org.slf4j.LoggerFactory;
  * @author Gert Van Hoecke
  *
  */
-public class PowerPlugHandler extends AbstractTuyaHandler {
+public class CurtainSwitchHandler extends AbstractTuyaHandler {
 
-    private Logger logger = LoggerFactory.getLogger(PowerPlugHandler.class);
+    private Logger logger = LoggerFactory.getLogger(CurtainSwitchHandler.class);
 
-    public PowerPlugHandler(Thing thing) {
+    public CurtainSwitchHandler(Thing thing) {
         super(thing);
     }
 
@@ -38,7 +39,7 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
     @Override
     protected void handleStatusMessage(Message message) {
         super.handleStatusMessage(message);
-        updateStates(message, PowerPlugState.class);
+        updateStates(message, CurtainSwitchState.class);
     }
 
     /**
@@ -46,8 +47,8 @@ public class PowerPlugHandler extends AbstractTuyaHandler {
      */
     @Override
     protected void initCommandDispatcher() {
-        // Channel power command with OnOffType.
-        commandDispatcher.on(CHANNEL_POWER, OnOffType.class, (ev, command) -> {
+        // Channel power command with StopMoveType.
+        commandDispatcher.on(CHANNEL_POWER, StopMoveType.class, (ev, command) -> {
             return new PowerPlugState(deviceDescriptor).withPower(command);
         });
     }
